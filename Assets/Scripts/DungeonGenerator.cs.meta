@@ -1,0 +1,10 @@
+fileFormatVersion: 2
+guid: 78b220e008d786d4e8dcb552027b1c23
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - basicWall: {fileID: 100000, guid: 4bc53af0237567846ae3613046c52525, type: 2}
+  - basicFloor: {fileID: 100000, guid: a11aaf0062fd1834497f11d3feecea08, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
