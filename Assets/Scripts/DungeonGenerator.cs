@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+
+//The actual generatig process will be done by this, yet deactivated game object
 public class DungeonGenerator : MonoBehaviour {
 
 	public const float PIX_TO_UNIT = 100; //how many pixels fill one unity internal length
