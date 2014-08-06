@@ -11,15 +11,59 @@ public class TileMap : MonoBehaviour {
 	public int size_x = 100;
 	public int size_y = 50;
 	public float tileSize = 1.0f;
+	public float scatterRate = 1.0f;
+
+	public Texture2D terrainTiles;
+	public int tileResolution = 16;
+
+	private int numTilesPerRow;
+	private int numRows;
 
 	// Use this for initialization
-	void Start () {
-		BuildMesh ();
+	void Start() {
+		numTilesPerRow = terrainTiles.width / tileResolution;
+		numRows = terrainTiles.height / tileResolution;
+
+		BuildMesh();
+	}
+
+	Color[][] ChopUpTiles(){
+		Color[][] tiles = new Color[numTilesPerRow*numRows][];
+
+		for(int y = 0; y < numRows; y++){
+			for(int x = 0; x < numTilesPerRow; x++){
+				tiles[y * numTilesPerRow + x] = terrainTiles.GetPixels(x*tileResolution,y*tileResolution,tileResolution,tileResolution);
+			}
+		}
+		return tiles;
+	}
+
+	void BuildTexture() {
+
+
+		int texWidth = size_x * tileResolution;
+		int texHeight = size_y * tileResolution;
+		Texture2D texture = new Texture2D(texWidth,texHeight);
+
+		Color[][] tiles = ChopUpTiles();
+
+		for(int y = 0; y < size_y; y++){
+			for(int x = 0; x < size_x; x++){
+				Color[] p = tiles[Random.Range (0,4)];
+				texture.SetPixels(x*tileResolution,y*tileResolution,tileResolution,tileResolution, p);
+			}
+		}
+		texture.filterMode = FilterMode.Point;
+		texture.wrapMode = TextureWrapMode.Clamp;
+		texture.Apply();
+
+		MeshRenderer mesh_renderer = GetComponent<MeshRenderer>();
+		mesh_renderer.sharedMaterials[0].mainTexture = texture;
 	}
 
 	//Generates a mesh for the tilemap
 	//TODO: continuing Groundwork
-	public void BuildMesh () {
+	public void BuildMesh() {
 
 		int numTiles = size_x * size_y;
 		int numTris = numTiles * 2;
@@ -38,9 +82,10 @@ public class TileMap : MonoBehaviour {
 		int x, y;
 		for (y = 0; y < vsize_y; y++) {
 			for (x = 0; x < vsize_x; x++) {
-				vertices[y * vsize_x + x] = new Vector3(x*tileSize,y*tileSize,0);	
-				normals[y * vsize_x + x] = Vector3.up;
-				uv[y * vsize_x + x] = new Vector2((float)x / vsize_x, (float)y / vsize_y);
+				float rnd = Random.Range(-scatterRate,scatterRate);
+				vertices[y * vsize_x + x] = new Vector3(x*tileSize,y*tileSize,rnd);	
+				normals[y * vsize_x + x] = new Vector3(rnd,-rnd,-1);
+				uv[y * vsize_x + x] = new Vector2((float)x / size_x, (float)y / size_y);
 			}
 		}
 
@@ -72,5 +117,8 @@ public class TileMap : MonoBehaviour {
 		MeshCollider mesh_collider = GetComponent<MeshCollider>();
 
 		mesh_filter.mesh = mesh;
+		mesh_collider.sharedMesh = mesh;
+
+		BuildTexture();
 	}
 }
