@@ -242,3 +242,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cycleRate: .5
   tileReso: 10
+  fovRadius: 4

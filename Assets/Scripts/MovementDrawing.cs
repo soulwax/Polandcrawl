@@ -5,6 +5,7 @@
  */
 using UnityEngine;
 using System.Collections;
+using System;
 
 public class MovementDrawing : MonoBehaviour 
 {
@@ -13,6 +14,7 @@ public class MovementDrawing : MonoBehaviour
 	private float nextCycle = 0.0f;
 
 	public int tileReso = 10;
+	public int fovRadius = 3;
 
 	private int width, height;
 
@@ -28,10 +30,31 @@ public class MovementDrawing : MonoBehaviour
 	private const char floorMap = '.';
 	private const char wallMap = '#';
 	private const char playerMap = '@';
+	private const char blankMap = 'b';
+
+	private FieldOfVision fovCalc;
+
+	#region Map
+	private const string mapString = @"
+#####bbbbb
+#...######
+#........#
+########.#
+bbbbbbb#.#
+bbbbbbb#.#
+bbb#####.#
+bbb#.....#
+bbb#.....#
+bbb#######
+";
+
+	#endregion
 
 	// Use this for initialization
 	void Start () 
 	{
+		fovCalc = new FieldOfVision();
+
 		width = (int)renderer.bounds.size.x*10 / tileReso;
 		height = (int)renderer.bounds.size.y*10 / tileReso; // This is a retarded way and based on rendering size, I'm just a lazy cunt.
 
@@ -41,75 +64,36 @@ public class MovementDrawing : MonoBehaviour
 		renderer.material.mainTexture = texture;
 		renderer.material.mainTexture.filterMode = FilterMode.Point;
 
-		/*
-		 * Map being used, 10x10
-		 * 
-		 * . . . . . . . . . .
-		 * . . . . . . . . . .
-		 * . . # # # # # # . .
-		 * . . # . . . . # . .
-		 * . . # . . . . # . .
-		 * . . # . . . . # . .
-		 * . . # . . . . # . .
-		 * . . # # # # # # . .
-		 * . . . . . . . . . .
-		 * . . . . . . . . . .
-		 * 
-		 */
+
+		string[] mapChars = mapString.Split(new[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries);
 
 		for(int y = 0; y < height; y++){
 			for(int x = 0; x < width; x++) {
-				map[x, y] = '.';
+				map[x, y] = mapChars[y][x];
 			}
 		}
-		#region new memes being borned, no touchings.
 
-		map[2, 2] = '#';
-		map[3, 2] = '#';
-		map[4, 2] = '#';
-		map[5, 2] = '#';
-		map[6, 2] = '#';
-		map[7, 2] = '#';
-
-		map[2, 3] = '#';
-		map[7, 3] = '#';
-
-		map[2, 4] = '#';
-		map[7, 4] = '#';
-
-		map[2, 5] = '#';
-		map[7, 5] = '#';
-
-		map[2, 6] = '#';
-		map[7, 6] = '#';
-
-		map[2, 7] = '#';
-		map[3, 7] = '#';
-		map[4, 7] = '#';
-		map[5, 7] = '#';
-		map[6, 7] = '#';
-		map[7, 7] = '#';
-
-		#endregion
-
-
-		playerX = 3;
-		playerY = 3;
+		playerX = 1;
+		playerY = 1;
 
 		Render ();
 	}
 
 	void Render ()
 	{
+		char[,] fovMap = fovCalc.CalcFOV(playerX, playerY, fovRadius, map, width, height);
+
 		for (int y = 0; y < height; y++) {
 			for (int x = 0; x < width; x++) {
 
 				if (x == playerX && y == playerY) {
 					texture.SetPixel(x, y, Color.green);
-				} else if(map[x, y] == floorMap) {
+				} else if(fovMap[x, y] == floorMap) {
 					texture.SetPixel(x, y, Color.blue);
-				} else {
+				} else if(fovMap[x, y] == wallMap){
 					texture.SetPixel(x, y, Color.red);
+				} else {
+					texture.SetPixel(x, y, Color.black);
 				}
 			}
 		}
