@@ -2,7 +2,7 @@ using UnityEditor;
 using UnityEngine;
 using System.Collections;
 
-[CustomEditor(typeof(TileMap))]
+[CustomEditor(typeof(TGMap))]
 public class TileMapInspector : Editor {
 
 	//just a random variable
@@ -17,7 +17,7 @@ public class TileMapInspector : Editor {
 		EditorGUILayout.EndVertical();
 
 		if(GUILayout.Button ("Regenerate")) {
-			 TileMap tileMap = (TileMap) target;
+			TGMap tileMap = (TGMap) target;
 			 tileMap.BuildMesh();
 		}
 	}	

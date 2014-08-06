@@ -1,14 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-[RequireComponent(typeof(TileMap))]
-public class TileMapMouse : MonoBehaviour {
+[RequireComponent(typeof(TGMap))]
+public class TGMapInspector : MonoBehaviour {
 
-	TileMap _tileMap;
+	TGMap _tileMap;
 	public Transform selectionCube;
 
 	void Start() {
-		_tileMap = GetComponent<TileMap>();
+		_tileMap = GetComponent<TGMap>();
 		selectionCube.localScale *= _tileMap.tileSize;
 	}
 
