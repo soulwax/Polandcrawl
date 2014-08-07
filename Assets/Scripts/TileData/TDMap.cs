@@ -46,7 +46,7 @@ public class TDMap {
 	 * 0 = unknown/void 
 	 * 1 = floor
 	 * 2 = wall
-	 * 3 = stone
+	 * 3 = water
 	 * 
 	 */
 
@@ -63,6 +63,11 @@ public class TDMap {
 
 	public void GenerateScatteredRooms(int amount, int minSize, int maxSize) {
 
+		for(int y = 0; y < size_y; y++) {
+			for(int x = 0; x < size_x; x++) {
+				map_data[x,y] = 3;
+			}
+		}
 		
 		for(int i = 0; i < amount; i++){
 			
