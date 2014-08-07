@@ -60,6 +60,9 @@ public class TGMap : MonoBehaviour {
 
 		MeshRenderer mesh_renderer = GetComponent<MeshRenderer>();
 		mesh_renderer.sharedMaterials[0].mainTexture = texture;
+
+		/*ConvertToString debugString = new ConvertToString();
+		Debug.Log(debugString.Covert(map, size_x, size_y));*/
 	}
 	
 	public void BuildMesh() {
