@@ -3,7 +3,7 @@ using UnityEngine;
 using System.Collections;
 
 [CustomEditor(typeof(TGMap))]
-public class TileMapInspector : Editor {
+public class TGMapInspector : Editor {
 
 	//just a random variable
 	float v = 54.0f;
