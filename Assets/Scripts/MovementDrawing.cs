@@ -25,6 +25,13 @@ public class MovementDrawing : MonoBehaviour
 
 	private char[,] map;
 	private Texture2D texture;
+	private Texture2D fovTexture;
+	private Texture2D playerTexture;
+
+	public GameObject fovObject;
+	public GameObject playerObject;
+
+	private bool dungeonRendered = false;
 
 	// Const
 	private const char floorMap = '.';
@@ -64,6 +71,14 @@ bbb#######
 		renderer.material.mainTexture = texture;
 		renderer.material.mainTexture.filterMode = FilterMode.Point;
 
+		fovTexture = new Texture2D(width, height);
+		fovObject.renderer.material.mainTexture = fovTexture;
+		fovObject.renderer.material.mainTexture.filterMode = FilterMode.Point;
+
+		playerTexture = new Texture2D(width, height);
+		playerObject.renderer.material.mainTexture = playerTexture;
+		playerObject.renderer.material.mainTexture.filterMode = FilterMode.Point;
+
 
 		string[] mapChars = mapString.Split(new[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries);
 
@@ -81,24 +96,72 @@ bbb#######
 
 	void Render ()
 	{
-		char[,] fovMap = fovCalc.CalcFOV(playerX, playerY, fovRadius, map, width, height);
+		Color alphaColor = Color.white;
+		alphaColor.a = 0;
 
+		#region Dungeon render
+		if(!dungeonRendered) {
+			for (int y = 0; y < height; y++) {
+				for (int x = 0; x < width; x++) {
+					if(map[x, y] == floorMap) {
+						texture.SetPixel(x, y, Color.blue);
+					} else if(map[x, y] == wallMap){
+						texture.SetPixel(x, y, Color.red);
+					} else {
+						texture.SetPixel(x, y, Color.black);
+					}
+				}
+			}
+
+			texture.Apply();
+
+			MeshRenderer dungeon_mesh_renderer = GetComponent<MeshRenderer>();
+			dungeon_mesh_renderer.sharedMaterials[0].mainTexture = texture;
+			dungeonRendered = true;
+		}
+		#endregion
+
+		#region Player render
 		for (int y = 0; y < height; y++) {
 			for (int x = 0; x < width; x++) {
-
+				
 				if (x == playerX && y == playerY) {
-					texture.SetPixel(x, y, Color.green);
-				} else if(fovMap[x, y] == floorMap) {
-					texture.SetPixel(x, y, Color.blue);
-				} else if(fovMap[x, y] == wallMap){
-					texture.SetPixel(x, y, Color.red);
+					playerTexture.SetPixel(x, y, Color.green);
 				} else {
-					texture.SetPixel(x, y, Color.black);
+					playerTexture.SetPixel(x, y, alphaColor);
 				}
 			}
 		}
 
-		texture.Apply();
+		playerTexture.Apply();
+
+		MeshRenderer player_mesh_render = playerObject.GetComponent<MeshRenderer>();
+		player_mesh_render.sharedMaterials[0].mainTexture = playerTexture;
+		#endregion
+
+		#region FOV render
+		char[,] fovMap = fovCalc.CalcFOV(playerX, playerY, fovRadius, map, width, height);
+
+		for (int y = 0; y < height; y++) {
+			for (int x = 0; x < width; x++) {				
+				if (x == playerX && y == playerY) {
+					fovTexture.SetPixel(x, y, alphaColor);
+				} else if(fovMap[x, y] == floorMap) {
+					fovTexture.SetPixel(x, y, alphaColor);
+				} else if(fovMap[x, y] == wallMap){
+					fovTexture.SetPixel(x, y, alphaColor);
+				} else {
+					fovTexture.SetPixel(x, y, Color.black);
+				}
+			}
+		}
+
+		fovTexture.Apply();
+
+		MeshRenderer fov_mesh_renderer = fovObject.GetComponent<MeshRenderer>();
+		fov_mesh_renderer.sharedMaterials[0].mainTexture = fovTexture;
+		#endregion
+
 	}
 
 	// Update is called once per frame
