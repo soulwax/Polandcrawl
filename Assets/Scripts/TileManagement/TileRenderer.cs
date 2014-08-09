@@ -63,7 +63,7 @@ public class TileRenderer : MonoBehaviour
 		mesh_renderer.sharedMaterials[0].mainTexture = texture;
 	}
 
-	public void InitialisePlayer(GameObject gObject, Color[][] tiles, int width, int height, int tileResolution, int playerX, int playerY)
+	public void RenderPlayer(GameObject gObject, Color[][] tiles, int width, int height, int tileResolution, int playerX, int playerY)
 	{
 		int texWidth = width * tileResolution;
 		int texHeight = height * tileResolution;

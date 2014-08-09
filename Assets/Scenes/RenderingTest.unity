@@ -123,6 +123,7 @@ MonoBehaviour:
   playerObject: {fileID: 454971513}
   fovObject: {fileID: 864889581}
   fovRadius: 4
+  cycleRate: .5
 --- !u!43 &285453317
 Mesh:
   m_ObjectHideFlags: 0
