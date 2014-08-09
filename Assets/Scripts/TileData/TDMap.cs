@@ -11,6 +11,7 @@ public class TDMap {
 		public int height;
 		public Rect rect;
 		public int x_bound, y_bound;
+		public bool isConnected = false;
 
 		public DRoom(int xp, int yp, int width, int height, int x_bound, int y_bound) {
 			this.xp = xp;
@@ -30,6 +31,40 @@ public class TDMap {
 		public void RandomizePos() {
 			this.rect.x = this.xp = Random.Range(0, x_bound - this.width);
 			this.rect.y = this.yp = Random.Range(0, y_bound - this.height);
+		}
+
+		public int center_x {
+			get { return xp + width / 2; }
+		}
+
+		public int center_y {
+			get { return yp + height / 2; }
+		}
+
+		public Vector2 center {
+			get { return new Vector2(center_x, center_y); }
+		}
+	}
+
+	protected class RoomComparator : IComparer<DRoom> {
+		public int Compare(DRoom r1, DRoom r2) {
+			int x1 = r1.xp;
+			int x2 = r2.xp;
+			int y1 = r1.yp;
+			int y2 = r2.yp;
+
+			if(y1 > y2) {
+				if(x1 < x2) return -1;
+				else if (x1 >= x2) return 0;
+			}
+
+			if(y1 < y2) {
+				if(x1 < x2) return 0;
+				else if (x1 >= x2) return 1;
+			}
+
+
+			return 0;
 		}
 	}
 
@@ -58,11 +93,11 @@ public class TDMap {
 		
 		rooms = new List<DRoom>();
 
-		GenerateScatteredRooms(20, 5, 15);
+		GenerateScatteredRooms(10, 5, 15);
 	}
 
 	public void GenerateScatteredRooms(int amount, int minSize, int maxSize) {
-
+		DRoom r;
 		for(int y = 0; y < size_y; y++) {
 			for(int x = 0; x < size_x; x++) {
 				map_data[x,y] = 3;
@@ -71,7 +106,7 @@ public class TDMap {
 		
 		for(int i = 0; i < amount; i++){
 			
-			DRoom r = CreateRandomizedRoom(minSize,maxSize);
+			r = CreateRandomizedRoom(minSize,maxSize);
 			if(rooms.Count > 0) {
 				int attempts = 0;
 				int maxAttempts = 100;
@@ -87,6 +122,15 @@ public class TDMap {
 		
 		foreach(DRoom rr in rooms) {
 			AddRoomToTileData(rr);
+
+		}
+
+		RoomComparator comparator = new RoomComparator();
+
+		rooms.Sort(comparator);
+
+		for(int i = 0; i < rooms.Count-1; i++) {
+			BuildCorridor(rooms[i], rooms[i+1] );
 		}
 	}
 	
@@ -126,5 +170,32 @@ public class TDMap {
 			}
 		}
 		return false;
+	}
+
+	private void BuildCorridor(DRoom r1, DRoom r2) {
+		int x = r1.center_x;
+		int y = r1.center_y;
+
+		int x_attempts = 0;
+		int y_attempts = 0;
+
+		int maxAttempts = 1000;
+		while(x != r2.center_x) {
+			map_data[x,y] = 1;
+			x += x < r2.center_x ? 1 : -1;
+
+			x_attempts++;
+			if(x_attempts >= maxAttempts) break;
+		}
+
+		while (y != r2.center_y) {
+			map_data[x,y] = 1;
+			y += y < r2.center_y ? 1 : -1;
+
+			y_attempts++;
+			if(y_attempts >= maxAttempts) break;
+		}
+
+		Debug.Log ("x-attempts: "+ x_attempts + ", y-attempts:" + y_attempts);
 	}
 }
