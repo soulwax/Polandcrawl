@@ -11,7 +11,6 @@ public class TDMap {
 		public int height;
 		public Rect rect;
 		public int x_bound, y_bound;
-		public bool isConnected = false;
 
 		public DRoom(int xp, int yp, int width, int height, int x_bound, int y_bound) {
 			this.xp = xp;
