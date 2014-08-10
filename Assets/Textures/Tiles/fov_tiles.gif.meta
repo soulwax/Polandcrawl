@@ -4,6 +4,7 @@ TextureImporter:
   fileIDToRecycleName:
     21300000: imageedit_1_8826122280
     21300002: player_tiles
+    21300004: fov_tiles
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0

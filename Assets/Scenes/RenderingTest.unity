@@ -116,7 +116,8 @@ MonoBehaviour:
   levelWidth: 100
   levelHeight: 50
   dungeonTileset: {fileID: 2800000, guid: d6fafea03385b7248a2cdd43a822a889, type: 3}
-  playerTileset: {fileID: 2800000, guid: 3ffe38d5415e7a548b43184aa04d12e1, type: 3}
+  playerTileset: {fileID: 2800000, guid: 2942b457abe19a342885395aa76ecb62, type: 3}
+  fovTileset: {fileID: 2800000, guid: 3ffe38d5415e7a548b43184aa04d12e1, type: 3}
   tileSize: 1
   tileResolution: 16
   dungeonObject: {fileID: 2037702507}
@@ -278,6 +279,7 @@ GameObject:
   - 23: {fileID: 454971516}
   - 33: {fileID: 454971515}
   - 64: {fileID: 454971514}
+  - 114: {fileID: 454971518}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -337,6 +339,28 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 3
+--- !u!114 &454971518
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 454971513}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 733010b4b5e3f744f99a11e9de7189b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerX: 0
+  playerY: 0
+  viewRadius: 4
+  strength: 0
+  intelligence: 0
+  dexterity: 0
+  baseHP: 100
+  baseMP: 100
+  baseArmour: 10
+  baseEvasion: 0
+  baseBlock: 0
 --- !u!43 &676817263
 Mesh:
   m_ObjectHideFlags: 0
@@ -562,6 +586,7 @@ GameObject:
   - 92: {fileID: 1845252925}
   - 124: {fileID: 1845252924}
   - 81: {fileID: 1845252923}
+  - 114: {fileID: 1845252928}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -634,6 +659,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 1
+--- !u!114 &1845252928
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1845252922}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e10e78a055de0f469052474ffafff01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  turnSpeed: 10
+  moveSpeed: 10
 --- !u!1 &2037702507
 GameObject:
   m_ObjectHideFlags: 0

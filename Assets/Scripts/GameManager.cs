@@ -9,6 +9,7 @@ public class GameManager : TileRenderer
 
 	public Texture2D dungeonTileset;
 	public Texture2D playerTileset;
+	public Texture2D fovTileset;
 
 	public float tileSize = 1.0f;
 	public int tileResolution = 16;
@@ -42,7 +43,7 @@ public class GameManager : TileRenderer
 		currentLevel = new TDMap(levelWidth, levelHeight);
 		dungeonTiles = ChopUpTiles(dungeonTileset, tileResolution);
 		playerTiles = ChopUpTiles(playerTileset, tileResolution);
-		fovTiles = ChopUpTiles(playerTileset, tileResolution);
+		fovTiles = ChopUpTiles(fovTileset, tileResolution);
 
 		GenerateLevel();
 	}
@@ -78,7 +79,7 @@ public class GameManager : TileRenderer
 		
 		if (pX==0 && pY==0) return; // No movement
 		
-		if(currentLevel.GetTileAt(playerX + pX, playerY + pY) != 2) {
+		if(currentLevel.GetTileAt(playerX + pX, playerY + pY) == 1) {
 			playerX += pX;
 			playerY += pY;
 			RenderPlayer(playerObject, playerTiles, levelWidth, levelHeight, tileResolution, playerX, playerY);
