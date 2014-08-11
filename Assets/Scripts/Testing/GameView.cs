@@ -62,7 +62,6 @@ public class GameView : MonoBehaviour
 		int rndEnemyCount = Random.Range(levelCount+10 - 3, levelCount+10 + 3);
 		for(int x = 0; x < rndEnemyCount; x++) {
 			int rndIndex = Random.Range(0, viableLocations.Count);
-			Debug.Log(viableLocations[rndIndex]);
 			Instantiate(exampleEnemy, new Vector3(viableLocations[rndIndex].x, viableLocations[rndIndex].y, exampleEnemy.transform.position.z), new Quaternion(0, 0, 0, 0));
 		}
 	}
