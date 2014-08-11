@@ -181,6 +181,7 @@ public class TDMap {
 		int maxAttempts = 1000;
 		while(x != r2.center_x) {
 			map_data[x,y] = 1;
+
 			x += x < r2.center_x ? 1 : -1;
 
 			x_attempts++;
@@ -189,6 +190,7 @@ public class TDMap {
 
 		while (y != r2.center_y) {
 			map_data[x,y] = 1;
+
 			y += y < r2.center_y ? 1 : -1;
 
 			y_attempts++;

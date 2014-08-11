@@ -1,0 +1,19 @@
+fileFormatVersion: 2
+guid: 6318398eef0fde64e9430a4582e25dc5
+labels:
+- light
+- 2d
+- event
+- reverie
+- interactive
+- editor
+- effect
+- script
+- volumetric
+- volume
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
