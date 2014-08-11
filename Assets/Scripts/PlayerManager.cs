@@ -9,9 +9,9 @@ public class PlayerManager : TileRenderer
 		playerY,
 		viewRadius;
 
-	private int
+	/*private int
 		pX = 0,
-		pY = 0;
+		pY = 0;*/
 	#endregion
 
 	#region Other Variables

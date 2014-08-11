@@ -30,6 +30,7 @@ public class MovementDrawing : MonoBehaviour
 
 	public GameObject fovObject;
 	public GameObject playerObject;
+	public GameObject playerQuadObject;
 
 	private bool dungeonRendered = false;
 
@@ -80,16 +81,61 @@ bbb#######
 		playerObject.renderer.material.mainTexture.filterMode = FilterMode.Point;
 
 
-		string[] mapChars = mapString.Split(new[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries);
+		/*string[] mapChars = mapString.Split(new[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries);
 
 		for(int y = 0; y < height; y++){
 			for(int x = 0; x < width; x++) {
-				map[x, y] = mapChars[y][x];
+				map[x, y] = mapChars[x][y];
+			}
+		}*/
+
+		/*
+		* Map being used, 10x10
+		*
+		* . . . . . . . . . .
+		* . . . . . . . . . .
+		* . . # # # # # # . .
+		* . . # . . . . # . .
+		* . . # . . . . # . .
+		* . . # . . . . # . .
+		* . . # . . . . # . .
+		* . . # # # # # # . .
+		* . . . . . . . . . .
+		* . . . . . . . . . .
+		*
+		*/
+		for(int y = 0; y < height; y++){
+			for(int x = 0; x < width; x++) {
+				map[x, y] = '.';
 			}
 		}
+		#region new memes being borned, no touchings.
+		map[2, 2] = '#';
+		map[3, 2] = '#';
+		map[4, 2] = '#';
+		map[5, 2] = '#';
+		map[6, 2] = '#';
+		map[7, 2] = '#';
+		map[2, 3] = '#';
+		map[7, 3] = '#';
+		map[2, 4] = '#';
+		map[7, 4] = '#';
+		map[2, 5] = '#';
+		map[7, 5] = '#';
+		map[2, 6] = '#';
+		map[7, 6] = '#';
+		map[2, 7] = '#';
+		map[3, 7] = '#';
+		map[4, 7] = '#';
+		map[5, 7] = '#';
+		map[6, 7] = '#';
+		map[7, 7] = '#';
+		#endregion
 
-		playerX = 1;
-		playerY = 1;
+		playerX = 3;
+		playerY = 3;
+
+		playerQuadObject.transform.position = new Vector3(playerX, playerY, -6);
 
 		Render ();
 	}
@@ -172,19 +218,19 @@ bbb#######
 
 		// Get shitty inputs
 		if(Input.GetKey("w") && Time.time > nextCycle){
-			pY=-1;
-			nextCycle = Time.time + cycleRate;
-		}
-		if (Input.GetKey("s") && Time.time > nextCycle) {
 			pY=1;
 			nextCycle = Time.time + cycleRate;
 		}
+		if (Input.GetKey("s") && Time.time > nextCycle) {
+			pY=-1;
+			nextCycle = Time.time + cycleRate;
+		}
 		if (Input.GetKey("d") && Time.time > nextCycle) {
-			pX=-1;
+			pX=1;
 			nextCycle = Time.time + cycleRate;
 		}
 		if (Input.GetKey("a") && Time.time > nextCycle) {
-			pX=1;
+			pX=-1;
 			nextCycle = Time.time + cycleRate;
 		}
 
@@ -193,6 +239,9 @@ bbb#######
 		if(map[playerX + pX, playerY + pY] != wallMap) {
 			playerX += pX;
 			playerY += pY;
+
+			playerQuadObject.transform.position = new Vector3(playerX, playerY, -6);
+
 			Render();
 		}
 	}
