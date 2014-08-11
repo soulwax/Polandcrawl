@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-using System.Collections;
+using System.Collections.Generic;
 
 public class GameView : MonoBehaviour 
 {
@@ -16,6 +16,7 @@ public class GameView : MonoBehaviour
 	public Texture2D dungeonTileset;
 
 	public int[,] dungeonMap;
+	private List<Vector2> viableLocations;
 
 	private int
 		playerX,
@@ -23,29 +24,46 @@ public class GameView : MonoBehaviour
 		pX,
 		pY;
 
-	public GameObject player;
+	public Player player;
+	public GameObject exampleEnemy;
 
-
+	public int levelCount = 1;
 	#endregion
 
 	// Use this for initialization
 	void Start () 
 	{
+		// Build mesh and move to correct view point.
 		buildMesh(this.gameObject, levelWidth, levelHeight, tileSize);
 		transform.position = new Vector3(transform.position.x, transform.position.y + levelHeight, transform.position.z);
 
+		// Generate dungeon map and apply textue.
 		dungeonMap = new int[levelWidth, levelHeight];
 		buildDungeonTexture(this.gameObject, ChopUpTiles(dungeonTileset, tileResolution), levelWidth, levelHeight, tileResolution, dungeonMap);
+
+
+		// Initialise the player and generate list of viable position on the map.
+		bool initPlayer = false;
+		viableLocations = new List<Vector2>();
 
 		for(int y = 0; y < levelHeight; y++) {
 			for(int x = 0; x < levelWidth; x++) {
 				if(dungeonMap[x,y] == 1){
-					playerX = x;
-					playerY = y;
-					player.transform.position = new Vector3(x, y, player.transform.position.z);
-					break;
+					if(!initPlayer) {
+						player.setPosition(x, y);
+						initPlayer = true;
+					}
+					viableLocations.Add(new Vector2(x, y));
 				}
 			}
+		}
+
+		// Add random enemys.
+		int rndEnemyCount = Random.Range(levelCount+10 - 3, levelCount+10 + 3);
+		for(int x = 0; x < rndEnemyCount; x++) {
+			int rndIndex = Random.Range(0, viableLocations.Count);
+			Debug.Log(viableLocations[rndIndex]);
+			Instantiate(exampleEnemy, new Vector3(viableLocations[rndIndex].x, viableLocations[rndIndex].y, exampleEnemy.transform.position.z), new Quaternion(0, 0, 0, 0));
 		}
 	}
 	
@@ -75,11 +93,8 @@ public class GameView : MonoBehaviour
 		
 		if (pX==0 && pY==0) return; // No movement
 		
-		if(dungeonMap[playerX + pX, playerY + pY] == 1) {
-			playerX += pX;
-			playerY += pY;
-			
-			player.transform.position = new Vector3(playerX, playerY, player.transform.position.z);
+		if(dungeonMap[player.playerX + pX, player.playerY + pY] == 1) {
+			player.setPosition(player.playerX + pX, player.playerY + pY);
 		}
 	}
 

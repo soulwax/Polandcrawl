@@ -1,8 +1,9 @@
 fileFormatVersion: 2
-guid: 29919a9c6248af048889937be627aabf
+guid: 5ecca067f76870c459e876280a08a9b6
 TextureImporter:
   fileIDToRecycleName:
-    21300000: single_player
+    21300000: singel_enemy
+    21300002: single_enemy
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
