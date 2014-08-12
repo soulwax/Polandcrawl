@@ -16,7 +16,6 @@ public class GameView : MonoBehaviour
 	public Texture2D dungeonTileset;
 
 	public int[,] dungeonMap;
-	private List<Vector2> viableLocations;
 
 	private int
 		playerX,
@@ -25,9 +24,9 @@ public class GameView : MonoBehaviour
 		pY;
 
 	public Player player;
-	public GameObject exampleEnemy;
+	public NPCController npcController;
 
-	public int levelCount = 1;
+	public int currentLevel = 1;
 	#endregion
 
 	// Use this for initialization
@@ -44,7 +43,7 @@ public class GameView : MonoBehaviour
 
 		// Initialise the player and generate list of viable position on the map.
 		bool initPlayer = false;
-		viableLocations = new List<Vector2>();
+		List<Vector2> viableLocations = new List<Vector2>();
 
 		for(int y = 0; y < levelHeight; y++) {
 			for(int x = 0; x < levelWidth; x++) {
@@ -58,12 +57,8 @@ public class GameView : MonoBehaviour
 			}
 		}
 
-		// Add random enemys.
-		int rndEnemyCount = Random.Range(levelCount+10 - 3, levelCount+10 + 3);
-		for(int x = 0; x < rndEnemyCount; x++) {
-			int rndIndex = Random.Range(0, viableLocations.Count);
-			Instantiate(exampleEnemy, new Vector3(viableLocations[rndIndex].x, viableLocations[rndIndex].y, exampleEnemy.transform.position.z), new Quaternion(0, 0, 0, 0));
-		}
+		// Initialise NPC Controller
+		npcController.InitialiseNPCController(viableLocations, currentLevel);
 	}
 	
 	// Update is called once per frame
