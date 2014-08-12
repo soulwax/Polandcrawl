@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Player : MonoBehaviour 
+public class PlayerTest : MonoBehaviour 
 {
 	public int playerX, playerY;
 

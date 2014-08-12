@@ -23,7 +23,7 @@ public class GameView : MonoBehaviour
 		pX,
 		pY;
 
-	public Player player;
+	public PlayerTest player;
 	public NPCController npcController;
 	public ItemController itemController;
 
