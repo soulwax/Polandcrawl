@@ -25,6 +25,7 @@ public class GameView : MonoBehaviour
 
 	public Player player;
 	public NPCController npcController;
+	public ItemController itemController;
 
 	public int currentLevel = 1;
 	#endregion
@@ -57,8 +58,9 @@ public class GameView : MonoBehaviour
 			}
 		}
 
-		// Initialise NPC Controller
-		npcController.InitialiseNPCController(viableLocations, currentLevel);
+		// Initialise Controllers
+		npcController.populateEnemies(viableLocations, currentLevel);
+		itemController.populateItems(viableLocations);
 	}
 	
 	// Update is called once per frame
