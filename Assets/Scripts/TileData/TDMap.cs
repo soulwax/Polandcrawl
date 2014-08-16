@@ -84,6 +84,7 @@ public class TDMap {
 	 * 
 	 */
 
+    //Obsolete default constructor
 	public TDMap(int size_x = 20, int size_y = 20){
 		this.size_x = size_x;
 		this.size_y = size_y;
@@ -94,6 +95,46 @@ public class TDMap {
 
 		GenerateScatteredRooms(10, 5, 15);
 	}
+
+    //use this contructor, if needed create a default constructor for that
+    public TDMap(int size_x, int size_y, int roomAmount, DungeonVariables.Type type)
+    {
+        // TODO: Complete member initialization
+        this.size_x = size_x;
+        this.size_y = size_y;
+
+        map_data = new int[size_x, size_y];
+
+        rooms = new List<DRoom>();
+
+        if (type == DungeonVariables.Type.Corridors)
+        {
+            GenerateScatteredRooms(roomAmount, 5, 15);
+        }
+        else if (type == DungeonVariables.Type.NoCorridors)
+        {
+            GenerateCoherentRooms(roomAmount, 5, 15);
+        }
+    }
+
+    //alternative script independent constructor 
+    public TDMap(int size_x, int size_y, int roomAmount)
+    {
+        // TODO: Complete member initialization
+        this.size_x = size_x;
+        this.size_y = size_y;
+
+        map_data = new int[size_x, size_y];
+
+        rooms = new List<DRoom>();
+
+        GenerateScatteredRooms(roomAmount, 5, 15);
+    }
+
+    private void GenerateCoherentRooms(int roomAmount, int p1, int p2)
+    {
+        throw new System.NotImplementedException();
+    }
 
 	public void GenerateScatteredRooms(int amount, int minSize, int maxSize) {
 		DRoom r;

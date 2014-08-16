@@ -28,18 +28,57 @@ public class GameView : MonoBehaviour
 	public ItemController itemController;
 
 	public int currentLevel = 1;
+
+    private DungeonVariables variables;
+    private int rooms;
+
 	#endregion
 
 	// Use this for initialization
 	void Start () 
 	{
+        GameObject dv = GameObject.Find("DungeonVariables");
+        if(dv != null) variables = dv.GetComponent<DungeonVariables>();
+
+        if (variables != null) 
+        { 
+            Debug.Log("Dungeon Variables found");
+            if (variables.size == 1)
+            {
+                levelWidth = 50;
+                levelHeight = 50;
+                rooms = 5;
+            } 
+            else if(variables.size == 2)
+            {
+                levelWidth = 80;
+                levelHeight = 80;
+                rooms = 10;
+            }
+
+            else if(variables.size == 3)
+            {
+                levelWidth = 120;
+                levelHeight = 120;
+                rooms = 15;
+            }
+        }
+        else
+        {
+            //use standard variables
+            levelWidth = 100;
+            levelHeight = 50;
+            rooms = 10;
+        }
+
+       
 		// Build mesh and move to correct view point.
 		buildMesh(this.gameObject, levelWidth, levelHeight, tileSize);
 		transform.position = new Vector3(transform.position.x, transform.position.y + levelHeight, transform.position.z);
 
 		// Generate dungeon map and apply textue.
 		dungeonMap = new int[levelWidth, levelHeight];
-		buildDungeonTexture(this.gameObject, ChopUpTiles(dungeonTileset, tileResolution), levelWidth, levelHeight, tileResolution, dungeonMap);
+		buildDungeonTexture(this.gameObject, ChopUpTiles(dungeonTileset, tileResolution), levelWidth, levelHeight, rooms, tileResolution, dungeonMap);
 
 
 		// Initialise the player and generate list of viable position on the map.
@@ -151,9 +190,11 @@ public class GameView : MonoBehaviour
 		mesh_collider.sharedMesh = mesh;
 	}
 
-	private int[,] buildDungeonTexture(GameObject gObject, Color[][] tiles, int width, int height, int tileResolution, int[,] dungeonMap)
+	private int[,] buildDungeonTexture(GameObject gObject, Color[][] tiles, int width, int height, int rooms, int tileResolution, int[,] dungeonMap)
 	{		
-		TDMap map = new TDMap(width, height);
+        TDMap map;
+        if(variables != null) map = new TDMap(width, height, rooms, variables.type);
+        else map = new TDMap(width, height, rooms);
 
 		int texWidth = width * tileResolution;
 		int texHeight = height * tileResolution;
