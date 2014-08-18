@@ -96,10 +96,13 @@ public class GameView : MonoBehaviour
 				}
 			}
 		}
-
 		// Initialise Controllers
-		npcController.populateEnemies(viableLocations, currentLevel);
-		itemController.populateItems(viableLocations);
+		npcController.populateEnemies(viableLocations, currentLevel, levelWidth, levelHeight);
+		itemController.populateItems(viableLocations, levelWidth, levelHeight);
+
+		ConvertToString cTS = new ConvertToString();
+		Debug.Log(cTS.Covert(npcController.npcMap, levelWidth, levelHeight));
+		Debug.Log(cTS.Covert(itemController.itemMap, levelWidth, levelHeight));
 	}
 	
 	// Update is called once per frame
