@@ -100,9 +100,9 @@ public class GameView : MonoBehaviour
 		npcController.populateEnemies(viableLocations, currentLevel, levelWidth, levelHeight);
 		itemController.populateItems(viableLocations, levelWidth, levelHeight);
 
-		ConvertToString cTS = new ConvertToString();
+		/*ConvertToString cTS = new ConvertToString();
 		Debug.Log(cTS.Covert(npcController.npcMap, levelWidth, levelHeight));
-		Debug.Log(cTS.Covert(itemController.itemMap, levelWidth, levelHeight));
+		Debug.Log(cTS.Covert(itemController.itemMap, levelWidth, levelHeight));*/
 	}
 	
 	// Update is called once per frame
@@ -130,9 +130,29 @@ public class GameView : MonoBehaviour
 		}
 		
 		if (pX==0 && pY==0) return; // No movement
-		
-		if(dungeonMap[player.playerX + pX, player.playerY + pY] == 1) {
-			player.setPosition(player.playerX + pX, player.playerY + pY);
+
+
+		//Check collisions
+		checkCollisions(player.playerX + pX, player.playerY + pY);
+	}
+
+	private void checkCollisions(int moveToX, int moveToY)
+	{
+		if(npcController.npcMap[moveToX, moveToY] == 0) {
+			if(itemController.itemMap[moveToX, moveToY] == 0) {
+				if(dungeonMap[moveToX, moveToY] == 1) {
+					player.setPosition(moveToX, moveToY);
+				} else {
+					Debug.Log("Hit Wall!");
+					return;
+				}
+			} else {
+				//TODO: Pickup item ect.
+				Debug.Log("Hit Item!");
+			}
+		} else {
+			//TODO: Combat :D:D
+			Debug.Log("Hit Enemy!");
 		}
 	}
 
