@@ -12,8 +12,6 @@ public class Actor : MonoBehaviour
 	public int baseDamage;
 	#endregion
 
-	public NPCController enemies;
-
 	void Awake()
 	{
 		positionX = (int)transform.position.x;
@@ -46,11 +44,15 @@ public class Actor : MonoBehaviour
 	public void OnAttack(int x, int y)
 	{	
 		Actor enemyTemp = NPCController.npcMap[x, y];
-		Debug.Log(enemyTemp.getPosition());
+		enemyTemp.OnDamage(baseDamage);
 	}
 
 	public void OnDamage(int damage)
 	{
+		baseHealth -= damage;
 
+		if(baseHealth <= 0) {
+			Destroy(this.gameObject);
+		}
 	}
 }

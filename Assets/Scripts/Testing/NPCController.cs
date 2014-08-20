@@ -13,7 +13,7 @@ public class NPCController : MonoBehaviour
 		//Insialise Map.
 		npcMap = new Actor[width, height];
 
-		GameObject tempEnemy;
+		GameObject tempObject;
 		Actor tempActor;
 
 		// Add random enemys.
@@ -21,9 +21,10 @@ public class NPCController : MonoBehaviour
 		for(int x = 0; x < rndEnemyCount; x++) {
 			int rndIndex = Random.Range(0, viableLocations.Count);
 			int rndNPC = Random.Range(0, enemyList.Length);
-			tempEnemy = Instantiate(enemyList[rndNPC], new Vector3(viableLocations[rndIndex].x, viableLocations[rndIndex].y, 1), new Quaternion(0, 0, 0, 0)) as GameObject;
-			tempEnemy.gameObject.transform.parent = transform;
-			tempActor = tempEnemy.AddComponent<Enemy>();
+			tempObject = Instantiate(enemyList[rndNPC], new Vector3(viableLocations[rndIndex].x, viableLocations[rndIndex].y, 1), new Quaternion(0, 0, 0, 0)) as GameObject;
+			tempObject.gameObject.transform.parent = transform;
+			tempActor = tempObject.AddComponent<Enemy>();
+			tempActor.baseHealth = 20;
 			npcMap[(int)viableLocations[rndIndex].x, (int)viableLocations[rndIndex].y] = tempActor;
 		}
 	}

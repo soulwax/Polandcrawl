@@ -3,6 +3,12 @@ using System.Collections;
 
 public class Enemy : Actor
 {
+	public enum EnemyState {
+		Wandering,
+		Attacking
+	}
+
+	public EnemyState enemyState;
 	private int pX, pY;
 
 	// Use this for initialization
@@ -28,7 +34,7 @@ public class Enemy : Actor
 	private void checkCollisions(int moveToX, int moveToY)
 	{
 		if(NPCController.npcMap[moveToX, moveToY] == null) {
-			if(ItemController.itemMap[moveToX, moveToY] == 0) {
+			if(ItemController.itemMap[moveToX, moveToY] == null) {
 				if(GameView.dungeonMap[moveToX, moveToY] == 1) {
 					setPosition(positionX, positionY, moveToX, moveToY);
 					//setPosition(moveToX, moveToY);

@@ -150,7 +150,7 @@ public class GameView : MonoBehaviour
 	private void checkCollisions(int moveToX, int moveToY)
 	{
 		if(NPCController.npcMap[moveToX, moveToY] == null) {
-			if(ItemController.itemMap[moveToX, moveToY] == 0) {
+			if(ItemController.itemMap[moveToX, moveToY] == null) {
 				if(dungeonMap[moveToX, moveToY] == 1) {
 					player.setPosition(moveToX, moveToY);
 				} else {
@@ -158,8 +158,9 @@ public class GameView : MonoBehaviour
 					return;
 				}
 			} else {
-				//TODO: Pickup item ect.
 				Debug.Log("Hit Item!");
+				player.pickupItem(moveToX, moveToY);
+				player.setPosition(moveToX, moveToY);
 			}
 		} else {
 			//TODO: Combat :D:D

@@ -113,10 +113,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00358503d83aa2943b64bd7b29b898c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemList:
+  potionList:
   - {fileID: 100000, guid: 424a60dc5a18ee442a50adf99745c464, type: 2}
   - {fileID: 100000, guid: 920cd6b45cda1474f87980fa40efe0cc, type: 2}
+  weaponList:
   - {fileID: 100000, guid: 4f65e66a2d4de96448fbebcfe54d4d89, type: 2}
+  armourList: []
+  scrollList: []
 --- !u!1 &404374288
 GameObject:
   m_ObjectHideFlags: 0
@@ -249,7 +252,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 400000, guid: ed760a94674520e48a7d6779faad9780, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: .00580537319
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: ed760a94674520e48a7d6779faad9780, type: 2}
       propertyPath: m_LocalPosition.y
@@ -294,6 +297,14 @@ Prefab:
     - target: {fileID: 11400000, guid: ed760a94674520e48a7d6779faad9780, type: 2}
       propertyPath: controlable
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 400002, guid: ed760a94674520e48a7d6779faad9780, type: 2}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: ed760a94674520e48a7d6779faad9780, type: 2}
+      propertyPath: healthbar
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 0}
@@ -578,7 +589,7 @@ Transform:
   m_PrefabInternal: {fileID: 620114245}
   m_GameObject: {fileID: 2144231996}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 1}
+  m_LocalPosition: {x: .00580537319, y: 0, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1676298719}
@@ -602,4 +613,3 @@ MonoBehaviour:
   baseHealth: 100
   baseMana: 100
   baseDamage: 10
-  enemies: {fileID: 0}
