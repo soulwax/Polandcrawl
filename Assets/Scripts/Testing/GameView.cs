@@ -31,7 +31,7 @@ public class GameView : MonoBehaviour
 		pX,
 		pY;
 
-	public PlayerTest player;
+	public Player player;
 	public int currentLevel = 1;
 
     private DungeonVariables variables;
@@ -144,12 +144,12 @@ public class GameView : MonoBehaviour
 
 
 		//Check collisions
-		checkCollisions(player.playerX + pX, player.playerY + pY);
+		checkCollisions(player.positionX + pX, player.positionY + pY);
 	}
 
 	private void checkCollisions(int moveToX, int moveToY)
 	{
-		if(NPCController.npcMap[moveToX, moveToY] == 0) {
+		if(NPCController.npcMap[moveToX, moveToY] == null) {
 			if(ItemController.itemMap[moveToX, moveToY] == 0) {
 				if(dungeonMap[moveToX, moveToY] == 1) {
 					player.setPosition(moveToX, moveToY);
@@ -164,9 +164,10 @@ public class GameView : MonoBehaviour
 		} else {
 			//TODO: Combat :D:D
 			Debug.Log("Hit Enemy!");
+			player.OnAttack(moveToX, moveToY);
 		}
 
-		processTurn();
+		//processTurn();
 	}
 
 	private void buildMesh(GameObject gObject, int width, int height, float tileSize) 

@@ -42,6 +42,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   positionX: 0
   positionY: 0
+  isNPC: 1
+  baseHealth: 25
+  baseMana: 0
+  baseDamage: 3
+  enemies: {fileID: 0}
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -27,12 +27,13 @@ public class Enemy : Actor
 
 	private void checkCollisions(int moveToX, int moveToY)
 	{
-		if(NPCController.npcMap[moveToX, moveToY] == 0) {
+		if(NPCController.npcMap[moveToX, moveToY] == null) {
 			if(ItemController.itemMap[moveToX, moveToY] == 0) {
 				if(GameView.dungeonMap[moveToX, moveToY] == 1) {
-					setPosition(moveToX, moveToY);
+					setPosition(positionX, positionY, moveToX, moveToY);
+					//setPosition(moveToX, moveToY);
 				} else {
-					Debug.Log("Enemy Hit Wall!");
+					//Debug.Log("Enemy Hit Wall!");
 					return;
 				}
 			} else {
