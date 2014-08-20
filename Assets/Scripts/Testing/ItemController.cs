@@ -5,7 +5,7 @@ public class ItemController : MonoBehaviour
 {
 	public GameObject[] itemList;
 
-	public int[,] itemMap;
+	public static int[,] itemMap;
 
 	public void populateItems(List<Vector2> viableLocations, int width, int height)
 	{

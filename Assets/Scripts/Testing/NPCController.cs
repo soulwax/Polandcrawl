@@ -6,7 +6,7 @@ public class NPCController : MonoBehaviour
 	public GameObject[] enemyList;
 	public GameObject[] neutralList;
 
-	public int[,] npcMap;
+	public static int[,] npcMap;
 	
 	public void populateEnemies(List<Vector2> viableLocations, int currentLevel, int width, int height)
 	{

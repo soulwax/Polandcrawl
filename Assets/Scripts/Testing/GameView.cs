@@ -3,6 +3,11 @@ using System.Collections.Generic;
 
 public class GameView : MonoBehaviour 
 {
+	#region Delegates & Events
+	public delegate void ProcessTurn();
+	public static event ProcessTurn processTurn;
+	#endregion
+
 	#region Variables
 	public float cycleRate = 0.5f;
 	private float nextCycle = 0.0f;
@@ -15,7 +20,10 @@ public class GameView : MonoBehaviour
 
 	public Texture2D dungeonTileset;
 
-	public int[,] dungeonMap;
+	public static int[,] dungeonMap;
+
+	public NPCController npcController;
+	public ItemController itemController;
 
 	private int
 		playerX,
@@ -24,9 +32,6 @@ public class GameView : MonoBehaviour
 		pY;
 
 	public PlayerTest player;
-	public NPCController npcController;
-	public ItemController itemController;
-
 	public int currentLevel = 1;
 
     private DungeonVariables variables;
@@ -101,8 +106,8 @@ public class GameView : MonoBehaviour
 		itemController.populateItems(viableLocations, levelWidth, levelHeight);
 
 		/*ConvertToString cTS = new ConvertToString();
-		Debug.Log(cTS.Covert(npcController.npcMap, levelWidth, levelHeight));
-		Debug.Log(cTS.Covert(itemController.itemMap, levelWidth, levelHeight));*/
+		Debug.Log(cTS.Covert(NPCController.npcMap, levelWidth, levelHeight));
+		Debug.Log(cTS.Covert(ItemController.itemMap, levelWidth, levelHeight));*/
 	}
 	
 	// Update is called once per frame
@@ -116,17 +121,23 @@ public class GameView : MonoBehaviour
 			pY=1;
 			nextCycle = Time.time + cycleRate;
 		}
-		if (Input.GetKey("s") && Time.time > nextCycle) {
+		if(Input.GetKey("s") && Time.time > nextCycle) {
 			pY=-1;
 			nextCycle = Time.time + cycleRate;
 		}
-		if (Input.GetKey("d") && Time.time > nextCycle) {
+		if(Input.GetKey("d") && Time.time > nextCycle) {
 			pX=1;
 			nextCycle = Time.time + cycleRate;
 		}
-		if (Input.GetKey("a") && Time.time > nextCycle) {
+		if(Input.GetKey("a") && Time.time > nextCycle) {
 			pX=-1;
 			nextCycle = Time.time + cycleRate;
+		}
+
+		if(Input.GetKey(".") && Time.time > nextCycle) {
+			processTurn();
+			nextCycle = Time.time + cycleRate;
+			return;
 		}
 		
 		if (pX==0 && pY==0) return; // No movement
@@ -138,8 +149,8 @@ public class GameView : MonoBehaviour
 
 	private void checkCollisions(int moveToX, int moveToY)
 	{
-		if(npcController.npcMap[moveToX, moveToY] == 0) {
-			if(itemController.itemMap[moveToX, moveToY] == 0) {
+		if(NPCController.npcMap[moveToX, moveToY] == 0) {
+			if(ItemController.itemMap[moveToX, moveToY] == 0) {
 				if(dungeonMap[moveToX, moveToY] == 1) {
 					player.setPosition(moveToX, moveToY);
 				} else {
@@ -154,6 +165,8 @@ public class GameView : MonoBehaviour
 			//TODO: Combat :D:D
 			Debug.Log("Hit Enemy!");
 		}
+
+		processTurn();
 	}
 
 	private void buildMesh(GameObject gObject, int width, int height, float tileSize) 
