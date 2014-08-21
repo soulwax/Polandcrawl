@@ -5,11 +5,10 @@ public class Actor : MonoBehaviour
 {
 	#region Variables
 	public int positionX, positionY;
-	public bool isNPC;
 
-	public int baseHealth;
-	public int baseMana;
-	public int baseDamage;
+	public int health;
+	public int mana;
+	public int damage;
 	#endregion
 
 	void Awake()
@@ -27,10 +26,8 @@ public class Actor : MonoBehaviour
 
 	public void setPosition(int originX, int originY, int newX, int newY)
 	{
-		if(isNPC) {
-			NPCController.npcMap[originX, originY] = null;
-			NPCController.npcMap[newX, newY] = this;
-		}
+		NPCController.npcMap[originX, originY] = null;
+		NPCController.npcMap[newX, newY] = this;
 		positionX = newX;
 		positionY = newY;
 		transform.position = new Vector3(newX, newY, transform.position.z);
@@ -44,14 +41,14 @@ public class Actor : MonoBehaviour
 	public void OnAttack(int x, int y)
 	{	
 		Actor enemyTemp = NPCController.npcMap[x, y];
-		enemyTemp.OnDamage(baseDamage);
+		enemyTemp.OnDamage(damage);
 	}
 
 	public void OnDamage(int damage)
 	{
-		baseHealth -= damage;
+		health -= damage;
 
-		if(baseHealth <= 0) {
+		if(health <= 0) {
 			Destroy(this.gameObject);
 		}
 	}

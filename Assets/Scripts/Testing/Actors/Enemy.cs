@@ -9,6 +9,7 @@ public class Enemy : Actor
 	}
 
 	public EnemyState enemyState;
+	public int viewRange;
 	private int pX, pY;
 
 	// Use this for initialization
@@ -23,12 +24,26 @@ public class Enemy : Actor
 	
 	}
 
+	public void setNPCMapPosition()
+	{
+		setPosition(positionX, positionY, positionX, positionY);
+	}
+
 	public void Turn()
 	{
-		pX = Random.Range(-1, 2);
+		/*pX = Random.Range(-1, 2);
 		pY = Random.Range(-1, 2);
 
-		checkCollisions(positionX + pX, positionY + pY);	
+		checkCollisions(positionX + pX, positionY + pY);*/
+		Actor temp = checkForEnemies();
+		if(temp != null)
+				Debug.Log("Found Enemy: + " + this.gameObject.name + " - " + temp.gameObject.name);
+	}
+
+	private Actor checkForEnemies()
+	{
+		//TODO: Previous version was utter poop.
+		return null;
 	}
 
 	private void checkCollisions(int moveToX, int moveToY)
@@ -51,6 +66,7 @@ public class Enemy : Actor
 			Debug.Log("Enemy Hit Enemy!");
 		}
 	}
+
 
 	void OnEnable()
 	{

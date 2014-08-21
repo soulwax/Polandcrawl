@@ -168,7 +168,7 @@ public class GameView : MonoBehaviour
 			player.OnAttack(moveToX, moveToY);
 		}
 
-		//processTurn();
+		processTurn();
 	}
 
 	private void buildMesh(GameObject gObject, int width, int height, float tileSize) 
