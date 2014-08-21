@@ -53,7 +53,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100002}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: .5, y: .5, z: 0}
+  m_LocalPosition: {x: .5, y: .5, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 400000}
@@ -101,15 +101,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0d0e24608c31ff640a902d990e686dbe, type: 3}
+  m_Script: {fileID: 11500000, guid: 6d582e1d98571ca4490bf8a35d14493c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   positionX: 0
   positionY: 0
-  baseHealth: 100
-  baseMana: 100
-  baseDamage: 10
-  player: 0
+  health: 100
+  mana: 0
+  damage: 10
+  invetoryList: []
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1

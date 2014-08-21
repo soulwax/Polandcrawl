@@ -171,5 +171,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skin: {fileID: 11400000, guid: 44ebc16976892264ab14e653291ccd5b, type: 2}
-  entity1: {fileID: 2800000, guid: 5ecca067f76870c459e876280a08a9b6, type: 3}
+  entity1: {fileID: 2800000, guid: 29919a9c6248af048889937be627aabf, type: 3}
   entity2: {fileID: 2800000, guid: 29919a9c6248af048889937be627aabf, type: 3}
