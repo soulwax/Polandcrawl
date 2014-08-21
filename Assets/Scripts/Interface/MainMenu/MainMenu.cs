@@ -108,11 +108,11 @@ public class MainMenu : MonoBehaviour {
                 //adjusting the dungeon size to the right value
                 if (dungeonType == "A")
                 {
-                    go.GetComponent<DungeonVariables>().type = DungeonVariables.Type.Corridors;
+                    go.GetComponent<DungeonVariables>().type = DungeonVariables.Type.Scattered;
                 }
                 else if (dungeonType == "B")
                 {
-                    go.GetComponent<DungeonVariables>().type = DungeonVariables.Type.Corridors;
+                    go.GetComponent<DungeonVariables>().type = DungeonVariables.Type.Coherent;
                 }
 
                 DontDestroyOnLoad(go);
