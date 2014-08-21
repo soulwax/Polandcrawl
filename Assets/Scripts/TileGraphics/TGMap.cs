@@ -39,7 +39,7 @@ public class TGMap : MonoBehaviour {
 	}
 
 	void BuildTexture(){
-		TDMap map = new TDMap(size_x, size_y);
+		TDMap map = new TDMap(size_x, size_y,10,DungeonVariables.Type.Coherent);
 
 		int texWidth = size_x * tileResolution;
 		int texHeight = size_y * tileResolution;

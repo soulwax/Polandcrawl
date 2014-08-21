@@ -5,7 +5,7 @@ public class DungeonVariables : MonoBehaviour {
 
     public enum Type
     {
-        Corridors, NoCorridors
+        Scattered, Coherent
     }
 
     public int size;

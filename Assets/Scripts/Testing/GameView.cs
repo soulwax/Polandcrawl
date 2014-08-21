@@ -52,20 +52,20 @@ public class GameView : MonoBehaviour
             {
                 levelWidth = 50;
                 levelHeight = 50;
-                rooms = 5;
+                rooms = 10;
             } 
             else if(variables.size == 2)
             {
                 levelWidth = 80;
                 levelHeight = 80;
-                rooms = 10;
+                rooms = 25;
             }
 
             else if(variables.size == 3)
             {
                 levelWidth = 120;
                 levelHeight = 120;
-                rooms = 15;
+                rooms = 35;
             }
         }
         else
