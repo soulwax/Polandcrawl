@@ -14,7 +14,9 @@ public class TestGUI : MonoBehaviour
 		for(int i = 0; i < player.inventoryList.Count; i++)
 		{
 			if(GUI.Button(new Rect(Screen.width - (Screen.width * 0.25f) + 5, i*20 + 65, 200, 20), player.inventoryList[i].name)) {
-				player.inventoryList[i].Apply();
+				Item tempItem = player.inventoryList[i];
+				player.inventoryList.RemoveAt(i);
+				tempItem.Apply();
 			}
 		}
 	}

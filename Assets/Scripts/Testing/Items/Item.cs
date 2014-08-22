@@ -23,7 +23,7 @@ public class Item : MonoBehaviour
 	public void Apply()
 	{
 		//TODO: Do shit with the item, ie consume
-		//Destroy(this.gameObject);
+		Destroy(this.gameObject);
 	}
 
 
