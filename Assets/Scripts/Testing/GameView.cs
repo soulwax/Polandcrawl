@@ -154,17 +154,14 @@ public class GameView : MonoBehaviour
 				if(dungeonMap[moveToX, moveToY] == 1) {
 					player.setPosition(moveToX, moveToY);
 				} else {
-					Debug.Log("Hit Wall!");
 					return;
 				}
 			} else {
-				Debug.Log("Hit Item!");
-				player.pickupItem(moveToX, moveToY);
 				player.setPosition(moveToX, moveToY);
+				player.pickupItem(moveToX, moveToY);
 			}
 		} else {
 			//TODO: Combat :D:D
-			Debug.Log("Hit Enemy!");
 			player.OnAttack(moveToX, moveToY);
 		}
 

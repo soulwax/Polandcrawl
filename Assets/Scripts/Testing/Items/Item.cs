@@ -20,5 +20,11 @@ public class Item : MonoBehaviour
 		return this.MemberwiseClone();
 	}
 
+	public void Apply()
+	{
+		//TODO: Do shit with the item, ie consume
+		//Destroy(this.gameObject);
+	}
+
 
 }

@@ -59,11 +59,9 @@ public class Enemy : Actor
 				}
 			} else {
 				//TODO: Pickup item ect.
-				Debug.Log("Enemy Hit Item!");
 			}
 		} else {
 			//TODO: Combat :D:D
-			Debug.Log("Enemy Hit Enemy!");
 		}
 	}
 
