@@ -117,24 +117,24 @@ public class GameView : MonoBehaviour
 		pX = 0;
 		
 		// Get shitty inputs
-		if(Input.GetKey("w") && Time.time > nextCycle){
+		if(Input.GetKey("w") && Time.time > nextCycle){ //Move up by 1 in the Y direction
 			pY=1;
 			nextCycle = Time.time + cycleRate;
 		}
-		if(Input.GetKey("s") && Time.time > nextCycle) {
+		if(Input.GetKey("s") && Time.time > nextCycle) { //Move backward by 1 in the Y direction
 			pY=-1;
 			nextCycle = Time.time + cycleRate;
 		}
-		if(Input.GetKey("d") && Time.time > nextCycle) {
+		if(Input.GetKey("d") && Time.time > nextCycle) { //Move right by 1 in the X direction
 			pX=1;
 			nextCycle = Time.time + cycleRate;
 		}
-		if(Input.GetKey("a") && Time.time > nextCycle) {
+		if(Input.GetKey("a") && Time.time > nextCycle) { //Move left by 1 in the X direction
 			pX=-1;
 			nextCycle = Time.time + cycleRate;
 		}
 
-		if(Input.GetKey(".") && Time.time > nextCycle) {
+		if(Input.GetKey(".") && Time.time > nextCycle) { //Wait a turn
 			processTurn();
 			nextCycle = Time.time + cycleRate;
 			return;
@@ -149,20 +149,20 @@ public class GameView : MonoBehaviour
 
 	private void checkCollisions(int moveToX, int moveToY)
 	{
-		if(NPCController.npcMap[moveToX, moveToY] == null) {
-			if(ItemController.itemMap[moveToX, moveToY] == null) {
-				if(dungeonMap[moveToX, moveToY] == 1) {
-					player.setPosition(moveToX, moveToY);
+		if(NPCController.npcMap[moveToX, moveToY] == null) { //Check to see if our desired location has an enemy there
+			if(ItemController.itemMap[moveToX, moveToY] == null) { //Check to see if our desired location has an item there
+				if(dungeonMap[moveToX, moveToY] == 1) { //Check to see if our our desired location is floor, thus moveable
+					player.setPosition(moveToX, moveToY); //Nothing in our desired location thus can move freely.
 				} else {
 					return;
 				}
 			} else {
-				player.setPosition(moveToX, moveToY);
+				player.setPosition(moveToX, moveToY); //Found an item, so move there and pick it up.
 				player.pickupItem(moveToX, moveToY);
 			}
 		} else {
 			//TODO: Combat :D:D
-			player.OnAttack(moveToX, moveToY);
+			player.OnAttack(moveToX, moveToY); //Found and enemy, so attack!
 		}
 
 		processTurn();
