@@ -116,23 +116,44 @@ public class GameView : MonoBehaviour
 		pY = 0;
 		pX = 0;
 		
-		// Get shitty inputs
-		if(Input.GetKey("w") && Time.time > nextCycle){ //Move up by 1 in the Y direction
+		// Get user input
+		if(Input.GetKey(KeyCode.Keypad8) && Time.time > nextCycle){ //Move up by 1 in the Y direction
 			pY=1;
 			nextCycle = Time.time + cycleRate;
 		}
-		if(Input.GetKey("s") && Time.time > nextCycle) { //Move backward by 1 in the Y direction
+		if(Input.GetKey(KeyCode.Keypad2) && Time.time > nextCycle) { //Move backward by 1 in the Y direction
 			pY=-1;
 			nextCycle = Time.time + cycleRate;
 		}
-		if(Input.GetKey("d") && Time.time > nextCycle) { //Move right by 1 in the X direction
+		if(Input.GetKey(KeyCode.Keypad6) && Time.time > nextCycle) { //Move right by 1 in the X direction
 			pX=1;
 			nextCycle = Time.time + cycleRate;
 		}
-		if(Input.GetKey("a") && Time.time > nextCycle) { //Move left by 1 in the X direction
+		if(Input.GetKey(KeyCode.Keypad4) && Time.time > nextCycle) { //Move left by 1 in the X direction
 			pX=-1;
 			nextCycle = Time.time + cycleRate;
 		}
+		if(Input.GetKey(KeyCode.Keypad9) && Time.time > nextCycle) { //Move up and right by 1 in the X direction
+			pX=1;
+			pY=1;
+			nextCycle = Time.time + cycleRate;
+		}
+		if(Input.GetKey(KeyCode.Keypad7) && Time.time > nextCycle) { //Move up and left by 1 in the X direction
+			pX=-1;
+			pY=1;
+			nextCycle = Time.time + cycleRate;
+		}
+		if(Input.GetKey(KeyCode.Keypad3) && Time.time > nextCycle) { //Move down and right by 1 in the X direction
+			pX=1;
+			pY=-1;
+			nextCycle = Time.time + cycleRate;
+		}
+		if(Input.GetKey(KeyCode.Keypad1) && Time.time > nextCycle) { //Move down and left by 1 in the X direction
+			pX=-1;
+			pY=-1;
+			nextCycle = Time.time + cycleRate;
+		}
+
 
 		if(Input.GetKey(".") && Time.time > nextCycle) { //Wait a turn
 			processTurn();
