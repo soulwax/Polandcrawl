@@ -307,10 +307,6 @@ public class TDMap
                 if (attempts >= maxAttempts) break;
             }
             AddRoomToTileData(rr);
-            
-
-            Debug.Log("attempts: " + attempts);
-            attempts = 0;
         }
 
         ConnectRooms(rooms);   
@@ -358,7 +354,7 @@ public class TDMap
         for (int i = 0; i < _rooms.Count - 1; i++)
         {
             r1.connected = true;
-            r2 = r1.GetClosestUnconnectedRoom(rooms);
+            r2 = r1.GetClosestUnconnectedRoom(_rooms);
             BuildCorridor(r1, r2);
             r1 = r2;
         }
