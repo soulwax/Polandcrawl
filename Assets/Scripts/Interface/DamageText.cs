@@ -15,15 +15,14 @@ public class DamageText : MonoBehaviour
 
     void Start()
     {
-        Gaussian g = new Gaussian(); //normal distribution for more fancy randomness
         this.x = transform.position.x; 
         this.y = transform.position.y;
         this.xx = x; 
         this.yy = y; 
         this.zz = 2; //at first the digit flies upwards
-        this.xa = (float)(g.NextGaussian() * 0.06); //bounce off towards the sides
-        this.ya = (float)(g.NextGaussian() * 0.04); 
-        this.za = (float)(Random.Range(0f, 1f) * 0.27); //upward direction
+        this.xa = (float)(Gaussian.NextGaussian() * 0.06); //bounce off towards the sides
+        this.ya = (float)(Gaussian.NextGaussian() * 0.04);
+        this.za = (float)(Gaussian.NextFloat() * 0.27); //upward direction
     }
 
     //using FixedUpdate because this is technically Physics
