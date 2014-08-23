@@ -27,9 +27,9 @@ public class GameView : MonoBehaviour
 
 	private int
 		playerX,
-		playerY,
-		pX,
-		pY;
+		playerY;
+
+	private float pX,pY;
 
 	public Player player;
 	public int currentLevel = 1;
@@ -94,7 +94,7 @@ public class GameView : MonoBehaviour
 			for(int x = 0; x < levelWidth; x++) {
 				if(dungeonMap[x,y] == 1){
 					if(!initPlayer) {
-						player.setPosition(x, y);
+						player.setPositionDirectly(x, y);
 						initPlayer = true;
 					}
 					viableLocations.Add(new Vector2(x, y));
@@ -115,10 +115,11 @@ public class GameView : MonoBehaviour
 	{
 		pY = 0;
 		pX = 0;
-		
+
+
 		// Get user input
 		if(Input.GetKey(KeyCode.Keypad8) && Time.time > nextCycle){ //Move up by 1 in the Y direction
-			pY=1;
+            pY = 1;
 			nextCycle = Time.time + cycleRate;
 		}
 		if(Input.GetKey(KeyCode.Keypad2) && Time.time > nextCycle) { //Move backward by 1 in the Y direction
@@ -161,11 +162,11 @@ public class GameView : MonoBehaviour
 			return;
 		}
 		
-		if (pX==0 && pY==0) return; // No movement
+		if (pX==0 &&pY==0) return; // No movement
 
 
 		//Check collisions
-		checkCollisions(player.positionX + pX, player.positionY + pY);
+		checkCollisions((int)player.xp + (int)pX,(int) player.yp + (int)pY);
 	}
 
 	private void checkCollisions(int moveToX, int moveToY)

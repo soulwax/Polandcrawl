@@ -17,7 +17,7 @@ public class NPCController : MonoBehaviour
 		Actor tempActor;
 
 		// Add random enemys.
-		int rndEnemyCount = Random.Range(currentLevel+10 - 3, currentLevel+10 + 3);
+		int rndEnemyCount = Random.Range(currentLevel+30 - 3, currentLevel+30 + 3);
 		//int rndEnemyCount = 2;
 		for(int x = 0; x < rndEnemyCount; x++) {
 			int rndIndex = Random.Range(0, viableLocations.Count);

@@ -353,6 +353,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: ed760a94674520e48a7d6779faad9780, type: 2}
+      propertyPath: damageText
+      value: 
+      objectReference: {fileID: 100000, guid: b8b6f5ff30a65a64582111ac2d0d6f8e, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ed760a94674520e48a7d6779faad9780, type: 2}
   m_RootGameObject: {fileID: 1652636361}
@@ -431,11 +435,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d582e1d98571ca4490bf8a35d14493c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  positionX: 0
-  positionY: 0
+  xp: 0
+  yp: 0
   health: 100
   mana: 0
   damage: 10
+  lerpRate: .100000001
+  damageText: {fileID: 100000, guid: b8b6f5ff30a65a64582111ac2d0d6f8e, type: 2}
   inventoryList: []
   inventoryObject: {fileID: 307748637}
 --- !u!212 &1652636364

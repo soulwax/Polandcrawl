@@ -4,44 +4,72 @@ using System.Collections;
 public class Actor : MonoBehaviour
 {
 	#region Variables
-	public int positionX, positionY;
+	public float xp, yp; //actual position
 
 	public int health;
 	public int mana;
 	public int damage;
+
+    public float lerpRate = 0.1f;
+    public GameObject damageText;
+
+    private bool processMove;
 	#endregion
 
 	void Awake()
 	{
-		positionX = (int)transform.position.x; //Store location as an int
-		positionY = (int)transform.position.y;
+		xp = transform.position.x; //Store location
+		yp = transform.position.y;
+
+        processMove = false;
 	}
 
-	public void setPosition(int x, int y) //Set location, used by the player
+    void LateUpdate()
+    {
+        if (processMove)
+        {
+            ProcessMovement(lerpRate);
+        }
+    }
+
+	public virtual void setPosition(float x, float y) 
 	{
-		positionX = x;
-		positionY = y;
-		transform.position = new Vector3(x, y, transform.position.z); //Move to location
+		xp = x;
+		yp = y;
+        processMove = true;
 	}
 
-	public void setPosition(int originX, int originY, int newX, int newY) //Set location, used by NPCs
-	{
-		NPCController.npcMap[originX, originY] = null; //Empty old location
-		NPCController.npcMap[newX, newY] = this; //Store enemy in the new location
-		positionX = newX; //Save location
-		positionY = newY;
-		transform.position = new Vector3(newX, newY, transform.position.z); //Move to location
-	}
+    public virtual void setPositionDirectly(float x, float y)
+    {
+        xp = x;
+        yp = y;
+
+        transform.position = new Vector3(xp, yp, transform.position.z);
+    }
+
+    protected void ProcessMovement(float rate)
+    {
+        float x0 = transform.position.x;
+        float y0 = transform.position.y;
+
+        float x1 = Mathf.Lerp(x0, xp, rate);
+        float y1 = Mathf.Lerp(y0, yp, rate);
+
+        transform.position = new Vector3(x1, y1, transform.position.z); //Move to location
+
+        if (x1 == xp && y1 == yp) processMove = false;
+    }
 
 	public Vector2 getPosition()
 	{
-		return new Vector2(positionX, positionY);
+		return new Vector2(xp, yp);
 	}
 
-	public void OnAttack(int x, int y)
+	public virtual void OnAttack(int x, int y)
 	{	
 		Actor enemyTemp = NPCController.npcMap[x, y];
 		enemyTemp.OnDamage(damage);
+        
 	}
 
 	public void OnDamage(int damage)
@@ -52,4 +80,13 @@ public class Actor : MonoBehaviour
 			Destroy(this.gameObject);
 		}
 	}
+
+    public void SpawnDamageText(int damage, Color col)
+    {
+        DamageText txt = damageText.GetComponent<DamageText>();
+        TextMesh txtmesh = txt.GetComponent<TextMesh>();
+        txtmesh.text = damage.ToString();
+        txtmesh.color = col;
+        Instantiate(damageText, transform.position, Quaternion.Euler(0, 0, 0));
+    }
 }

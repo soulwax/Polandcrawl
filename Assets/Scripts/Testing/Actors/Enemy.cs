@@ -24,9 +24,16 @@ public class Enemy : Actor
 	
 	}
 
+    public void setPosition(float originX, float originY, float newX, float newY) //Set location, used by NPCs
+    {
+        NPCController.npcMap[(int)originX, (int)originY] = null; //Empty old location
+        NPCController.npcMap[(int)newX, (int)newY] = this; //Store enemy in the new location
+        base.setPosition(newX, newY);
+    }
+
 	public void setNPCMapPosition()
 	{
-		setPosition(positionX, positionY, positionX, positionY);
+		setPosition(xp, yp, xp, yp);
 	}
 
 	public void Turn()
@@ -51,7 +58,7 @@ public class Enemy : Actor
 		if(NPCController.npcMap[moveToX, moveToY] == null) {
 			if(ItemController.itemMap[moveToX, moveToY] == null) {
 				if(GameView.dungeonMap[moveToX, moveToY] == 1) {
-					setPosition(positionX, positionY, moveToX, moveToY);
+					setPosition(xp, yp, moveToX, moveToY);
 					//setPosition(moveToX, moveToY);
 				} else {
 					//Debug.Log("Enemy Hit Wall!");
@@ -65,6 +72,13 @@ public class Enemy : Actor
 		}
 	}
 
+    public override void OnAttack(int x, int y)
+    {
+        base.OnAttack(x, y);
+        
+        Color col = new Color(1f, 0f, 0f); //red for damage dealt to you by the enemy
+        SpawnDamageText(damage, col);
+    }
 
 	void OnEnable()
 	{
