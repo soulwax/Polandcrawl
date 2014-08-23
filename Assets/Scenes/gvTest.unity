@@ -120,6 +120,7 @@ MonoBehaviour:
   - {fileID: 100000, guid: 4f65e66a2d4de96448fbebcfe54d4d89, type: 2}
   armourList: []
   scrollList: []
+  stairs: {fileID: 100000, guid: abbed2c99cd550346868db1d37693563, type: 2}
 --- !u!1 &307748637
 GameObject:
   m_ObjectHideFlags: 0

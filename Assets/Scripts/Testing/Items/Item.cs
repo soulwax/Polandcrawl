@@ -15,11 +15,6 @@ public class Item : MonoBehaviour
 	public string itemName;
 	public string itemDescription;
 
-	public object Clone()
-	{
-		return this.MemberwiseClone();
-	}
-
 	public void Apply()
 	{
 		//TODO: Do shit with the item, ie consume

@@ -18,8 +18,7 @@ public class Player : Actor
 	public void pickupItem(int x, int y)
 	{
 		//TODO: Add item to inventory
-		Item itemTemp = ItemController.itemMap[x, y];
-        
+		Item itemTemp = ItemController.itemMap[x, y];        
         
 		inventoryList.Add(itemTemp);
 		itemTemp.gameObject.transform.parent = inventoryObject.transform;

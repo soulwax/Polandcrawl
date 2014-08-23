@@ -11,7 +11,7 @@ GameObject:
   - 212: {fileID: 21200000}
   - 114: {fileID: 11400000}
   m_Layer: 0
-  m_Name: Health Potion
+  m_Name: Stairs
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -37,7 +37,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c6f9a26622ca76d4f9ed02a0654aa556, type: 3}
+  m_Script: {fileID: 11500000, guid: 3229d6cedf7a1304c8ec96a9bd2d26ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   itemType: 0
@@ -63,7 +63,7 @@ SpriteRenderer:
   m_ScaleInLightmap: 1
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300006, guid: f5aa5a15bf66f4843804380511aa9d78, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 68e20d84009be0841a2fa34e3ef066ea, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1001 &100100000
 Prefab:
