@@ -47,6 +47,7 @@ public class Actor : MonoBehaviour
         transform.position = new Vector3(xp, yp, transform.position.z);
     }
 
+    //Lerping is a temporary solution, I'm pretty sure there are fancier approaches
     protected void ProcessMovement(float rate)
     {
         float x0 = transform.position.x;

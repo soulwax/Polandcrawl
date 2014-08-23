@@ -48,6 +48,6 @@ public class DamageText : MonoBehaviour
         x = xx; //apply temporary coordinates to the actual ones
         y = yy;
 
-        transform.position = new Vector3(x,y+zz,3); //use actual coords to display movement, simulated z axis gets added to the y axis
+        transform.position = new Vector3(x,y+zz,-1); //use actual coords to display movement, simulated z axis gets added to the y axis
     }
 }
