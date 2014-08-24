@@ -40,11 +40,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 863046f3600d2b74899e9019e4063ada, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  positionX: 0
-  positionY: 0
+  xp: 0
+  yp: 0
+  lerpRate: .100000001
+  damageText: {fileID: 100000, guid: b8b6f5ff30a65a64582111ac2d0d6f8e, type: 2}
+  maxHealth: 20
+  maxMana: 0
   health: 20
   mana: 0
-  damage: 0
   enemyState: 0
   viewRange: 5
 --- !u!212 &21200000

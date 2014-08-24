@@ -205,9 +205,9 @@ Camera:
     serializedVersion: 2
     x: 0
     y: 0
-    width: .75
+    width: 1
     height: 1
-  near clip plane: .300000012
+  near clip plane: -4
   far clip plane: 1000
   field of view: 60
   orthographic: 1
@@ -358,6 +358,14 @@ Prefab:
       propertyPath: damageText
       value: 
       objectReference: {fileID: 100000, guid: b8b6f5ff30a65a64582111ac2d0d6f8e, type: 2}
+    - target: {fileID: 11400000, guid: ed760a94674520e48a7d6779faad9780, type: 2}
+      propertyPath: maxHealth
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: ed760a94674520e48a7d6779faad9780, type: 2}
+      propertyPath: maxMana
+      value: 20
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ed760a94674520e48a7d6779faad9780, type: 2}
   m_RootGameObject: {fileID: 1652636361}
@@ -403,6 +411,7 @@ GameObject:
   - 4: {fileID: 1652636362}
   - 212: {fileID: 1652636364}
   - 114: {fileID: 1652636363}
+  - 114: {fileID: 1652636365}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -438,11 +447,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   xp: 0
   yp: 0
-  health: 100
-  mana: 0
-  damage: 10
   lerpRate: .100000001
   damageText: {fileID: 100000, guid: b8b6f5ff30a65a64582111ac2d0d6f8e, type: 2}
+  maxHealth: 100
+  maxMana: 20
   inventoryList: []
   inventoryObject: {fileID: 307748637}
 --- !u!212 &1652636364
@@ -468,6 +476,17 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 29919a9c6248af048889937be627aabf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
+--- !u!114 &1652636365
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1652636361}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09cd132a3ec9f9d45a8ca00d0183ea8f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1691413882
 GameObject:
   m_ObjectHideFlags: 0
@@ -546,7 +565,7 @@ GameObject:
   - 114: {fileID: 1767576323}
   m_Layer: 8
   m_Name: GameView
-  m_TagString: Untagged
+  m_TagString: GameView
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -18,33 +18,19 @@ public class Enemy : Actor
 	
 	}
 	
-	// Update is called once per frame
-	void Update () 
-	{
-	
-	}
-
-    public void setPosition(float originX, float originY, float newX, float newY) //Set location, used by NPCs
-    {
-        NPCController.npcMap[(int)originX, (int)originY] = null; //Empty old location
-        NPCController.npcMap[(int)newX, (int)newY] = this; //Store enemy in the new location
-        base.setPosition(newX, newY);
-    }
-
 	public void setNPCMapPosition()
 	{
-		setPosition(xp, yp, xp, yp);
+		setPosition(xp, yp);
 	}
 
 	public void Turn()
 	{
-		/*pX = Random.Range(-1, 2);
+		pX = Random.Range(-1, 2);
 		pY = Random.Range(-1, 2);
-
-		checkCollisions(xp + pX, yp + pY);
+        checkCollisions((int)xp + pX, (int)yp + pY);
 		Actor temp = checkForEnemies();
 		if(temp != null)
-				Debug.Log("Found Enemy: + " + this.gameObject.name + " - " + temp.gameObject.name);*/
+				Debug.Log("Found Enemy: + " + this.gameObject.name + " - " + temp.gameObject.name);
 	}
 
 	private Actor checkForEnemies()
@@ -53,15 +39,15 @@ public class Enemy : Actor
 		return null;
 	}
 
-	private void checkCollisions(float moveToX, float moveToY)
+	private void checkCollisions(int moveToX, int moveToY)
 	{
-        if (NPCController.npcMap[(int)moveToX, (int)moveToY] == null)
+        if (NPCController.npcMap[moveToX, moveToY] == null)
         {
-            if (ItemController.itemMap[(int)moveToX, (int)moveToY] == null)
+            if (ItemController.itemMap[moveToX, moveToY] == null)
             {
-                if (GameView.dungeonMap[(int)moveToX, (int)moveToY] == 1)
+                if (GameView.dungeonMap[moveToX, moveToY] == 1)
                 {
-					setPosition(xp, yp, moveToX, moveToY);
+					setPosition(moveToX, moveToY);
 					//setPosition(moveToX, moveToY);
 				} else {
 					//Debug.Log("Enemy Hit Wall!");
@@ -75,12 +61,12 @@ public class Enemy : Actor
 		}
 	}
 
-    public override void OnAttack(int x, int y)
+    public override void OnAttack(int x, int y, float dmg)
     {
-        base.OnAttack(x, y);
+        base.OnAttack(x, y, dmg);
         
         Color col = new Color(1f, 0f, 0f); //red for damage dealt to you by the enemy
-        SpawnDamageText(damage, col);
+        SpawnDamageText(Damage, col);
     }
 
 	void OnEnable()

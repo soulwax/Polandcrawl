@@ -12,7 +12,6 @@ public class NPCController : MonoBehaviour
 	{
 		//Insialise Map.
 		npcMap = new Actor[width, height];
-
 		GameObject tempObject;
 		Actor tempActor;
 

@@ -5,15 +5,20 @@ public class Actor : MonoBehaviour
 {
 	#region Variables
 	public float xp, yp; //actual position
-
-	public int health;
-	public int mana;
-	public int damage;
-
     public float lerpRate = 0.1f;
     public GameObject damageText;
 
+    public float maxHealth;
+    public float maxMana;
+
     private bool processMove;
+
+    private float health;
+    private float mana;
+    private float experience;
+    private float damage;
+
+    protected GameView view;
 	#endregion
 
 	void Awake()
@@ -21,7 +26,15 @@ public class Actor : MonoBehaviour
 		xp = transform.position.x; //Store location
 		yp = transform.position.y;
 
+        //temporary stats
+        Damage = 10;
+        health = maxHealth;
+        mana = maxMana;
+        Experience = 0;
+
         processMove = false;
+
+        view = GameObject.FindGameObjectWithTag("GameView").GetComponent<GameView>();
 	}
 
     void LateUpdate()
@@ -29,15 +42,25 @@ public class Actor : MonoBehaviour
         if (processMove)
         {
             ProcessMovement(lerpRate);
-        }
+        }        
     }
 
-	public virtual void setPosition(float x, float y) 
-	{
-		xp = x;
-		yp = y;
+    /*public virtual void setPosition(float x, float y) 
+    {
+        xp = x;
+        yp = y;
         processMove = true;
-	}
+    }*/
+
+    //I think the NPC map should contain the player aswell, NPC map rename to EntityMap or something similar?
+    public virtual void setPosition(float xn, float yn)
+    {
+        NPCController.npcMap[(int)xp, (int)yp] = null; //Empty old location
+        NPCController.npcMap[(int)xn, (int)yn] = this; //Store enemy in the new location
+        xp = xn;
+        yp = yn;
+        processMove = true;
+    }
 
     public virtual void setPositionDirectly(float x, float y)
     {
@@ -61,33 +84,65 @@ public class Actor : MonoBehaviour
         if (x1 == xp && y1 == yp) processMove = false;
     }
 
-	public Vector2 getPosition()
+	public Vector2 GetPosition()
 	{
 		return new Vector2(xp, yp);
 	}
 
-	public virtual void OnAttack(int x, int y)
+	public virtual void OnAttack(int x, int y, float dmg)
 	{	
 		Actor enemyTemp = NPCController.npcMap[x, y];
-		enemyTemp.OnDamage(damage);
+        enemyTemp.OnDamage(dmg);
         
 	}
 
-	public void OnDamage(int damage)
+	public void OnDamage(float dmg)
 	{
-		health -= damage;
-
-		if(health <= 0) {
-			Destroy(this.gameObject);
-		}
+        AdjustHealth(dmg);
+        if (health <= 0) Death();
 	}
 
-    public void SpawnDamageText(int damage, Color col)
+    protected void SpawnDamageText(float damage, Color col)
     {
         DamageText txt = damageText.GetComponent<DamageText>();
-        TextMesh txtmesh = txt.GetComponent<TextMesh>();
-        txtmesh.text = damage.ToString();
-        txtmesh.color = col;
-        Instantiate(damageText, transform.position, Quaternion.Euler(0, 0, 0));
+        if (txt != null)
+        {
+            TextMesh txtmesh = txt.GetComponent<TextMesh>();
+            if (txtmesh == null) return;
+            txtmesh.text = ((int)damage).ToString();
+            txtmesh.color = col;
+            Instantiate(damageText, transform.position, Quaternion.Euler(0, 0, 0));
+        }
+    }
+
+    public void AdjustHealth(float damage)
+    {
+        this.health -= damage;
+        if (this.health > maxHealth) health = maxHealth;
+        if (this.health <= 0) this.health = 0;
+    }
+
+    public float Damage
+    {
+        get { return damage; }
+        set 
+        {
+            if (value >= 0) this.damage = value;
+        }
+    }
+
+    public float Experience
+    {
+        get { return experience; }
+        set
+        {
+            this.experience = value;
+            if (experience < 0) experience = 0;
+        }
+    }
+
+    public void Death()
+    {
+        Destroy(this.gameObject);
     }
 }

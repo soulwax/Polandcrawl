@@ -3,10 +3,11 @@ using System.Collections.Generic;
 
 public class GameView : MonoBehaviour 
 {
-	#region Delegates & Events
-	public delegate void ProcessTurn();
-	public static event ProcessTurn processTurn;
-	#endregion
+    #region Delegates & Events
+    public delegate void ProcessTurn();
+    public static event ProcessTurn processTurn;
+    #endregion
+
 
 	#region Variables
 	public float cycleRate = 0.5f;
@@ -101,6 +102,7 @@ public class GameView : MonoBehaviour
 				}
 			}
 		}
+        
 		// Initialise Controllers
 		npcController.populateEnemies(viableLocations, currentLevel, levelWidth, levelHeight);
 		itemController.populateItems(viableLocations, levelWidth, levelHeight);
@@ -108,86 +110,6 @@ public class GameView : MonoBehaviour
 		/*ConvertToString cTS = new ConvertToString();
 		Debug.Log(cTS.Covert(NPCController.npcMap, levelWidth, levelHeight));
 		Debug.Log(cTS.Covert(ItemController.itemMap, levelWidth, levelHeight));*/
-	}
-	
-	// Update is called once per frame
-	void Update () 
-	{
-		pY = 0;
-		pX = 0;
-
-
-		// Get user input
-		if(Input.GetKey(KeyCode.Keypad8) && Time.time > nextCycle){ //Move up by 1 in the Y direction
-            pY = 1;
-			nextCycle = Time.time + cycleRate;
-		}
-		if(Input.GetKey(KeyCode.Keypad2) && Time.time > nextCycle) { //Move backward by 1 in the Y direction
-			pY=-1;
-			nextCycle = Time.time + cycleRate;
-		}
-		if(Input.GetKey(KeyCode.Keypad6) && Time.time > nextCycle) { //Move right by 1 in the X direction
-			pX=1;
-			nextCycle = Time.time + cycleRate;
-		}
-		if(Input.GetKey(KeyCode.Keypad4) && Time.time > nextCycle) { //Move left by 1 in the X direction
-			pX=-1;
-			nextCycle = Time.time + cycleRate;
-		}
-		if(Input.GetKey(KeyCode.Keypad9) && Time.time > nextCycle) { //Move up and right by 1 in the X direction
-			pX=1;
-			pY=1;
-			nextCycle = Time.time + cycleRate;
-		}
-		if(Input.GetKey(KeyCode.Keypad7) && Time.time > nextCycle) { //Move up and left by 1 in the X direction
-			pX=-1;
-			pY=1;
-			nextCycle = Time.time + cycleRate;
-		}
-		if(Input.GetKey(KeyCode.Keypad3) && Time.time > nextCycle) { //Move down and right by 1 in the X direction
-			pX=1;
-			pY=-1;
-			nextCycle = Time.time + cycleRate;
-		}
-		if(Input.GetKey(KeyCode.Keypad1) && Time.time > nextCycle) { //Move down and left by 1 in the X direction
-			pX=-1;
-			pY=-1;
-			nextCycle = Time.time + cycleRate;
-		}
-
-
-		if(Input.GetKey(".") && Time.time > nextCycle) { //Wait a turn
-			processTurn();
-			nextCycle = Time.time + cycleRate;
-			return;
-		}
-		
-		if (pX==0 &&pY==0) return; // No movement
-
-
-		//Check collisions
-		checkCollisions((int)player.xp + (int)pX,(int) player.yp + (int)pY);
-	}
-
-	private void checkCollisions(int moveToX, int moveToY)
-	{
-		if(NPCController.npcMap[moveToX, moveToY] == null) { //Check to see if our desired location has an enemy there
-			if(ItemController.itemMap[moveToX, moveToY] == null) { //Check to see if our desired location has an item there
-				if(dungeonMap[moveToX, moveToY] == 1) { //Check to see if our our desired location is floor, thus moveable
-					player.setPosition(moveToX, moveToY); //Nothing in our desired location thus can move freely.
-				} else {
-					return;
-				}
-			} else {
-				player.setPosition(moveToX, moveToY); //Found an item, so move there and pick it up.
-				player.pickupItem(moveToX, moveToY);
-			}
-		} else {
-			//TODO: Combat :D:D
-			player.OnAttack(moveToX, moveToY); //Found and enemy, so attack!
-		}
-
-		processTurn();
 	}
 
 	private void buildMesh(GameObject gObject, int width, int height, float tileSize) 
@@ -289,4 +211,15 @@ public class GameView : MonoBehaviour
 		
 		return tiles;
 	}
+
+    public void NextCycle()
+    {
+        nextCycle = Time.time + cycleRate;
+        processTurn();
+    }
+
+    public float GetNextCycle()
+    {
+        return nextCycle;
+    }
 }

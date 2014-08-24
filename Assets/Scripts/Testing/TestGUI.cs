@@ -5,7 +5,7 @@ public class TestGUI : MonoBehaviour
 {
 	public Player player;
 
-	void OnGUI()
+	/*void OnGUI()
 	{
 		GUI.Label(new Rect(Screen.width - (Screen.width * 0.25f) + 5, 5, 200, 20), ("Player Position: x-" + player.xp + " y-" + player.yp));
 		GUI.Label(new Rect(Screen.width - (Screen.width * 0.25f) + 5, 25, 200, 20), "Player Health: NUMBER");
@@ -19,5 +19,5 @@ public class TestGUI : MonoBehaviour
 				tempItem.Apply();
 			}
 		}
-	}
+	}*/
 }
