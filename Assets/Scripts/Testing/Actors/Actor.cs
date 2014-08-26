@@ -21,7 +21,7 @@ public class Actor : MonoBehaviour
     protected GameView view;
 	#endregion
 
-	void Awake()
+	protected virtual void Awake()
 	{
 		xp = transform.position.x; //Store location
 		yp = transform.position.y;
@@ -44,13 +44,6 @@ public class Actor : MonoBehaviour
             ProcessMovement(lerpRate);
         }        
     }
-
-    /*public virtual void setPosition(float x, float y) 
-    {
-        xp = x;
-        yp = y;
-        processMove = true;
-    }*/
 
     //I think the NPC map should contain the player aswell, NPC map rename to EntityMap or something similar?
     public virtual void setPosition(float xn, float yn)

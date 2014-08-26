@@ -10,7 +10,7 @@ public class Gaussian {
     private static double nextNextGaussian;
     private static bool haveNextNextGaussian = false;
 
-    private static long seed;
+    private static long seed = 0;
 
     //produces normally distributed 'Gaussian' value between 0.0 and standard deviation 1.0
     //70% of the results will be between -1.0 and 1.0
@@ -39,9 +39,9 @@ public class Gaussian {
     }
 
     //convenience methods for pseudo random numbers
-    public static void SetSeed(long seed)
+    public static void SetSeed(long _seed)
     {
-        seed = (seed ^ 0x5DEECE66DL) & ((1L << 48) - 1);
+        seed = (_seed ^ 0x5DEECE66DL) & ((1L << 48) - 1);
     }
 
     //This is a linear congruential pseudorandom number generator, 
@@ -49,6 +49,11 @@ public class Gaussian {
     //The Art of Computer Programming, Volume 3: Seminumerical Algorithms, section 3.2.1.
     protected static int Next(int bits)
     {
+        if (seed == 0)
+        {
+            SetSeed(System.DateTime.Now.ToFileTime()); //makes the seed dependent on the nanotime of the system since 1600 A.D. :D
+        }
+        
         seed = (seed * 0x5DEECE66DL + 0xBL) & ((1L << 48) - 1);
         return (int)((ulong)seed >> (48 - bits));
     }

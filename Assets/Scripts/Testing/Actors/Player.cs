@@ -11,69 +11,61 @@ public class Player : Actor
 
     private int pX, pY;
 
+    private InputHandler input;
+    private TileMarkerScript tileMarkerScript;
 
+    protected override void Awake()
+    {
+        base.Awake();
+        input = new InputHandler();
+        tileMarkerScript = view.GetComponent<TileMarkerScript>();       
+    }
+
+    
     void Update()
+    {
+        if (Input.anyKey) HandleControl(); //Handle input only if there is any input at all
+        if (Input.mousePresent) input.MouseUpdate();
+    }
+
+    private void HandleControl()
     {
         pY = 0;
         pX = 0;
 
         if (Time.time > view.GetNextCycle())
         {
-            if (Input.GetKey(KeyCode.Keypad8))
-            { 
-                pY = 1;
-            }
-            else if (Input.GetKey(KeyCode.Keypad2))
-            { 
-                pY = -1;
-            }
+            input.KeyUpdate(); //updates currently pressed keys
 
-            if (Input.GetKey(KeyCode.Keypad6))
-            { 
-                pX = 1;
-            }
-            else if (Input.GetKey(KeyCode.Keypad4))
-            { 
-                pX = -1;
-            }
-            
-            if (Input.GetKey(KeyCode.Keypad9))
-            { 
-                pX = 1;
-                pY = 1;
-            }
-            else if (Input.GetKey(KeyCode.Keypad1))
+            //apply input results from the last update
+            if (input.up) pY = 1;
+            if (input.down) pY = -1;
+            if (input.left) pX = -1;
+            if (input.right) pX = 1;
+            if (input.upleft) { pX = -1; pY = 1; }
+            if (input.upright) { pX = 1; pY = 1; }
+            if (input.downleft) { pX = -1; pY = -1; }
+            if (input.downright) { pX = 1; pY = -1; }
+            if (input.wait) { view.NextCycle(); return; }
+
+            if (input.lmb)
             {
-                pX = -1;
-                pY = -1;
+                float x = tileMarkerScript.MarkerPosition.x;
+                float y = tileMarkerScript.MarkerPosition.y;
+                pX = (int)(x - xp);
+                pY = (int)(y - yp);
             }
 
-            if (Input.GetKey(KeyCode.Keypad7))
-            { 
-                pX = -1;
-                pY = 1;
-            }
-            else if (Input.GetKey(KeyCode.Keypad3))
-            { 
-                pX = 1;
-                pY = -1;
-            }
-            
-            if (Input.GetKey("."))
-            { //Wait a turn
-                view.NextCycle();
-                return;
-            }
-        }
-        if (pX == 0 && pY == 0) return; // No movement
+            //release all keys again
+            input.ReleaseAll();
 
+            if (pX == 0 && pY == 0) return; // No movement
 
-        //Check collisions
-        checkCollisions((int)xp + (int)pX, (int)yp + (int)pY);
-        view.NextCycle();
+            checkCollisions((int)xp + (int)pX, (int)yp + (int)pY);
+            view.NextCycle();
+        }   
     }
 
-    //For a bit more polymorphism :3
     public override void setPosition(float x, float y) //Set location, used by the player
     {
         base.setPosition(x,y);

@@ -71,13 +71,10 @@ public class GameView : MonoBehaviour
         }
         else
         {
-            //use standard variables
-            levelWidth = 100;
-            levelHeight = 50;
-            rooms = 10;
+            //use standard variables as defined in the inspector
+            rooms = 30;
         }
 
-       
 		// Build mesh and move to correct view point.
 		buildMesh(this.gameObject, levelWidth, levelHeight, tileSize);
 		transform.position = new Vector3(transform.position.x, transform.position.y + levelHeight, transform.position.z);
