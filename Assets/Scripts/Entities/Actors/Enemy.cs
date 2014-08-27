@@ -25,17 +25,35 @@ public class Enemy : Actor
 
 	public void Turn()
 	{
-		pX = Random.Range(-1, 2);
-		pY = Random.Range(-1, 2);
-        checkCollisions((int)xp + pX, (int)yp + pY);
-		Actor temp = checkForEnemies();
-		if(temp != null)
-				Debug.Log("Found Enemy: + " + this.gameObject.name + " - " + temp.gameObject.name);
+		Actor somePlayer = checkForPlayer();
+
+		if(somePlayer != null) {
+			Debug.Log("Found Enemy: + " + this.gameObject.name + " - " + somePlayer.gameObject.name);
+		} else {
+			pX = Random.Range(-1, 2);
+			pY = Random.Range(-1, 2);
+			checkCollisions((int)xp + pX, (int)yp + pY);
+		}
 	}
 
-	private Actor checkForEnemies()
+	private Actor checkForPlayer()
 	{
 		//TODO: Previous version was utter poop.
+		int startX = (int)transform.position.x - viewRange;
+		int endX = (int)transform.position.x + viewRange;
+
+		int startY = (int)transform.position.y - viewRange;
+		int endY = (int)transform.position.y + viewRange;
+
+		for(int y = startY; y <= endY; y++) {
+			for(int x = startX; x <= endX; x++) {
+				if(x >= 0 && y >= 0) {
+					if(NPCController.npcMap[x,y] is Player){
+						return NPCController.npcMap[x,y] as Actor;
+					}
+				}
+			}
+		}
 		return null;
 	}
 

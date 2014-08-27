@@ -42,14 +42,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   xp: 0
   yp: 0
+  xo: 0
+  yo: 0
   lerpRate: .100000001
   damageText: {fileID: 100000, guid: b8b6f5ff30a65a64582111ac2d0d6f8e, type: 2}
   maxHealth: 20
   maxMana: 0
-  health: 20
-  mana: 0
   enemyState: 0
-  viewRange: 5
+  viewRange: 2
+  viewRangeObject: {fileID: 100002, guid: f37480d9d5c88fc4da60a4a3edf88551, type: 2}
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1
