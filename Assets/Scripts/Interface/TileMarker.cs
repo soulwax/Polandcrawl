@@ -2,7 +2,7 @@
 using System.Collections;
 
 [RequireComponent(typeof(GameView))]
-public class TileMarkerScript: MonoBehaviour {
+public class TileMarker: MonoBehaviour {
 
     GameView _tileMap;
 

@@ -5,6 +5,8 @@ public class Actor : MonoBehaviour
 {
 	#region Variables
 	public float xp, yp; //actual position
+    public int xo, yo; //current order
+    
     public float lerpRate = 0.1f;
     public GameObject damageText;
 
@@ -19,7 +21,8 @@ public class Actor : MonoBehaviour
     private float damage;
 
     protected GameView view;
-	#endregion
+    protected PathFinder pathFinder;
+    #endregion
 
 	protected virtual void Awake()
 	{
@@ -35,6 +38,7 @@ public class Actor : MonoBehaviour
         processMove = false;
 
         view = GameObject.FindGameObjectWithTag("GameView").GetComponent<GameView>();
+        pathFinder = new PathFinder(view);
 	}
 
     void LateUpdate()
@@ -42,11 +46,11 @@ public class Actor : MonoBehaviour
         if (processMove)
         {
             ProcessMovement(lerpRate);
-        }        
+        }
     }
 
     //I think the NPC map should contain the player aswell, NPC map rename to EntityMap or something similar?
-    public virtual void setPosition(float xn, float yn)
+    public virtual void SetPosition(float xn, float yn)
     {
         NPCController.npcMap[(int)xp, (int)yp] = null; //Empty old location
         NPCController.npcMap[(int)xn, (int)yn] = this; //Store enemy in the new location
@@ -89,7 +93,7 @@ public class Actor : MonoBehaviour
         
 	}
 
-	public void OnDamage(float dmg)
+	public virtual void OnDamage(float dmg)
 	{
         AdjustHealth(dmg);
         if (health <= 0) Death();
@@ -137,5 +141,35 @@ public class Actor : MonoBehaviour
     public void Death()
     {
         Destroy(this.gameObject);
+    }
+
+    public virtual void MoveOrder(int x1, int y1)
+    {
+        //pathFinder.StartFindingPath(getTravelCosts(), (int)xp,(int)yp, x1, y1);
+    }
+
+    public int[] GetTravelCosts() {
+        int w = view.levelWidth;
+        int h = view.levelHeight;
+        int[] costs = new int[w * h];
+        for (int y = 0; y < h; y++) {
+            for (int x = 0; x < w; x++) {
+
+                    int t = GameView.dungeonMap[x,y];
+                    if (t == 1) {
+                        costs[x + y * w] = 0;
+                    } else {
+                        costs[x + y * w] = 5;
+                    }
+                
+            }
+        }
+        return costs;
+    }
+
+    public float DistanceTo(float xt, float yt) {
+        float xd = xt - xp;
+        float yd = yt - yp;
+        return Mathf.Sqrt(xd*xd+yd*yd);
     }
 }

@@ -15,6 +15,7 @@ public class GameView : MonoBehaviour
 
 	public int levelWidth = 100;
 	public int levelHeight = 50;
+    public int rooms;
 
 	public float tileSize = 1.0f;
 	public int tileResolution = 16;
@@ -30,13 +31,11 @@ public class GameView : MonoBehaviour
 		playerX,
 		playerY;
 
-	private float pX,pY;
-
 	public Player player;
 	public int currentLevel = 1;
 
     private DungeonVariables variables;
-    private int rooms;
+    
 
 	#endregion
 
@@ -69,10 +68,8 @@ public class GameView : MonoBehaviour
                 rooms = 35;
             }
         }
-        else
+        else //handling so far only includes using the standard variables
         {
-            //use standard variables as defined in the inspector
-            rooms = 30;
         }
 
 		// Build mesh and move to correct view point.
@@ -121,7 +118,7 @@ public class GameView : MonoBehaviour
 		
 		//generate the mesh data
 		Vector3[] vertices = new Vector3[numVerts];
-		Vector3[] normals = new Vector3[numVerts];
+        Vector3[] normals = new Vector3[numVerts];
 		Vector2[] uv = new Vector2[numVerts];
 		
 		int[] triangles = new int[numTris * 3];
@@ -166,8 +163,8 @@ public class GameView : MonoBehaviour
 		mesh_collider.sharedMesh = mesh;
 	}
 
-	private int[,] buildDungeonTexture(GameObject gObject, Color[][] tiles, int width, int height, int rooms, int tileResolution, int[,] dungeonMap)
-	{		
+	private int[,] buildDungeonTexture(GameObject gObject, Color[][] tiles, int width, int height, int rooms, int tileResolution, int[,] dungeonMap) {
+        
         TDMap map;
         if(variables != null) map = new TDMap(width, height, rooms, variables.type);
         else map = new TDMap(width, height, rooms);

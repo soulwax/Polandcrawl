@@ -20,7 +20,7 @@ public class Enemy : Actor
 	
 	public void setNPCMapPosition()
 	{
-		setPosition(xp, yp);
+		SetPosition(xp, yp);
 	}
 
 	public void Turn()
@@ -47,7 +47,7 @@ public class Enemy : Actor
             {
                 if (GameView.dungeonMap[moveToX, moveToY] == 1)
                 {
-					setPosition(moveToX, moveToY);
+					SetPosition(moveToX, moveToY);
 					//setPosition(moveToX, moveToY);
 				} else {
 					//Debug.Log("Enemy Hit Wall!");
@@ -65,8 +65,14 @@ public class Enemy : Actor
     {
         base.OnAttack(x, y, dmg);
         
-        Color col = new Color(1f, 0f, 0f); //red for damage dealt to you by the enemy
-        SpawnDamageText(Damage, col);
+        
+    }
+
+    public override void OnDamage(float dmg)
+    {
+        base.OnDamage(dmg);
+        Color col = new Color(1f, 1f, 0f); //yellow for damage you deal as the player
+        SpawnDamageText((int)dmg, col);
     }
 
 	void OnEnable()

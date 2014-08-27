@@ -302,7 +302,7 @@ ParticleSystem:
         rgba: 4294967295
       minMaxState: 0
     startSize:
-      scalar: .200000003
+      scalar: .150000006
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -387,7 +387,7 @@ ParticleSystem:
     enabled: 1
     m_Type: 0
     rate:
-      scalar: 75.1100006
+      scalar: 50
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -1404,7 +1404,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
 --- !u!114 &404374294
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1468,7 +1468,7 @@ Transform:
   m_Children:
   - {fileID: 9094024}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 0
 --- !u!1 &1064039582
 GameObject:
   m_ObjectHideFlags: 0
@@ -1564,6 +1564,10 @@ Prefab:
       propertyPath: maxMana
       value: 20
       objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: ed760a94674520e48a7d6779faad9780, type: 2}
+      propertyPath: pathMarker
+      value: 
+      objectReference: {fileID: 100000, guid: 06f15a380cdd57146992bb397cf60eb0, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ed760a94674520e48a7d6779faad9780, type: 2}
   m_RootGameObject: {fileID: 1652636361}
@@ -1598,7 +1602,7 @@ Transform:
   - {fileID: 1064039583}
   - {fileID: 1767576324}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
 --- !u!1001 &1500941637
 Prefab:
   m_ObjectHideFlags: 0
@@ -1652,11 +1656,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 19800000, guid: ce73e480633d15c4294d1fba5213230c, type: 2}
       propertyPath: InitialModule.startSize.scalar
-      value: .200000003
+      value: .150000006
       objectReference: {fileID: 0}
     - target: {fileID: 19800000, guid: ce73e480633d15c4294d1fba5213230c, type: 2}
       propertyPath: EmissionModule.rate.scalar
-      value: 75.1100006
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 19800000, guid: ce73e480633d15c4294d1fba5213230c, type: 2}
       propertyPath: CollisionModule.enabled
@@ -1878,7 +1882,7 @@ Transform:
   - {fileID: 307748638}
   - {fileID: 1691413884}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
 --- !u!114 &1652636363
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1893,12 +1897,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   xp: 0
   yp: 0
+  xo: 0
+  yo: 0
   lerpRate: .100000001
   damageText: {fileID: 100000, guid: b8b6f5ff30a65a64582111ac2d0d6f8e, type: 2}
   maxHealth: 100
   maxMana: 20
   inventoryList: []
   inventoryObject: {fileID: 307748637}
+  pathMarker: {fileID: 100000, guid: 06f15a380cdd57146992bb397cf60eb0, type: 2}
 --- !u!212 &1652636364
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2009,7 +2016,7 @@ GameObject:
   - 23: {fileID: 1767576326}
   - 64: {fileID: 1767576325}
   - 114: {fileID: 1767576323}
-  - 114: {fileID: 1767576328}
+  - 114: {fileID: 1767576329}
   m_Layer: 8
   m_Name: GameView
   m_TagString: GameView
@@ -2031,6 +2038,7 @@ MonoBehaviour:
   cycleRate: .349999994
   levelWidth: 100
   levelHeight: 50
+  rooms: 20
   tileSize: 1
   tileResolution: 16
   dungeonTileset: {fileID: 2800000, guid: d6fafea03385b7248a2cdd43a822a889, type: 3}
@@ -2090,7 +2098,7 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1767576322}
   m_Mesh: {fileID: 0}
---- !u!114 &1767576328
+--- !u!114 &1767576329
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -2098,7 +2106,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1767576322}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3d258f538eb977e4a863c736e442fd4f, type: 3}
+  m_Script: {fileID: 11500000, guid: 92e9b837781be5d4aa22ea88822c500a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   boxColor: {r: 0, g: 1, b: 0, a: 1}
