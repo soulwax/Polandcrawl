@@ -15,7 +15,7 @@ public class Item : MonoBehaviour
 	public string itemName;
 	public string itemDescription;
 
-	public void Apply()
+	public virtual void Apply()
 	{
 		//TODO: Do shit with the item, ie consume
 		Destroy(this.gameObject);

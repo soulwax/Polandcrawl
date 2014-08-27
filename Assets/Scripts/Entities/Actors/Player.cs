@@ -41,14 +41,14 @@ public class Player : Actor
             input.KeyUpdate(); //updates currently pressed keys
 
             //apply input results from the last update
-            if (input.up) xa = 1;
-            if (input.down) xa = -1;
-            if (input.left) ya = -1;
-            if (input.right) ya = 1;
-            if (input.upleft) { ya = -1; xa = 1; }
-            if (input.upright) { ya = 1; xa = 1; }
-            if (input.downleft) { ya = -1; xa = -1; }
-            if (input.downright) { ya = 1; xa = -1; }
+            if (input.up) ya = 1;
+            if (input.down) ya = -1;
+            if (input.left) xa = -1;
+            if (input.right) xa = 1;
+            if (input.upleft) { xa = -1; ya = 1; }
+            if (input.upright) { xa = 1; ya = 1; }
+            if (input.downleft) { xa = -1; ya = -1; }
+            if (input.downright) { xa = 1; ya = -1; }
             if (input.wait) { view.NextCycle(); return; }
 
             if (input.lmb) //This block is purely for testing yet
@@ -121,11 +121,15 @@ public class Player : Actor
 	public void pickupItem(int x, int y)
 	{
 		//TODO: Add item to inventory
-		Item itemTemp = ItemController.itemMap[x, y];        
-        
-		inventoryList.Add(itemTemp);
-		itemTemp.gameObject.transform.parent = inventoryObject.transform;
-		itemTemp.renderer.enabled = false;
+		Item itemTemp = ItemController.itemMap[x, y];  
+
+		if(itemTemp is Stairs) {
+			//Change level
+		} else {        
+			inventoryList.Add(itemTemp);
+			itemTemp.gameObject.transform.parent = inventoryObject.transform;
+			itemTemp.renderer.enabled = false;
+		}
 	}
 
     public override void OnAttack(int x, int y, float dmg)
