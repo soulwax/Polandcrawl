@@ -7,8 +7,7 @@ public class Player : Actor
 	#region Variables
 	public List<Item> inventoryList;
 	public GameObject inventoryObject;
-	#endregion
-
+    protected PathFinder pathFinder;
     private InputHandler input;
     private TileMarker tileMarker;
 
@@ -16,6 +15,11 @@ public class Player : Actor
     public GameObject pathMarker;
     List<Vector2> currentPath = new List<Vector2>();
     private List<GameObject> markerInstances = new List<GameObject>();
+	#endregion
+
+    
+
+    
 
     protected override void Awake()
     {
@@ -26,6 +30,7 @@ public class Player : Actor
 
     protected override void Start() {
         base.Start();
+        pathFinder = new PathFinder(view);
     }
     
     void Update()
@@ -42,7 +47,6 @@ public class Player : Actor
         if (Time.time > view.GetNextCycle())
         {
             input.KeyUpdate(); //updates currently pressed keys
-
             //apply input results from the last update
             if (input.up) ya = 1;
             if (input.down) ya = -1;
@@ -70,6 +74,7 @@ public class Player : Actor
                     MarkPath(currentPath);
                 } 
                 //MarkPath(pathFinder.GetPath(GetTravelCosts(), (int)xp, (int)yp, (int)xEnd, (int)yEnd));
+                view.NextCycle();
             }
 
             //release all keys again

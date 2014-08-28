@@ -21,7 +21,7 @@ public class Actor : MonoBehaviour
     private float damage;
 
     protected GameView view;
-    protected PathFinder pathFinder;
+    
     #endregion
 
 	protected virtual void Awake()
@@ -41,7 +41,6 @@ public class Actor : MonoBehaviour
 	}
 
     protected virtual void Start() {
-        pathFinder = new PathFinder(view);
     }
 
     void LateUpdate()
