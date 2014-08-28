@@ -58,7 +58,7 @@ public class PathFinder  {
     private List<Node> closed = new List<Node>();
 
     private Node[,] nodes;
-    private Node start, end, next;
+    private Node start, end, next, n, p;
     private bool pathFound = false;
     private int xStart;
     private int yStart;
@@ -113,21 +113,22 @@ public class PathFinder  {
             AddOpenNodeToClosed(next);
             next = GetCheapestNode();
 
-            if (attempts++ >= 1000) break;
+            if (attempts++ >= 10000) break;
         }
         
         attempts = 0;
         bool startFound = false;
-        Node p = end.Parent;
-        Node n;
+        p = end.Parent;
 
         //reconstruct path by begginning at the end node and looking for parent nodes
-        while(!startFound){
-            n = p;
-            result.Add(n.vecPos);
-            p = n.Parent;
-            if (n.Equals(start)) startFound = true;        
-            if (attempts++ >= 1000) break;
+        while (!startFound) {
+            if(p != null) {    
+                n = p;
+                result.Add(n.vecPos);
+                p = n.Parent;
+                if (n.Equals(start)) startFound = true;
+            }
+            if (attempts++ >= 10000) break;
         }
 
         result.Add(end.GetVector2());
