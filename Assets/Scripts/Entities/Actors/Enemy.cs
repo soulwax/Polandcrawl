@@ -12,10 +12,9 @@ public class Enemy : Actor
 	public int viewRange;
 	private int pX, pY;
 
-	// Use this for initialization
-	void Start () 
+	protected override void Start () 
 	{
-	
+        base.Start();
 	}
 	
 	public void setNPCMapPosition()

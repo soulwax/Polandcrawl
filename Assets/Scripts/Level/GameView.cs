@@ -40,7 +40,7 @@ public class GameView : MonoBehaviour
 	#endregion
 
 	// Use this for initialization
-	void Start () 
+	void Awake () 
 	{
         GameObject dv = GameObject.Find("DungeonVariables");
         if(dv != null) variables = dv.GetComponent<DungeonVariables>();

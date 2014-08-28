@@ -14,7 +14,7 @@ public class Player : Actor
 
     //testing
     public GameObject pathMarker;
-    List<Vector2> path_visual = new List<Vector2>();
+    List<Vector2> currentPath = new List<Vector2>();
     private List<GameObject> markerInstances = new List<GameObject>();
 
     protected override void Awake()
@@ -24,6 +24,9 @@ public class Player : Actor
         tileMarker = view.GetComponent<TileMarker>();       
     }
 
+    protected override void Start() {
+        base.Start();
+    }
     
     void Update()
     {
@@ -51,31 +54,21 @@ public class Player : Actor
             if (input.downright) { xa = 1; ya = -1; }
             if (input.wait) { view.NextCycle(); return; }
 
-            if (input.lmb) //This block is purely for testing yet
+            if (input.lmb && !pathFinder.isPathing) //This block is purely for testing yet
             {
                 for (int i = 0; i < markerInstances.Count; i++) {
                     Destroy(markerInstances[i]);
                 }
                 markerInstances.Clear();
-                path_visual.Clear();
+                currentPath.Clear();
 
-                float xEnd = tileMarker.MarkerPosition.x;
-                float yEnd = tileMarker.MarkerPosition.y;
-                xa = xEnd - xp;
-                ya = yEnd - yp;
-                int xx = (int)xp;
-                int yy = (int)yp;
-                while (xx != (int)xEnd) {
-                    path_visual.Add(new Vector2(xx, yy));
-                    xx += xx < (int)xEnd ? 1 : -1;
-                }
+                int xEnd = (int)tileMarker.MarkerPosition.x;
+                int yEnd = (int)tileMarker.MarkerPosition.y;
 
-                
-                while (yy != (int)yEnd) {
-                    path_visual.Add(new Vector2(xx, yy));
-                    yy += yy < (int)yEnd ? 1 : -1;
-                }
-                MarkPath(path_visual);
+                if(GameView.dungeonMap[xEnd, yEnd] == 1){
+                    currentPath = pathFinder.GetPath((int)xp, (int)yp, (int)xEnd, (int)yEnd);
+                    MarkPath(currentPath);
+                } 
                 //MarkPath(pathFinder.GetPath(GetTravelCosts(), (int)xp, (int)yp, (int)xEnd, (int)yEnd));
             }
 

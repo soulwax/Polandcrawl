@@ -37,9 +37,12 @@ public class Actor : MonoBehaviour
 
         processMove = false;
 
-        view = GameObject.FindGameObjectWithTag("GameView").GetComponent<GameView>();
-        pathFinder = new PathFinder(view);
+        view = GameObject.FindGameObjectWithTag("GameView").GetComponent<GameView>();      
 	}
+
+    protected virtual void Start() {
+        pathFinder = new PathFinder(view);
+    }
 
     void LateUpdate()
     {
