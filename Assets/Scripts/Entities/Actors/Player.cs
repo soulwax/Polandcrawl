@@ -13,15 +13,12 @@ public class Player : Actor
 
     //testing
     public GameObject pathMarker;
-    List<Vector2> currentPath = new List<Vector2>();
+    List<Vector2> currentPath;
     private List<GameObject> markerInstances = new List<GameObject>();
 
     private bool travelling = false;
+    private bool hasNextOrder = false;
 	#endregion
-
-    
-
-    
 
     protected override void Awake()
     {
@@ -46,10 +43,12 @@ public class Player : Actor
     {
         float xa = 0;
         float ya = 0;
+        input.KeyUpdate(); //updates currently pressed keys
+
+        HandleMouseControl(); //Mouse input is outside the turn hierarchy
 
         if (Time.time > view.GetNextCycle())
-        {
-            input.KeyUpdate(); //updates currently pressed keys
+        {         
             //apply input results from the last update
             if (input.up) ya = 1;
             if (input.down) ya = -1;
@@ -61,34 +60,43 @@ public class Player : Actor
             if (input.downright) { xa = 1; ya = -1; }
             if (input.wait) { view.NextCycle(); return; }
 
-            if (input.lmb && !pathFinder.isPathing) //This block is purely for testing yet
+            if (hasNextOrder) //This block is purely for testing yet
             {
-                for (int i = 0; i < markerInstances.Count; i++) {
-                    Destroy(markerInstances[i]);
-                }
-                markerInstances.Clear();
-                currentPath.Clear();
-
-                int xEnd = (int)tileMarker.MarkerPosition.x;
-                int yEnd = (int)tileMarker.MarkerPosition.y;
-
-                if(GameView.dungeonMap[xEnd, yEnd] == 1){
-                    currentPath = pathFinder.GetPath((int)xp, (int)yp, (int)xEnd, (int)yEnd);
-                    MarkPath(currentPath);
-                    travelling = true;
-                    WalkAlongPath();    
-                } 
+                travelling = true;     
+                hasNextOrder = false;
+                WalkAlongPath();
+                view.NextCycle();
                 //MarkPath(pathFinder.GetPath(GetTravelCosts(), (int)xp, (int)yp, (int)xEnd, (int)yEnd));                      
             }
-
-            //release all keys again
             input.ReleaseAll();
-
             if (xa == 0 && ya == 0) return; // No movement
 
             SimpleMove((int)xp + (int)xa, (int)yp + (int)ya);
             view.NextCycle();
-        }   
+        }      
+        
+    }
+
+    public void HandleMouseControl() {
+        if (input.lmb && !pathFinder.isPathing ) {
+            xo = (int)tileMarker.MarkerPosition.x;
+            yo = (int)tileMarker.MarkerPosition.y;
+            //if (currentPath != null) currentPath.Clear();
+            //travelling = false;
+            hasNextOrder = true;
+
+            for (int i = 0; i < markerInstances.Count; i++) {
+                Destroy(markerInstances[i]);
+            }
+            markerInstances.Clear();
+
+            if (GameView.dungeonMap[xo, yo] == 1) {
+                pathFinder.PrepareForNextUse();
+                currentPath = pathFinder.GetPath((int)xp, (int)yp, xo, yo);
+                MarkPath(currentPath);
+                                       
+            } 
+        }
     }
 
     //I am not sure whether this is better at all, but I deemed it to be a bit safer,

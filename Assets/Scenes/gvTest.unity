@@ -1853,7 +1853,7 @@ MonoBehaviour:
   cycleRate: .349999994
   levelWidth: 100
   levelHeight: 100
-  rooms: 20
+  rooms: 30
   tileSize: 1
   tileResolution: 16
   dungeonTileset: {fileID: 2800000, guid: d6fafea03385b7248a2cdd43a822a889, type: 3}

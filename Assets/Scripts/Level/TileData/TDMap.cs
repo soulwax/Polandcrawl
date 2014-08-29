@@ -240,7 +240,7 @@ public class TDMap
 
         rooms = new List<DRoom>();
 
-        GenerateScatteredRooms(roomAmount, 5, 15);
+        GenerateCoherentRooms(roomAmount, 5, 15);
     }
 
     #endregion

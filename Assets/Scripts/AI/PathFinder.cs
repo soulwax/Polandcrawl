@@ -1,6 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 
+/// <summary>
+/// A* pathfinder
+/// </summary>
+
 public class PathFinder  {
     public static bool VERBOSE = true;
 
@@ -14,11 +18,14 @@ public class PathFinder  {
         public Node parent;
         public Vector2 vecPos;
 
+        public bool inopen = false;
+        public bool inclosed = false;
+
         public Node(int x, int y, bool passable) {
             this.x = x;
             this.y = y;
             this.vecPos = new Vector2(x,y);
-            this.passable = passable;
+            this.passable = passable;           
         }
 
         public void Init(int xEnd, int yEnd) {
@@ -51,6 +58,10 @@ public class PathFinder  {
         public bool Equals(Node n) {
             if (this.x == n.x && this.y == n.y) return true;
             return false;
+        }
+
+        public void Reset() {
+            this.inopen = this.inclosed = false;
         }
     }
     private List<Vector2> result = new List<Vector2>();
@@ -95,11 +106,11 @@ public class PathFinder  {
         isPathing = true;
         start = nodes[this.xStart, this.yStart];
         end = nodes[this.xEnd, this.yEnd];
-        result.Clear();
-        open.Clear();
-        closed.Clear();
+
+        if (start.Equals(end)) goto returnstart;
 
         open.Add(start);
+        start.inopen = true;
         AddOpenNodeToClosed(start); //Put it into the closed list           
         next = start;
 
@@ -115,10 +126,11 @@ public class PathFinder  {
 
             if (attempts++ >= 10000) break;
         }
-        
+    returnstart:
         attempts = 0;
+        
         p = end;
-        result.Add(end.vecPos);
+
         //reconstruct path by begginning at the end node and looking for parent nodes
         while (true) {
             if(p != null) {
@@ -153,18 +165,22 @@ public class PathFinder  {
                 n = nodes[xx, yy];
                 n.Init(this.xEnd, this.yEnd);
                 if ((xx == x && yy == y) || !n.passable) continue;
-                if (closed.Contains(n)) continue;                  
-                bool isInOpen = open.Contains(n);
+                if (n.inclosed) continue;                  
+                bool isInOpen = n.inopen;
                 int pncostG = GetGPathCost(pnode, n) + pnode.g_value;
 
                 //assign g value or update if costs are cheaper 
                 if ((isInOpen && pncostG < n.g_value) || !isInOpen) {                 
-                    n.parent = pnode;
+                    n.Parent = pnode;
                     n.g_value = pncostG;
                 }
 
                 if (n.Equals(end)) pathFound = true;
-                if (!isInOpen) open.Add(n);                                            
+                if (!isInOpen) { 
+                    open.Add(n);
+                    n.inopen = true;
+
+                }                                         
             }
         }
     }
@@ -173,7 +189,9 @@ public class PathFinder  {
     //So_einfach_ist_das.jpg
     public void AddOpenNodeToClosed(Node n) {
         open.Remove(n);
-        closed.Add(n);   
+        n.inopen = false;
+        closed.Add(n);
+        n.inclosed = true;
     }
 
     //only use for two neighbouring nodes!
@@ -201,5 +219,25 @@ public class PathFinder  {
 
     public void RemoveFromHeap() {
 
+    }
+
+    
+    //resets everything except the results, gets called separately 
+    //so the process doesn't interfere with the actual pathfinding.
+    public void PrepareForNextUse() {
+        ResetAllNodes();
+        open.Clear();
+        closed.Clear();
+        result.Clear();
+    }
+
+    public void ResetAllNodes() {
+        for (int i = 0; i < open.Count; i++) {
+            open[i].Reset();
+        }
+
+        for (int i = 0; i < closed.Count; i++) {
+            closed[i].Reset();
+        }
     }
 }
