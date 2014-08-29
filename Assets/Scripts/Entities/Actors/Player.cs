@@ -65,8 +65,6 @@ public class Player : Actor
                 travelling = true;     
                 hasNextOrder = false;
                 WalkAlongPath();
-                view.NextCycle();
-                //MarkPath(pathFinder.GetPath(GetTravelCosts(), (int)xp, (int)yp, (int)xEnd, (int)yEnd));                      
             }
             input.ReleaseAll();
             if (xa == 0 && ya == 0) return; // No movement
@@ -80,10 +78,8 @@ public class Player : Actor
     public void HandleMouseControl() {
         if (input.lmb && !pathFinder.isPathing ) {
             xo = (int)tileMarker.MarkerPosition.x;
-            yo = (int)tileMarker.MarkerPosition.y;
-            //if (currentPath != null) currentPath.Clear();
-            //travelling = false;
-            hasNextOrder = true;
+            yo = (int)tileMarker.MarkerPosition.y;        
+            
 
             for (int i = 0; i < markerInstances.Count; i++) {
                 Destroy(markerInstances[i]);
@@ -94,7 +90,7 @@ public class Player : Actor
                 pathFinder.PrepareForNextUse();
                 currentPath = pathFinder.GetPath((int)xp, (int)yp, xo, yo);
                 MarkPath(currentPath);
-                                       
+                hasNextOrder = true;                       
             } 
         }
     }
@@ -168,7 +164,7 @@ public class Player : Actor
             currentPath.RemoveAt(0);
             view.NextCycle();
         } else {
-            travelling = false;
+            //travelling = false;
         }
     }
 }
