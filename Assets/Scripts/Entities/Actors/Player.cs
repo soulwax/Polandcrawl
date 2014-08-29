@@ -15,6 +15,8 @@ public class Player : Actor
     public GameObject pathMarker;
     List<Vector2> currentPath = new List<Vector2>();
     private List<GameObject> markerInstances = new List<GameObject>();
+
+    private bool travelling = false;
 	#endregion
 
     
@@ -37,6 +39,7 @@ public class Player : Actor
     {
         if (Input.anyKey) HandleControl(); //Handle input only if there is any input at all
         if (Input.mousePresent) input.MouseUpdate();
+        if (travelling && Time.time > view.GetNextCycle()) WalkAlongPath();
     }
 
     private void HandleControl()
@@ -74,7 +77,8 @@ public class Player : Actor
                     MarkPath(currentPath);
                 } 
                 //MarkPath(pathFinder.GetPath(GetTravelCosts(), (int)xp, (int)yp, (int)xEnd, (int)yEnd));
-                view.NextCycle();
+                travelling = true;
+                WalkAlongPath();             
             }
 
             //release all keys again
@@ -147,6 +151,16 @@ public class Player : Actor
     public void MarkPath(List<Vector2> path){
         for (int i = 0; i < path.Count; i++) {
             markerInstances.Add(Instantiate(pathMarker, new Vector3(path[i].x+0.5f, path[i].y+0.5f, -1f), Quaternion.Euler(0,0,0)) as GameObject);
+        }
+    }
+
+    public void WalkAlongPath() {
+        if (currentPath.Count > 0) {
+            SimpleMove((int)currentPath[0].x, (int)currentPath[0].y);
+            currentPath.RemoveAt(0);
+            view.NextCycle();
+        } else {
+            travelling = false;
         }
     }
 }

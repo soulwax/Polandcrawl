@@ -117,25 +117,23 @@ public class PathFinder  {
         }
         
         attempts = 0;
-        bool startFound = false;
         p = end.Parent;
 
         //reconstruct path by begginning at the end node and looking for parent nodes
-        while (!startFound) {
-            if(p != null) {    
+        while (true) {
+            if(p != null) {
+                if (p.Equals(start)) break;
                 n = p;
                 result.Add(n.vecPos);
-                p = n.Parent;
-                if (n.Equals(start)) startFound = true;
+                p = n.Parent;               
             }
             if (attempts++ >= 10000) break;
         }
 
-        result.Add(end.GetVector2());
         result.Reverse();
         isPathing = false;
         long now = System.DateTime.Now.ToFileTime();
-        double duration = (now - lastTime)/1000000D;
+        double duration = (now - lastTime)/10000D;
         if (VERBOSE) Debug.Log("Iteration took "+duration+" ms.");
            
         return result;
