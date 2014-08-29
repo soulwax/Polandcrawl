@@ -58,7 +58,7 @@ public class PathFinder  {
     private List<Node> closed = new List<Node>();
 
     private Node[,] nodes;
-    private Node start, end, next, n, p;
+    private Node start, end, next, p;
     private bool pathFound = false;
     private int xStart;
     private int yStart;
@@ -117,15 +117,14 @@ public class PathFinder  {
         }
         
         attempts = 0;
-        p = end.Parent;
-
+        p = end;
+        result.Add(end.vecPos);
         //reconstruct path by begginning at the end node and looking for parent nodes
         while (true) {
             if(p != null) {
                 if (p.Equals(start)) break;
-                n = p;
-                result.Add(n.vecPos);
-                p = n.Parent;               
+                result.Add(p.vecPos);
+                p = p.Parent;               
             }
             if (attempts++ >= 10000) break;
         }
@@ -185,8 +184,7 @@ public class PathFinder  {
 
     //this is the simplest possible 'sorting' algorithm and 
     //thus a performance bottleneck, but for the maps of our 
-    //size it doesn't matter at all (I cannot into binary heaps
-    //yet)
+    //size it doesn't matter at all 
     public Node GetCheapestNode() {
         Node res = open[0];
         for (int i = 0; i < open.Count; i++) {
@@ -194,5 +192,14 @@ public class PathFinder  {
             if (res.GetFValue() > n.GetFValue()) res = n;
         }
         return res;
+    }
+
+    //Coming soon: binary heaps for vast improvement over long distance pathfinding
+    public void AddToHeap() {
+
+    }
+
+    public void RemoveFromHeap() {
+
     }
 }

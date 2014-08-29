@@ -75,10 +75,10 @@ public class Player : Actor
                 if(GameView.dungeonMap[xEnd, yEnd] == 1){
                     currentPath = pathFinder.GetPath((int)xp, (int)yp, (int)xEnd, (int)yEnd);
                     MarkPath(currentPath);
+                    travelling = true;
+                    WalkAlongPath();    
                 } 
-                //MarkPath(pathFinder.GetPath(GetTravelCosts(), (int)xp, (int)yp, (int)xEnd, (int)yEnd));
-                travelling = true;
-                WalkAlongPath();             
+                //MarkPath(pathFinder.GetPath(GetTravelCosts(), (int)xp, (int)yp, (int)xEnd, (int)yEnd));                      
             }
 
             //release all keys again
