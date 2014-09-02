@@ -27,7 +27,7 @@ public class Enemy : Actor
 		Actor somePlayer = checkForPlayer();
 
 		if(somePlayer != null) {
-			Debug.Log("Found Enemy: + " + this.gameObject.name + " - " + somePlayer.gameObject.name);
+			//Debug.Log("Found Enemy: + " + this.gameObject.name + " - " + somePlayer.gameObject.name);
 		} else {
 			pX = Random.Range(-1, 2);
 			pY = Random.Range(-1, 2);
