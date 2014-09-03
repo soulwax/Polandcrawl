@@ -1,0 +1,49 @@
+{
+	"folders":
+	[
+		{
+			"path": "Assets/Scripts",
+			"file_exclude_patterns":
+			[
+				"*.dll",
+				"*.meta"
+			]
+		}
+	],
+	"settings": {
+
+	// Uncomment for OS X/Linux - Add the correct path to your Mono command if "mono" does not launch Mono in the Terminal.
+	//"completesharp_mono_path": "/Applications/Unity/MonoDevelop.app/Contents/MacOS/bin/MonoDevelop",
+
+	"completesharp_assemblies": [
+		"C:\\Program Files (x86)\\Unity\\Editor\\Data\\Mono\\lib\\mono\\unity\\System.Core.dll",
+		"C:\\Program Files (x86)\\Unity\\Editor\\Data\\Mono\\lib\\mono\\unity\\System.dll",
+		"C:\\Program Files (x86)\\Unity\\Editor\\Data\\Managed\\UnityEngine.dll",
+
+		"C:\\Program Files (x86)\\Unity\\Editor\\Data\\Managed\\UnityEditor.dll",
+
+		"C:\\Program Files (x86)\\Unity\\Editor\\Data\\Mono\\lib\\mono\\unity\\UnityScript.dll",
+
+		"C:\\Program Files (x86)\\Unity\\Editor\\Data\\Managed\\nunit.framework.dll",
+
+		"C:\\Program Files (x86)\\Unity\\Editor\\Data\\Mono\\lib\\mono\\unity\\mscorlib.dll",
+
+		"C:\\Program Files (x86)\\Unity\\Editor\\Data\\Mono\\lib\\mono\\unity\\System.Core.dll",
+
+		"C:\\Program Files (x86)\\Unity\\Editor\\Data\\Mono\\lib\\mono\\unity\\System.dll",
+
+		"${project_path:Library}\\ScriptAssemblies\\Assembly-CSharp.dll",
+
+		"${project_path:Library}\\ScriptAssemblies\\Assembly-CSharp-Editor.dll",
+
+		"${project_path:Library}\\ScriptAssemblies\\Assembly-UnityScript-Editor.dll",
+
+		"${project_path:Library}\\ScriptAssemblies\\Assembly-CSharp-firstpass.dll"
+	],
+
+	"completioncommon_inhibit_sublime_completions": true,
+
+	"completioncommon_shorten_names": true
+
+	}
+}

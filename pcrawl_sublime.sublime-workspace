@@ -1,0 +1,385 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"Cle",
+				"Clear	Array.*()"
+			],
+			[
+				"NPC",
+				"NPCController"
+			],
+			[
+				"map",
+				"mapString"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "Assets/Scripts/Entities/Actors/Actor.cs",
+			"settings":
+			{
+				"buffer_size": 4283,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "Assets/Scripts/Interface/PlayerGUI.cs",
+			"settings":
+			{
+				"buffer_size": 378,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "Assets/Scripts/AI/PathFinder.cs",
+			"settings":
+			{
+				"buffer_size": 9101,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "Assets/Scripts/Controllers/NPCController.cs",
+			"settings":
+			{
+				"buffer_size": 1054,
+				"line_ending": "Windows"
+			}
+		}
+	],
+	"build_system": "Packages/User/javac-cmd.sublime-build",
+	"command_palette":
+	{
+		"height": 311.0,
+		"selected_items":
+		[
+			[
+				"Package Control: ",
+				"Package Control: Install Package"
+			],
+			[
+				"paca",
+				"Package Control: Add Repository"
+			],
+			[
+				"paclage",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 400.0
+	},
+	"console":
+	{
+		"height": 159.0,
+		"history":
+		[
+			"javac -help",
+			"javac help",
+			"Install Package Javatar",
+			"import urllib.request,os,hashlib; h = '7183a2d3e96f11eeadd761d777e62404' + 'e330c659d4bb41d3bdf022e94cab3cd0'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://sublime.wbond.net/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/C/Users/Acer Aspire 6935G/workspace/Unity/Polandcrawl/Assets/Scripts",
+		"/C/Users/Acer Aspire 6935G/workspace/Unity/Polandcrawl/Assets/Scripts/AI",
+		"/C/Users/Acer Aspire 6935G/workspace/Unity/Polandcrawl/Assets/Scripts/Controllers",
+		"/C/Users/Acer Aspire 6935G/workspace/Unity/Polandcrawl/Assets/Scripts/Entities"
+	],
+	"file_history":
+	[
+		"/C/Users/Acer Aspire 6935G/workspace/Unity/Polandcrawl/Assets/Scripts/Controllers/NPCController.cs",
+		"/C/Users/Acer Aspire 6935G/workspace/Unity/Polandcrawl/Assets/Scripts/Controllers/ConvertToString.cs",
+		"/C/Users/Acer Aspire 6935G/workspace/Unity/Polandcrawl/pcrawl_sublime.sublime-project",
+		"/C/Users/Acer Aspire 6935G/AppData/Roaming/Sublime Text 3/Packages/User/Preferences.sublime-settings",
+		"/C/Users/Acer Aspire 6935G/workspace/Unity/Polandcrawl/Polandcrawl - Kopie.sln",
+		"/C/Users/Acer Aspire 6935G/workspace/Unity/Polandcrawl/Polandcrawl.sublime-project",
+		"/C/Users/Acer Aspire 6935G/workspace/Unity/Polandcrawl/Assets/Scripts/Polandcrawl.sublime-project",
+		"/C/Users/Acer Aspire 6935G/Downloads/astar/a star pathfinder v. 1.92/Visual C++ Version/Demo 2 - Maze/aStarLibrary.h",
+		"/C/Users/Acer Aspire 6935G/workspace/Java/eclipse/Minicraft/src/com/mojang/ld22/crafting/ResourceRecipe.java",
+		"/C/Users/Acer Aspire 6935G/workspace/Java/eclipse/Minicraft/src/com/mojang/ld22/screen/InstructionsMenu.java",
+		"/C/Users/Acer Aspire 6935G/workspace/Java/eclipse/Minicraft/src/com/mojang/ld22/crafting/Recipe.java",
+		"/C/Users/Acer Aspire 6935G/workspace/Java/eclipse/Minicraft/src/com/mojang/ld22/entity/Anvil.java",
+		"/C/Users/Acer Aspire 6935G/workspace/Java/eclipse/Minicraft/src/com/mojang/ld22/screen/AboutMenu.java",
+		"/C/Users/Acer Aspire 6935G/workspace/Java/eclipse/Minicraft/src/com/mojang/ld22/screen/ListItem.java",
+		"/C/Users/Acer Aspire 6935G/workspace/Java/eclipse/Minicraft/src/com/mojang/ld22/InputHandler.java",
+		"/C/Users/Acer Aspire 6935G/workspace/Java/eclipse/Minicraft/src/com/mojang/ld22/entity/ItemEntity.java",
+		"/C/Users/Acer Aspire 6935G/AppData/Roaming/Sublime Text 3/Packages/User/Default (Windows).sublime-keymap",
+		"/C/Users/Acer Aspire 6935G/AppData/Roaming/Sublime Text 3/Packages/Javatar/Default (Windows).sublime-keymap",
+		"/C/Users/Acer Aspire 6935G/AppData/Roaming/Sublime Text 3/Packages/Javatar/Javatar.sublime-settings",
+		"/C/Users/Acer Aspire 6935G/AppData/Roaming/Sublime Text 3/Packages/Javatar/Java/Proto.javatar-packages",
+		"/C/Users/Acer Aspire 6935G/workspace/Java/eclipse/Minicraft/res/playerhurt.wav",
+		"/C/Users/Acer Aspire 6935G/workspace/Java/sublime/javatarTest/src/MainTest.java",
+		"/C/Users/Acer Aspire 6935G/workspace/Java/sublime/javatarTest/src/TestMain.java",
+		"/C/Users/Acer Aspire 6935G/workspace/Java/sublime/javatarTest/src/TestMain/java.java",
+		"/C/Users/Acer Aspire 6935G/workspace/Java/sublime/javatarTest/src/TestMain/TestMain.java",
+		"/C/Users/Acer Aspire 6935G/AppData/Roaming/Sublime Text 3/Packages/Javatar/README.md",
+		"/C/Users/Acer Aspire 6935G/workspace/Java/eclipse/Minicraft/src/com/mojang/ld22/Game.sublime-project",
+		"/C/Users/Acer Aspire 6935G/workspace/Java/sublime/HW/de/cirrus/hworld/HelloWorld.java",
+		"/C/Users/Acer Aspire 6935G/AppData/Roaming/Sublime Text 3/Packages/User/javac-cmd.sublime-build",
+		"/C/Dev/runJava.bat",
+		"/C/Users/Acer Aspire 6935G/AppData/Roaming/Sublime Text 3/Packages/User/Java.sublime-settings"
+	],
+	"find":
+	{
+		"height": 0.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 1,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "Assets/Scripts/Entities/Actors/Actor.cs",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 4283,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1421,
+								1421
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Unity3D/UnityC#.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 607.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "Assets/Scripts/Interface/PlayerGUI.cs",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 378,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								88,
+								88
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C#/C#.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "Assets/Scripts/AI/PathFinder.cs",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 9101,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								6985,
+								6985
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C#/C#.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 3420.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "Assets/Scripts/Controllers/NPCController.cs",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1054,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								533,
+								533
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C#/C#.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 0.0
+	},
+	"input":
+	{
+		"height": 31.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 121.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"project": "pcrawl_sublime.sublime-project",
+	"replace":
+	{
+		"height": 0.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+			[
+				"rockt",
+				"src\\com\\mojang\\ld22\\level\\tile\\RockTile.java"
+			],
+			[
+				"l",
+				"src\\com\\mojang\\ld22\\entity\\Lantern.java"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"selected_items":
+		[
+		],
+		"width": 380.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 218.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
