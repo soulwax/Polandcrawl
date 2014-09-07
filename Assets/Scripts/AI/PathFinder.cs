@@ -6,7 +6,7 @@ using System.Collections.Generic;
 /// </summary>
 
 public class PathFinder  {
-    public static bool VERBOSE = true;
+    public static bool VERBOSE = false;
 
     public class Node {
         public int x, y;

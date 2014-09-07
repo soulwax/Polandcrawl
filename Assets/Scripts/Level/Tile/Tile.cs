@@ -25,7 +25,6 @@ public class Tile {
 		tiles[id] = this;
 		view = GameObject.FindWithTag("GameView").GetComponent<GameView>();
 		spriteSheet = view.spriteSheet;
-		spriteSheetFlipped = view.spriteSheetFlipped;
 		levelTexture = view.levelTexture;
 		resolution = view.tileResolution;
 	}

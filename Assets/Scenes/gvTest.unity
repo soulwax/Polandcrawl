@@ -1495,7 +1495,7 @@ Light:
   serializedVersion: 3
   m_Type: 1
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: .5
+  m_Intensity: .469999999
   m_Range: 10
   m_SpotAngle: 30
   m_CookieSize: 10
@@ -1857,8 +1857,6 @@ MonoBehaviour:
   tileSize: 1
   tileResolution: 16
   dungeonTileset: {fileID: 2800000, guid: 42b39f1f1221cf3498ff9020a88120a2, type: 3}
-  dungeonTilesetFlipped: {fileID: 2800000, guid: c1e097f47b4c0a847b6871dd37e69c7b,
-    type: 3}
   npcController: {fileID: 1064039584}
   itemController: {fileID: 245780692}
   player: {fileID: 1652636363}

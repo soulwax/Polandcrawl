@@ -21,9 +21,11 @@ public class GameView : MonoBehaviour
 	public int tileResolution = 16;
 
 	public Texture2D dungeonTileset;
-	public Texture2D dungeonTilesetFlipped;
 
-	public static byte[,] dungeonMap;
+	//became obsolete as there is a tiles array, 
+	//just in one dimension, but I'll leave it there for now
+	//as too many scripts depend on it
+	public static byte[,] dungeonMap; 
 
 	public NPCController npcController;
 	public ItemController itemController;
@@ -38,7 +40,6 @@ public class GameView : MonoBehaviour
     private DungeonVariables variables;
     public Texture2D levelTexture;
     public Color[][] spriteSheet;
-    public Color[][] spriteSheetFlipped;
     
     public static byte[] tiles;
     public static int numRows;
@@ -50,6 +51,7 @@ public class GameView : MonoBehaviour
 	// Use this for initialization
 	void Awake () 
 	{
+		double lastTime = System.DateTime.Now.ToFileTime();
         GameObject dv = GameObject.Find("DungeonVariables");
         if(dv != null) variables = dv.GetComponent<DungeonVariables>();
 
@@ -91,7 +93,6 @@ public class GameView : MonoBehaviour
 		// Generate dungeon map and apply textue.
 		dungeonMap = new byte[levelWidth, levelHeight];
 		spriteSheet = ChopUpTiles(dungeonTileset, tileResolution);
-		spriteSheetFlipped = ChopUpTiles(dungeonTilesetFlipped, tileResolution);
 		BuildLevel(levelWidth, levelHeight, tileResolution);
 
 
@@ -118,6 +119,7 @@ public class GameView : MonoBehaviour
 		/*ConvertToString cTS = new ConvertToString();
 		Debug.Log(cTS.Covert(NPCController.npcMap, levelWidth, levelHeight));
 		Debug.Log(cTS.Covert(ItemController.itemMap, levelWidth, levelHeight));*/
+		Debug.Log("Loading time: " + (System.DateTime.Now.ToFileTime() - lastTime)/10000D + " ms.");
 	}
 
 	private void buildMesh(GameObject gObject, int width, int height, float tileSize) 
@@ -191,6 +193,7 @@ public class GameView : MonoBehaviour
 		ApplyZeroLayer();
 		ApplyFirstLayer();
 		ApplySecondLayer();
+		ApplyThirdLayer();
 		FinalizeLevelTexture(levelTexture);
 	}
 
@@ -235,8 +238,6 @@ public class GameView : MonoBehaviour
     }
 
     public void DrawOnTexture(int x, int y, Texture2D texture, Color[] sprite, int tileResolution){
-
-    	//texture.SetPixels(x, y, tileResolution, tileResolution, sprite);
     	for(int yy = y, _y = 0; yy < y + tileResolution; yy++, _y++) {
     		for(int xx = x, _x = 0; xx < x + tileResolution; xx++, _x++) {
     			Color c = sprite[_x+_y*tileResolution];
@@ -246,32 +247,45 @@ public class GameView : MonoBehaviour
     	}
     }
 
+    //The zero layer just fills everything with dirt, so transparent pixels don't show the game background
+    //This is also the layer that fills up the actual dungeon map array
     public void ApplyZeroLayer(){
     	for(int y = levelHeight-1; y >= 0; y--) {
-			for(int x = levelWidth-1; x >= 0; x--) {						
+			for(int x = levelWidth-1; x >= 0; x--) {
+				int i = x+y*levelWidth;
+				dungeonMap[x,y] = tiles[i];						
 				DrawOnTexture(x*tileResolution, y*tileResolution, levelTexture, spriteSheet[1], tileResolution);
 			}	
 		}
     }
 
-
+    //The first layer is meant to apply basic textures that represent the floor, like dirt or water
     public void ApplyFirstLayer(){
     	for(int y = levelHeight-1; y >= 0; y--) {
-			for(int x = levelWidth-1; x >= 0; x--) {
-				int i = x+y*levelWidth;
-				dungeonMap[x,y] = tiles[i];
-				if(tiles[i]==Tile.rock.id) continue;						
+			for(int x = levelWidth-1; x >= 0; x--) {	
+				if(dungeonMap[x,y]==Tile.rock.id || dungeonMap[x,y]==Tile.dirt.id || dungeonMap[x,y]==Tile.ironOre.id) continue;						
 				Tile tile = GetTileSprite(dungeonMap[x,y]);			
 				tile.RenderTile(x, y);
 			}	
 		}
     }
 
+    //the second layer represents everything that's above the floor, like rock
     public void ApplySecondLayer(){
     	for(int y = levelHeight-1; y >= 0; y--) {
 			for(int x = levelWidth-1; x >= 0; x--) {
-				int i = x+y*levelWidth;
-				if(tiles[i]!=Tile.rock.id) continue;
+				if(dungeonMap[x,y]!=Tile.rock.id) continue;
+				Tile tile = GetTileSprite(dungeonMap[x,y]);
+				tile.RenderTile(x, y);
+			}	
+		}
+    }
+
+    //If something is even before the 2nd layer, we apply the third layer
+    public void ApplyThirdLayer(){
+    	for(int y = levelHeight-1; y >= 0; y--) {
+			for(int x = levelWidth-1; x >= 0; x--) {
+				if(dungeonMap[x,y]!=Tile.ironOre.id) continue;
 				Tile tile = GetTileSprite(dungeonMap[x,y]);
 				tile.RenderTile(x, y);
 			}	
@@ -280,7 +294,7 @@ public class GameView : MonoBehaviour
 
     public void FinalizeLevelTexture(Texture2D texture) {
     	texture.filterMode = FilterMode.Point;
-		texture.wrapMode = TextureWrapMode.Clamp;
+		texture.wrapMode = TextureWrapMode.Repeat;
 		texture.Apply();
 		
 		MeshRenderer mesh_renderer = GetComponent<MeshRenderer>();

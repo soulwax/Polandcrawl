@@ -6,6 +6,6 @@ public class IronOre : Tile {
 	}
 
 	public override void RenderTile(int xp, int yp){
-		view.DrawOnTexture(xp * resolution, yp * resolution, levelTexture, spriteSheet[2], resolution);
+		view.DrawOnTexture(xp * resolution, yp * resolution, levelTexture, spriteSheet[13], resolution);
 	}
 }
