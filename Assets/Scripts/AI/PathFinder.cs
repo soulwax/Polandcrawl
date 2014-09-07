@@ -83,6 +83,7 @@ public class PathFinder  {
     private int lwidth;
     private int lheight;
     public bool isPathing = false;
+    public bool noPath = false;
     public int len_open;
     public int attempts;
 
@@ -112,10 +113,14 @@ public class PathFinder  {
         this.yEnd = yStart;
         pathFound = false;       
         isPathing = true;
+        noPath = false;
         start = nodes[this.xStart, this.yStart];
         end = nodes[this.xEnd, this.yEnd];
         len_open = 0;
-        if (start.Equals(end)) goto pastPathing;
+        if (start.Equals(end)) {
+            noPath = true;
+            goto postExpansion;
+        }
 
         closed.Add(start);
         start.inclosed = true;
@@ -129,29 +134,31 @@ public class PathFinder  {
         //Pick the cheapest node and add it to the closed list
         attempts = 0;
         while (!pathFound) {
-            ExpandNode(next);
+            ExpandNode(next);                  
             next = DrawFromBHeap();
-            if (attempts++ >= 10000) break;
+            if(next == null && len_open == 0) {
+                noPath = true;
+                break;
+            }
         }
-    pastPathing: 
+    postExpansion: 
         p = end;
-        attempts = 0;
-        //reconstruct path by begginning at the end node and looking for parent nodes
-        while (true) {
-            if (p != null) {
-                if (p.Equals(start)) break;
+        attempts = 0;      
+
+        if(!noPath) { //if a path was found, reconstruct route
+            while (p != null && !p.Equals(start)) {
                 p = p.Parent;
                 result.Add(p.vecPos);            
             }
-            if (attempts++ >= 10000) break;
+            long now = System.DateTime.Now.ToFileTime();
+            double duration = (now - lastTime)/10000D;
+            if (VERBOSE) Debug.Log("Iteration took "+duration+" ms.");
+        } else { //otherwise just return the current position and do nothing
+            result.Add(end.GetVector2());
+            if (VERBOSE) Debug.Log("No Path found.");
         }
 
-
-        isPathing = false;
-        long now = System.DateTime.Now.ToFileTime();
-        double duration = (now - lastTime)/10000D;
-        if (VERBOSE) Debug.Log("Iteration took "+duration+" ms.");
-           
+        isPathing = false;    
         return result;
     }
 
@@ -199,18 +206,16 @@ public class PathFinder  {
     //routes
 
     public void AddToBHeap(Node node) {
-        int m = len_open+1;
+        int m = ++len_open;
         node.open_i = m;
         open[m] = node;
         open[m].inopen = true;
         SetBHeapPosition(m);
-        len_open = len_open + 1;
     }
 
     public void SetBHeapPosition(int index) {
         int m = index;
         while (m != 1) {
-
             if (open[m].GetFValue() <= open[m / 2].GetFValue()) {
                 Swap(m, m / 2);
                 m /= 2;
@@ -219,6 +224,7 @@ public class PathFinder  {
     }
 
     public Node DrawFromBHeap() {
+        if(len_open == 0) return null; //the ultimate indicator that there is no path
         Node res = open[1]; //take the first = cheapest node out of the heap
         Swap(1, len_open);  //swap the first with the last node in the heap
         open[len_open--] = null; //throw it out and reduce the open index count
@@ -228,7 +234,7 @@ public class PathFinder  {
         int u, v, a = 0;
         v = 1;
         
-        //bubble the parent, now first node up until it 
+        //bubble the parent, now first node, up until it 
         //has reached its proper position in the heap
         //note: this has nothing to do with bubble sort, heap competes
         //with qsort and introsort with efficiency O(n*log n)
@@ -248,8 +254,7 @@ public class PathFinder  {
             if (u != v) {              
                 Swap(u, v);
             } else break; //this is the exit that gets taken 100% of the time
-                          //unless there are millions of nodes, then 'a' can reach 10k
-                          //but your RAM might even run out first then
+                          //unless there are millions of nodes
         } while(a++ <= 10000);    
         return res;
     }

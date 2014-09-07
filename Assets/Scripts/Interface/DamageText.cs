@@ -4,6 +4,7 @@ using System.Collections;
 public class DamageText : MonoBehaviour
 {
     private int time = 0;
+    static Gaussian rnd = new Gaussian();
 
     //I'm used to transfer temporary coordinates into actual coordinates from my
     // Java times, not sure if it's necessary here, probably not but it doesn't cause harm either
@@ -20,9 +21,9 @@ public class DamageText : MonoBehaviour
         this.xx = x; 
         this.yy = y; 
         this.zz = 2; //at first the digit flies upwards
-        this.xa = (float)(Gaussian.NextGaussian() * 0.06); //bounce off towards the sides
-        this.ya = (float)(Gaussian.NextGaussian() * 0.04);
-        this.za = (float)(Gaussian.NextFloat() * 0.27); //upward direction
+        this.xa = (float)(rnd.NextGaussian() * 0.06); //bounce off towards the sides
+        this.ya = (float)(rnd.NextGaussian() * 0.04);
+        this.za = (float)(rnd.NextFloat() * 0.27); //upward direction
     }
 
     //using FixedUpdate because this is technically Physics

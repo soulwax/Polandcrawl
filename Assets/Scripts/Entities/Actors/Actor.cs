@@ -15,10 +15,10 @@ public class Actor : MonoBehaviour
 
     private bool processMove;
 
-    private float health;
-    private float mana;
-    private float experience;
-    private float damage;
+    protected float health;
+    protected float mana;
+    protected float experience;
+    protected float damage;
 
     protected GameView view;
     
@@ -41,6 +41,10 @@ public class Actor : MonoBehaviour
 	}
 
     protected virtual void Start() {
+    }
+
+    protected virtual void Update() {
+
     }
 
     void LateUpdate()
@@ -145,33 +149,16 @@ public class Actor : MonoBehaviour
         Destroy(this.gameObject);
     }
 
-    public virtual void MoveOrder(int x1, int y1)
-    {
-        //pathFinder.StartFindingPath(getTravelCosts(), (int)xp,(int)yp, x1, y1);
-    }
-
-    public int[] GetTravelCosts() {
-        int w = view.levelWidth;
-        int h = view.levelHeight;
-        int[] costs = new int[w * h];
-        for (int y = 0; y < h; y++) {
-            for (int x = 0; x < w; x++) {
-
-                    int t = GameView.dungeonMap[x,y];
-                    if (t == 1) {
-                        costs[x + y * w] = 0;
-                    } else {
-                        costs[x + y * w] = 5;
-                    }
-                
-            }
-        }
-        return costs;
-    }
 
     public float DistanceTo(float xt, float yt) {
         float xd = xt - xp;
         float yd = yt - yp;
         return Mathf.Sqrt(xd*xd+yd*yd);
+    }
+
+    public void AdjustMana(float mana) {
+        this.mana += mana;
+        if(mana < 0) mana = 0;
+        if(mana > maxMana) mana = maxMana;
     }
 }

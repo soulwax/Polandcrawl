@@ -4,21 +4,25 @@ using System.Collections.Generic;
 public class Player : Actor
 {
 
-	#region Variables
-	public List<Item> inventoryList;
-	public GameObject inventoryObject;
+    #region Variables
+    Gaussian rnd = new Gaussian();
+    public List<Item> inventoryList;
+    public GameObject inventoryObject;
     protected PathFinder pathFinder;
     private InputHandler input;
     private TileMarker tileMarker;
+
+    private float manaRecoveryRate = 0.3f;
 
     //testing
     public GameObject pathMarker;
     List<Vector2> currentPath;
     private List<GameObject> markerInstances = new List<GameObject>();
 
-    private bool travelling = false;
-    private bool hasNextOrder = false;
-	#endregion
+    private bool hasNextOrder = false; //is true when there is a path to walk along
+    private int turnOffset = 0; //the turn offset after the hasNextOrder was called, 
+                                //to limit the pathfinder calls during a click spam
+    #endregion
 
     protected override void Awake()
     {
@@ -32,64 +36,60 @@ public class Player : Actor
         pathFinder = new PathFinder(view);
     }
     
-    void Update()
+    protected override void Update()
     {
+        input.KeyUpdate(); 
+        input.MouseUpdate();
         if (Input.anyKey) HandleControl(); //Handle input only if there is any input at all
-        if (Input.mousePresent) input.MouseUpdate();
-        if (travelling && Time.time > view.GetNextCycle()) WalkAlongPath();
+        if (turnOffset >= 0) HandleMouseControl();
+        if (hasNextOrder && view.IsNextCycle()) {
+            WalkAlongPath();
+            turnOffset++;
+        }
+
+
+        if(mana < maxMana && view.IsNextCycle()) AdjustMana(manaRecoveryRate);
     }
 
     private void HandleControl()
     {
         float xa = 0;
         float ya = 0;
-        input.KeyUpdate(); //updates currently pressed keys
 
-        HandleMouseControl(); //Mouse input is outside the turn hierarchy
+        if (input.up) ya = 1;
+        if (input.down) ya = -1;
+        if (input.left) xa = -1;
+        if (input.right) xa = 1;
+        if (input.upleft) { xa = -1; ya = 1; }
+        if (input.upright) { xa = 1; ya = 1; }
+        if (input.downleft) { xa = -1; ya = -1; }
+        if (input.downright) { xa = 1; ya = -1; }
+        if (input.wait) { view.NextCycle(); return; }
+        if (xa == 0 && ya == 0) return; // No movement
 
-        if (Time.time > view.GetNextCycle())
+        //just abort the movement when you attempt a standard move
+        if (hasNextOrder) {
+            StopWalking();
+            return;
+        }
+        if (view.IsNextCycle())
         {         
-            //apply input results from the last update
-            if (input.up) ya = 1;
-            if (input.down) ya = -1;
-            if (input.left) xa = -1;
-            if (input.right) xa = 1;
-            if (input.upleft) { xa = -1; ya = 1; }
-            if (input.upright) { xa = 1; ya = 1; }
-            if (input.downleft) { xa = -1; ya = -1; }
-            if (input.downright) { xa = 1; ya = -1; }
-            if (input.wait) { view.NextCycle(); return; }
-
-            if (hasNextOrder) //This block is purely for testing yet
-            {
-                travelling = true;     
-                hasNextOrder = false;
-                WalkAlongPath();
-            }
-            input.ReleaseAll();
-            if (xa == 0 && ya == 0) return; // No movement
-
-            SimpleMove((int)xp + (int)xa, (int)yp + (int)ya);
+            SimpleMove((int)xp + (int)xa, (int)yp + (int)ya);    
             view.NextCycle();
         }      
         
     }
 
     public void HandleMouseControl() {
-        if (input.lmb && !pathFinder.isPathing ) {
+        if (input.lmb && !pathFinder.isPathing) {
             xo = (int)tileMarker.MarkerPosition.x;
-            yo = (int)tileMarker.MarkerPosition.y;        
-            
-
-            for (int i = 0; i < markerInstances.Count; i++) {
-                Destroy(markerInstances[i]);
-            }
-            markerInstances.Clear();
-
+            yo = (int)tileMarker.MarkerPosition.y;          
+            DisposePathMarkers();
             if (GameView.dungeonMap[xo, yo] == 1) {
                 pathFinder.PrepareForNextUse();
                 currentPath = pathFinder.GetPath((int)xp, (int)yp, xo, yo);
-                MarkPath(currentPath);
+                MarkPath(currentPath);    
+                turnOffset = -2;            
                 hasNextOrder = true;                       
             } 
         }
@@ -124,26 +124,25 @@ public class Player : Actor
     }
 
 
-	public void pickupItem(int x, int y)
-	{
-		//TODO: Add item to inventory
-		Item itemTemp = ItemController.itemMap[x, y];  
+    public void pickupItem(int x, int y)
+    {
+        //TODO: Add item to inventory
+        Item itemTemp = ItemController.itemMap[x, y];  
 
-		if(itemTemp is Stairs) {
-			//Change level
-		} else {        
-			inventoryList.Add(itemTemp);
-			itemTemp.gameObject.transform.parent = inventoryObject.transform;
-			itemTemp.renderer.enabled = false;
-		}
-	}
+        if(itemTemp is Stairs) {
+            //Change level
+        } else {        
+            inventoryList.Add(itemTemp);
+            itemTemp.gameObject.transform.parent = inventoryObject.transform;
+            itemTemp.renderer.enabled = false;
+        }
+    }
 
     public override void OnAttack(int x, int y, float dmg)
     {
-        float dtemp = dmg * (float)Gaussian.NextDouble();
+        float dtemp = dmg * (float)rnd.NextDouble();
         base.OnAttack(x, y, dtemp);     
     }
-
 
     public override void OnDamage(float dmg)
     {
@@ -161,10 +160,24 @@ public class Player : Actor
     public void WalkAlongPath() {
         if (currentPath.Count > 0) {
             SimpleMove((int)currentPath[0].x, (int)currentPath[0].y);
-            currentPath.RemoveAt(0);
-            view.NextCycle();
+            currentPath.RemoveAt(0);           
+            view.NextCycle();          
         } else {
-            //travelling = false;
+            StopWalking();
         }
+    }
+
+    public void StopWalking(){
+        hasNextOrder = false;
+        turnOffset = 0;
+        DisposePathMarkers();
+        if(currentPath != null) currentPath.Clear();
+    }
+
+    public void DisposePathMarkers(){
+        for (int i = 0; i < markerInstances.Count; i++) {
+            Destroy(markerInstances[i]);
+        }
+        markerInstances.Clear();
     }
 }

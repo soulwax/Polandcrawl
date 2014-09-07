@@ -33,32 +33,15 @@ public class InputHandler {
 
     public void KeyUpdate()
     {
-        if (Input.GetKey(KeyCode.Keypad8)) up = true;
-        else up = false;
-
-        if (Input.GetKey(KeyCode.Keypad2)) down = true;
-        else down = false;
-
-        if (Input.GetKey(KeyCode.Keypad4)) left = true;
-        else left = false;
-
-        if (Input.GetKey(KeyCode.Keypad6)) right = true;
-        else right = false;
-
-        if (Input.GetKey(KeyCode.Keypad1)) downleft = true;
-        else downleft = false;
-
-        if (Input.GetKey(KeyCode.Keypad7)) upleft = true;
-        else upleft = false;
-
-        if (Input.GetKey(KeyCode.Keypad9)) upright = true;
-        else upright = false;
-
-        if (Input.GetKey(KeyCode.Keypad3)) downright = true;
-        else downright = false;
-
-        if (Input.GetKey(".")) wait = true;
-        else wait = false;      
+        up = Input.GetKey(KeyCode.Keypad8);
+        down = Input.GetKey(KeyCode.Keypad2);
+        left = Input.GetKey(KeyCode.Keypad4);
+        right = Input.GetKey(KeyCode.Keypad6);
+        downleft = Input.GetKey(KeyCode.Keypad1);
+        upleft = Input.GetKey(KeyCode.Keypad7); 
+        upright = Input.GetKey(KeyCode.Keypad9);
+        downright = Input.GetKey(KeyCode.Keypad3);
+        wait = Input.GetKey(".");
     }
 
     public void MouseUpdate()
@@ -66,12 +49,8 @@ public class InputHandler {
         mpos = Input.mousePosition;
         this.x = mpos.x;
         this.y = mpos.y;
-
-        if (Input.GetMouseButton(0)) lmb = true;
-        else lmb = false;
-
-        if (Input.GetMouseButton(1)) rmb = true;
-        else rmb = false;
+        lmb = Input.GetMouseButton(0);
+        rmb = Input.GetMouseButton(1);
     }
 
     public void ReleaseAll()

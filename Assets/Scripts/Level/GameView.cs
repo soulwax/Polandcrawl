@@ -21,8 +21,9 @@ public class GameView : MonoBehaviour
 	public int tileResolution = 16;
 
 	public Texture2D dungeonTileset;
+	public Texture2D dungeonTilesetFlipped;
 
-	public static int[,] dungeonMap;
+	public static byte[,] dungeonMap;
 
 	public NPCController npcController;
 	public ItemController itemController;
@@ -35,7 +36,14 @@ public class GameView : MonoBehaviour
 	public int currentLevel = 1;
 
     private DungeonVariables variables;
+    public Texture2D levelTexture;
+    public Color[][] spriteSheet;
+    public Color[][] spriteSheetFlipped;
     
+    public static byte[] tiles;
+    public static int numRows;
+    public static int numTilesPerRow;
+    //private byte[] data;
 
 	#endregion
 
@@ -72,13 +80,19 @@ public class GameView : MonoBehaviour
         {
         }
 
+		int texWidth = levelWidth * tileResolution;
+		int texHeight = levelHeight * tileResolution;
+		levelTexture = new Texture2D(texWidth, texHeight);
+
 		// Build mesh and move to correct view point.
 		buildMesh(this.gameObject, levelWidth, levelHeight, tileSize);
 		transform.position = new Vector3(transform.position.x, transform.position.y + levelHeight, transform.position.z);
 
 		// Generate dungeon map and apply textue.
-		dungeonMap = new int[levelWidth, levelHeight];
-		buildDungeonTexture(this.gameObject, ChopUpTiles(dungeonTileset, tileResolution), levelWidth, levelHeight, rooms, tileResolution, dungeonMap);
+		dungeonMap = new byte[levelWidth, levelHeight];
+		spriteSheet = ChopUpTiles(dungeonTileset, tileResolution);
+		spriteSheetFlipped = ChopUpTiles(dungeonTilesetFlipped, tileResolution);
+		BuildLevel(levelWidth, levelHeight, tileResolution);
 
 
 		// Initialise the player and generate list of viable position on the map.
@@ -163,47 +177,36 @@ public class GameView : MonoBehaviour
 		mesh_collider.sharedMesh = mesh;
 	}
 
-	private int[,] buildDungeonTexture(GameObject gObject, Color[][] tiles, int width, int height, int rooms, int tileResolution, int[,] dungeonMap) {
+	private void BuildLevel(int width, int height, float tileResolution) {
         
-        TDMap map;
+        /*TDMap map;
         if(variables != null) map = new TDMap(width, height, rooms, variables.type);
-        else map = new TDMap(width, height, rooms);
+        else map = new TDMap(width, height, rooms);*/     	
 
-		int texWidth = width * tileResolution;
-		int texHeight = height * tileResolution;
-		Texture2D texture = new Texture2D(texWidth, texHeight);
-		
-		for(int y = 0; y < height; y++) {
-			for(int x = 0; x < width; x++) {
-				dungeonMap[x, y] = map.GetTileAt(x, y);
-				Color[] p = tiles[dungeonMap[x, y]];
-				texture.SetPixels(x * tileResolution, y * tileResolution, tileResolution, tileResolution, p);
-			}	
-		}
-		
-		texture.filterMode = FilterMode.Point;
-		texture.wrapMode = TextureWrapMode.Clamp;
-		texture.Apply();
-		
-		MeshRenderer mesh_renderer = gObject.GetComponent<MeshRenderer>();
-		mesh_renderer.sharedMaterials[0].mainTexture = texture;
+        int depth = 2;
+       	byte[][] map = LevelGenerator.CreateAndValidateUndergroundMap(width, height, depth);
+       	tiles = map[0];
 
-		return dungeonMap;
+		
+		ApplyZeroLayer();
+		ApplyFirstLayer();
+		ApplySecondLayer();
+		FinalizeLevelTexture(levelTexture);
 	}
 
 	public Color[][] ChopUpTiles(Texture2D tileTexture, int tileResolution){
-		int numTilesPerRow = tileTexture.width / tileResolution;
-		int numRows = tileTexture.height / tileResolution;
+		numTilesPerRow = tileTexture.width / tileResolution;
+		numRows = tileTexture.height / tileResolution;
 		
-		Color[][] tiles = new Color[numTilesPerRow*numRows][];
+		Color[][] ctiles = new Color[numTilesPerRow*numRows][];
 		
 		for(int y = 0; y < numRows; y++) {
 			for(int x = 0; x < numTilesPerRow; x++) {
-				tiles[y * numTilesPerRow + x] = tileTexture.GetPixels(x * tileResolution, y * tileResolution, tileResolution, tileResolution);
+				ctiles[y * numTilesPerRow + x] = tileTexture.GetPixels(x * tileResolution, y * tileResolution, tileResolution, tileResolution);
 			}	
 		}
 		
-		return tiles;
+		return ctiles;
 	}
 
     public void NextCycle()
@@ -215,5 +218,72 @@ public class GameView : MonoBehaviour
     public float GetNextCycle()
     {
         return nextCycle;
+    }
+
+    public bool IsNextCycle(){
+    	return Time.time > nextCycle;
+    }
+
+    public Tile GetTileSprite(int id){
+    	return Tile.tiles[(byte)id];
+    }
+
+    public byte GetTile(int x, int y) {
+    	if(x < 0 || x >= levelWidth) return 255;
+    	if(y < 0 || y >= levelHeight) return 255;
+    	return tiles[x+y*levelWidth];
+    }
+
+    public void DrawOnTexture(int x, int y, Texture2D texture, Color[] sprite, int tileResolution){
+
+    	//texture.SetPixels(x, y, tileResolution, tileResolution, sprite);
+    	for(int yy = y, _y = 0; yy < y + tileResolution; yy++, _y++) {
+    		for(int xx = x, _x = 0; xx < x + tileResolution; xx++, _x++) {
+    			Color c = sprite[_x+_y*tileResolution];
+    			if(c.a == 0) continue;	
+    			texture.SetPixel(xx, yy, c); 			
+    		}		   		
+    	}
+    }
+
+    public void ApplyZeroLayer(){
+    	for(int y = levelHeight-1; y >= 0; y--) {
+			for(int x = levelWidth-1; x >= 0; x--) {						
+				DrawOnTexture(x*tileResolution, y*tileResolution, levelTexture, spriteSheet[1], tileResolution);
+			}	
+		}
+    }
+
+
+    public void ApplyFirstLayer(){
+    	for(int y = levelHeight-1; y >= 0; y--) {
+			for(int x = levelWidth-1; x >= 0; x--) {
+				int i = x+y*levelWidth;
+				dungeonMap[x,y] = tiles[i];
+				if(tiles[i]==Tile.rock.id) continue;						
+				Tile tile = GetTileSprite(dungeonMap[x,y]);			
+				tile.RenderTile(x, y);
+			}	
+		}
+    }
+
+    public void ApplySecondLayer(){
+    	for(int y = levelHeight-1; y >= 0; y--) {
+			for(int x = levelWidth-1; x >= 0; x--) {
+				int i = x+y*levelWidth;
+				if(tiles[i]!=Tile.rock.id) continue;
+				Tile tile = GetTileSprite(dungeonMap[x,y]);
+				tile.RenderTile(x, y);
+			}	
+		}
+    }
+
+    public void FinalizeLevelTexture(Texture2D texture) {
+    	texture.filterMode = FilterMode.Point;
+		texture.wrapMode = TextureWrapMode.Clamp;
+		texture.Apply();
+		
+		MeshRenderer mesh_renderer = GetComponent<MeshRenderer>();
+		mesh_renderer.sharedMaterials[0].mainTexture = texture;
     }
 }

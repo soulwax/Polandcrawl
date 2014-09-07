@@ -1585,11 +1585,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 400000, guid: ed760a94674520e48a7d6779faad9780, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 8.27908516e-05
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: ed760a94674520e48a7d6779faad9780, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: .0127748251
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: ed760a94674520e48a7d6779faad9780, type: 2}
       propertyPath: m_LocalPosition.z
@@ -1691,7 +1691,7 @@ Transform:
   m_PrefabInternal: {fileID: 1071652576}
   m_GameObject: {fileID: 1652636361}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 1}
+  m_LocalPosition: {x: 8.27908516e-05, y: .0127748251, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 307748638}
@@ -1851,16 +1851,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cycleRate: .349999994
-  levelWidth: 100
-  levelHeight: 100
+  levelWidth: 64
+  levelHeight: 64
   rooms: 30
   tileSize: 1
   tileResolution: 16
-  dungeonTileset: {fileID: 2800000, guid: d6fafea03385b7248a2cdd43a822a889, type: 3}
+  dungeonTileset: {fileID: 2800000, guid: 42b39f1f1221cf3498ff9020a88120a2, type: 3}
+  dungeonTilesetFlipped: {fileID: 2800000, guid: c1e097f47b4c0a847b6871dd37e69c7b,
+    type: 3}
   npcController: {fileID: 1064039584}
   itemController: {fileID: 245780692}
   player: {fileID: 1652636363}
   currentLevel: 1
+  levelTexture: {fileID: 0}
 --- !u!4 &1767576324
 Transform:
   m_ObjectHideFlags: 0

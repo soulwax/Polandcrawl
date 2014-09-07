@@ -3,11 +3,11 @@ using System.Collections;
 
 public class PlayerGUI : MonoBehaviour {
 
-    private Player playerScript;    
+//    private Player playerScript;    
 
     void Awake()
     {
-        playerScript = this.GetComponent<Player>();
+  //      playerScript = this.GetComponent<Player>();
     }
 
 	// Use this for initialization
