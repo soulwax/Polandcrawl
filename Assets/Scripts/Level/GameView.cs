@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections.Generic;
 
 public class GameView : MonoBehaviour 
@@ -13,8 +13,8 @@ public class GameView : MonoBehaviour
 	public float cycleRate = 0.5f;
 	private float nextCycle = 0.0f;
 
-	public int levelWidth = 100;
-	public int levelHeight = 50;
+	public int levelWidth = 128;
+	public int levelHeight = 128;
     public int rooms;
 
 	public float tileSize = 1.0f;
@@ -22,17 +22,10 @@ public class GameView : MonoBehaviour
 
 	public Texture2D dungeonTileset;
 
-	//became obsolete as there is a tiles array, 
-	//just in one dimension, but I'll leave it there for now
-	//as too many scripts depend on it
 	public static byte[,] dungeonMap; 
-
+	public static List<Vector2> viableLocations = new List<Vector2>();
 	public NPCController npcController;
 	public ItemController itemController;
-
-	private int
-		playerX,
-		playerY;
 
 	public Player player;
 	public int currentLevel = 1;
@@ -41,10 +34,9 @@ public class GameView : MonoBehaviour
     public Texture2D levelTexture;
     public Color[][] spriteSheet;
     
-    public static byte[] tiles;
     public static int numRows;
     public static int numTilesPerRow;
-    //private byte[] data;
+    //private byte[,] data;
 
 	#endregion
 
@@ -60,22 +52,20 @@ public class GameView : MonoBehaviour
             Debug.Log("Dungeon Variables found");
             if (variables.size == 1)
             {
-                levelWidth = 50;
-                levelHeight = 50;
-                rooms = 10;
+                levelWidth = 32;
+                levelHeight = 32;
             } 
             else if(variables.size == 2)
             {
-                levelWidth = 80;
-                levelHeight = 80;
-                rooms = 25;
+                levelWidth = 64;
+                levelHeight = 64;
+
             }
 
             else if(variables.size == 3)
             {
-                levelWidth = 120;
-                levelHeight = 120;
-                rooms = 35;
+                levelWidth = 128;
+                levelHeight = 128;
             }
         }
         else //handling so far only includes using the standard variables
@@ -94,27 +84,9 @@ public class GameView : MonoBehaviour
 		dungeonMap = new byte[levelWidth, levelHeight];
 		spriteSheet = ChopUpTiles(dungeonTileset, tileResolution);
 		BuildLevel(levelWidth, levelHeight, tileResolution);
-
-
-		// Initialise the player and generate list of viable position on the map.
-		bool initPlayer = false;
-		List<Vector2> viableLocations = new List<Vector2>();
-
-		for(int y = 0; y < levelHeight; y++) {
-			for(int x = 0; x < levelWidth; x++) {
-				if(dungeonMap[x,y] == 1){
-					if(!initPlayer) {
-						player.setPositionDirectly(x, y);
-						initPlayer = true;
-					}
-					viableLocations.Add(new Vector2(x, y));
-				}
-			}
-		}
-        
-		// Initialise Controllers
-		npcController.populateEnemies(viableLocations, currentLevel, levelWidth, levelHeight);
-		itemController.populateItems(viableLocations, levelWidth, levelHeight);
+    
+		SpawnPlayer();
+		SpawnEntities();
 
 		/*ConvertToString cTS = new ConvertToString();
 		Debug.Log(cTS.Covert(NPCController.npcMap, levelWidth, levelHeight));
@@ -186,30 +158,26 @@ public class GameView : MonoBehaviour
         else map = new TDMap(width, height, rooms);*/     	
 
         int depth = 2;
-       	byte[][] map = LevelGenerator.CreateAndValidateUndergroundMap(width, height, depth);
-       	tiles = map[0];
+       	byte[][,] map = LevelGenerator.CreateAndValidateUndergroundMap(width, height, depth);
+       	dungeonMap = map[0];
 
 		
-		ApplyZeroLayer();
-		ApplyFirstLayer();
-		ApplySecondLayer();
-		ApplyThirdLayer();
-		FinalizeLevelTexture(levelTexture);
+		BuildLevelTexture();	
 	}
 
 	public Color[][] ChopUpTiles(Texture2D tileTexture, int tileResolution){
 		numTilesPerRow = tileTexture.width / tileResolution;
 		numRows = tileTexture.height / tileResolution;
 		
-		Color[][] ctiles = new Color[numTilesPerRow*numRows][];
+		Color[][] tiles = new Color[numTilesPerRow*numRows][];
 		
 		for(int y = 0; y < numRows; y++) {
 			for(int x = 0; x < numTilesPerRow; x++) {
-				ctiles[y * numTilesPerRow + x] = tileTexture.GetPixels(x * tileResolution, y * tileResolution, tileResolution, tileResolution);
+				tiles[y * numTilesPerRow + x] = tileTexture.GetPixels(x * tileResolution, y * tileResolution, tileResolution, tileResolution);
 			}	
 		}
 		
-		return ctiles;
+		return tiles;
 	}
 
     public void NextCycle()
@@ -234,7 +202,32 @@ public class GameView : MonoBehaviour
     public byte GetTile(int x, int y) {
     	if(x < 0 || x >= levelWidth) return 255;
     	if(y < 0 || y >= levelHeight) return 255;
-    	return tiles[x+y*levelWidth];
+    	return dungeonMap[x,y];
+    }
+
+
+    public void ApplyTextureLayer(byte[] IDs, bool ignore) {
+    	for(int y = levelHeight-1; y >= 0; y--) {
+			 for(int x = levelWidth-1; x >= 0; x--) {
+				bool flagContinue = false;
+				for(int i = 0; i < IDs.Length; i++) {
+					if(ignore) {
+						if(IDs[i] == dungeonMap[x,y]) {
+							flagContinue = true;
+							break;
+						}
+					} else {
+						flagContinue = true;
+						if(IDs[i] == dungeonMap[x,y]) {							
+							flagContinue = false;
+							break;
+						} 
+					}
+				}
+				if(flagContinue) continue;
+				Tile.tiles[dungeonMap[x,y]].RenderTile(x,y);
+			}	
+		}
     }
 
     public void DrawOnTexture(int x, int y, Texture2D texture, Color[] sprite, int tileResolution){
@@ -247,47 +240,14 @@ public class GameView : MonoBehaviour
     	}
     }
 
+
+
     //The zero layer just fills everything with dirt, so transparent pixels don't show the game background
     //This is also the layer that fills up the actual dungeon map array
-    public void ApplyZeroLayer(){
+    public void FillTextureWithTile(byte id){
     	for(int y = levelHeight-1; y >= 0; y--) {
 			for(int x = levelWidth-1; x >= 0; x--) {
-				int i = x+y*levelWidth;
-				dungeonMap[x,y] = tiles[i];						
-				DrawOnTexture(x*tileResolution, y*tileResolution, levelTexture, spriteSheet[1], tileResolution);
-			}	
-		}
-    }
-
-    //The first layer is meant to apply basic textures that represent the floor, like dirt or water
-    public void ApplyFirstLayer(){
-    	for(int y = levelHeight-1; y >= 0; y--) {
-			for(int x = levelWidth-1; x >= 0; x--) {	
-				if(dungeonMap[x,y]==Tile.rock.id || dungeonMap[x,y]==Tile.dirt.id || dungeonMap[x,y]==Tile.ironOre.id) continue;						
-				Tile tile = GetTileSprite(dungeonMap[x,y]);			
-				tile.RenderTile(x, y);
-			}	
-		}
-    }
-
-    //the second layer represents everything that's above the floor, like rock
-    public void ApplySecondLayer(){
-    	for(int y = levelHeight-1; y >= 0; y--) {
-			for(int x = levelWidth-1; x >= 0; x--) {
-				if(dungeonMap[x,y]!=Tile.rock.id) continue;
-				Tile tile = GetTileSprite(dungeonMap[x,y]);
-				tile.RenderTile(x, y);
-			}	
-		}
-    }
-
-    //If something is even before the 2nd layer, we apply the third layer
-    public void ApplyThirdLayer(){
-    	for(int y = levelHeight-1; y >= 0; y--) {
-			for(int x = levelWidth-1; x >= 0; x--) {
-				if(dungeonMap[x,y]!=Tile.ironOre.id) continue;
-				Tile tile = GetTileSprite(dungeonMap[x,y]);
-				tile.RenderTile(x, y);
+				Tile.tiles[id].RenderTile(x,y);
 			}	
 		}
     }
@@ -299,5 +259,43 @@ public class GameView : MonoBehaviour
 		
 		MeshRenderer mesh_renderer = GetComponent<MeshRenderer>();
 		mesh_renderer.sharedMaterials[0].mainTexture = texture;
+    }
+
+    public void BuildLevelTexture() {
+    	FillTextureWithTile(Tile.dirt.id);
+
+    	byte[] apl1 = {Tile.rock.id, Tile.dirt.id, Tile.ironOre.id, Tile.stairsDown.id};
+		ApplyTextureLayer(apl1, true);
+		byte[] apl2 = {Tile.rock.id, Tile.stairsDown.id};
+		ApplyTextureLayer(apl2, false);
+		byte[] apl3 = {Tile.ironOre.id};
+		ApplyTextureLayer(apl3, false);
+
+		FinalizeLevelTexture(levelTexture);
+
+		for(int y = 0; y < levelHeight; y++) {
+			for(int x = 0; x < levelWidth; x++) {
+				if(Tile.tiles[dungeonMap[x,y]].walkable) {
+					viableLocations.Add(new Vector2(x,y));
+				}
+			}
+		}
+    }
+
+    public void SpawnPlayer() {
+    	// Initialise the player and generate list of viable position on the map.
+		for(int y = 0; y < levelHeight; y++) {
+			for(int x = 0; x < levelWidth; x++) {
+				if(Tile.tiles[dungeonMap[x,y]].walkable){
+					player.setPositionDirectly(x, y);
+				}
+			}
+		}
+    }
+
+    public void SpawnEntities() {
+    	// Initialise Controllers
+		npcController.populateEnemies(viableLocations, currentLevel, levelWidth, levelHeight);
+		itemController.populateItems(viableLocations, levelWidth, levelHeight);
     }
 }

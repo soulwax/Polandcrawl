@@ -3,6 +3,7 @@ using System;
 
 public class Water : Tile {
 	public Water(int id) : base(id){
+		swimmable = true;
 	}
 
 	public override void RenderTile(int xp, int yp) {

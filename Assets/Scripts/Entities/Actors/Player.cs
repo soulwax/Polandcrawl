@@ -8,6 +8,7 @@ public class Player : Actor
     Gaussian rnd = new Gaussian();
     public List<Item> inventoryList;
     public GameObject inventoryObject;
+    public Texture2D playerSprite;
     protected PathFinder pathFinder;
     private InputHandler input;
     private TileMarker tileMarker;

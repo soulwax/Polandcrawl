@@ -1,6 +1,5 @@
 ﻿using System.Collections;
 using UnityEngine;
-
 public class Gaussian {
 
 
@@ -11,7 +10,6 @@ public class Gaussian {
     private bool haveNextNextGaussian = false;
 
     private long seed = 0;
-
 
     //produces normally distributed 'Gaussian' value between 0.0 and standard deviation 1.0
     //70% of the results will be between -1.0 and 1.0
@@ -87,6 +85,8 @@ public class Gaussian {
     }
 
     public void RandomizeSeed(){
-        SetSeed(System.DateTime.Now.ToFileTime());
+        long b = System.DateTime.Now.ToFileTime() | 0xB16B00B5;
+        long k = System.DateTime.Now.ToFileTime() ^ 0xB4DF00D;
+        SetSeed((System.DateTime.Now.ToFileTime() + (b / 2 - k) * 0xB00B) / 10 * 0xDEADBEA7 + b * 0xB01DFACE + k * 0xDEFEC8);
     }
 }

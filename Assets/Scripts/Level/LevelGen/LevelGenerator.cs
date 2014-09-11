@@ -63,16 +63,19 @@ public class LevelGenerator {
 		values[(x & (w - 1)) + (y & (h - 1)) * w] = value;
 	}
 
-	public static byte[][] CreateAndValidateUndergroundMap(int w, int h, int depth) {
+	public static byte[][,] CreateAndValidateUndergroundMap(int w, int h, int depth) {
 //		int attempt = 0;
 		do {
-			byte[][] result = createUndergroundMap(w, h, depth);
+			byte[][,] result = createUndergroundMap(w, h, depth);
 
 			int[] count = new int[256];
 
-			for (int i = 0; i < w * h; i++) {
-				count[result[0][i] & 0xff]++;
+			for(int y = 0; y < h; y++) {
+				for(int x = 0; x < w; x++) {
+					count[result[0][x,y] & 0xff]++;
+				}
 			}
+
 			if (count[Tile.rock.id & 0xff] < 100) continue;
 			if (count[Tile.dirt.id & 0xff] < 100) continue;
 			if (count[Tile.ironOre.id & 0xff] < 20) continue;
@@ -83,7 +86,7 @@ public class LevelGenerator {
 		} while (true);
 	}
 
-	private static byte[][] createUndergroundMap(int w, int h, int depth) {
+	private static byte[][,] createUndergroundMap(int w, int h, int depth) {
 		LevelGenerator mnoise1 = new LevelGenerator(w, h, 16);
 		LevelGenerator mnoise2 = new LevelGenerator(w, h, 16);
 		LevelGenerator mnoise3 = new LevelGenerator(w, h, 16);
@@ -99,8 +102,8 @@ public class LevelGenerator {
 		LevelGenerator noise1 = new LevelGenerator(w, h, 32);
 		LevelGenerator noise2 = new LevelGenerator(w, h, 32);
 
-		byte[] map = new byte[w * h];
-		byte[] data = new byte[w * h];
+		byte[,] map = new byte[w , h];
+		byte[,] data = new byte[w , h];
 		for (int y = 0; y < h; y++) {
 			for (int x = 0; x < w; x++) {
 				int i = x + y * w;
@@ -127,13 +130,13 @@ public class LevelGenerator {
 
 				if (val > -2 && wval < -2.0 + (depth) / 2 * 3) {
 					if (depth > 2)
-						map[i] = Tile.lava.id;
+						map[x,y] = Tile.lava.id;
 					else
-						map[i] = Tile.water.id;
+						map[x,y] = Tile.water.id;
 				} else if (val > -2 && (mval < -1.7 || nval < -1.4)) {
-					map[i] = Tile.dirt.id;
+					map[x,y] = Tile.dirt.id;
 				} else {
-					map[i] = Tile.rock.id;
+					map[x,y] = Tile.rock.id;
 				}
 			}
 		}
@@ -147,8 +150,8 @@ public class LevelGenerator {
 					int xx = x + random.NextInt(5) - random.NextInt(5);
 					int yy = y + random.NextInt(5) - random.NextInt(5);
 					if (xx >= r && yy >= r && xx < w - r && yy < h - r) {
-						if (map[xx + yy * w] == Tile.rock.id) {
-							map[xx + yy * w] = (byte) (Tile.ironOre.id & 0xff);
+						if (map[xx,yy] == Tile.rock.id) {
+							map[xx,yy] = (byte) (Tile.ironOre.id & 0xff);
 						}
 					}
 				}
@@ -164,18 +167,18 @@ public class LevelGenerator {
 
 				for (yy = y - 1; yy <= y + 1; yy++)
 					for (xx = x - 1; xx <= x + 1; xx++) {
-						if (map[xx + yy * w] != Tile.rock.id) {
+						if (map[xx,yy] != Tile.rock.id) {
 							i++;
-							map[x + y * w] = Tile.stairsDown.id;
+							map[x,y] = Tile.stairsDown.id;
 						}
 					}
 
-				map[x + y * w] = Tile.stairsDown.id;
+				map[x,y] = Tile.stairsDown.id;
 				count++;
 				if (count == 4) break;
 			}
 		}
 
-		return new byte[][] { map, data };
+		return new byte[][,] { map, data };
 	}
 }

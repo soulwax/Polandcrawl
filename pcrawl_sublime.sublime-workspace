@@ -4,6 +4,30 @@
 		"selected_items":
 		[
 			[
+				"Math",
+				"Mathf.PI	[property]"
+			],
+			[
+				"BuildLevel",
+				"BuildLevelTexture"
+			],
+			[
+				"AplyTex",
+				"ApplyTextureLayer"
+			],
+			[
+				"leve",
+				"levelWidth"
+			],
+			[
+				"resolu",
+				"resolution	[class]"
+			],
+			[
+				"SetPix",
+				"SetPixels	Cubemap.*(colors, face, miplevel)"
+			],
+			[
 				"dungeonT",
 				"dungeonTilesetFlipped"
 			],
@@ -92,10 +116,53 @@
 	"buffers":
 	[
 		{
+			"contents": "using UnityEngine;\nusing System.Collections.Generic;\n\npublic class GameView : MonoBehaviour \n{\n    #region Delegates & Events\n    public delegate void ProcessTurn();\n    public static event ProcessTurn processTurn;\n    #endregion\n\n\n	#region Variables\n	public float cycleRate = 0.5f;\n	private float nextCycle = 0.0f;\n\n	public int levelWidth = 128;\n	public int levelHeight = 128;\n    public int rooms;\n\n	public float tileSize = 1.0f;\n	public int tileResolution = 16;\n\n	public Texture2D dungeonTileset;\n\n	public static byte[,] dungeonMap; \n	public static List<Vector2> viableLocations = new List<Vector2>();\n	public NPCController npcController;\n	public ItemController itemController;\n\n	public Player player;\n	public int currentLevel = 1;\n\n    private DungeonVariables variables;\n    public Texture2D levelTexture;\n    public Color[][] spriteSheet;\n    \n    public static int numRows;\n    public static int numTilesPerRow;\n    //private byte[,] data;\n\n	#endregion\n\n	// Use this for initialization\n	void Awake () \n	{\n		double lastTime = System.DateTime.Now.ToFileTime();\n        GameObject dv = GameObject.Find(\"DungeonVariables\");\n        if(dv != null) variables = dv.GetComponent<DungeonVariables>();\n\n        if (variables != null) \n        { \n            Debug.Log(\"Dungeon Variables found\");\n            if (variables.size == 1)\n            {\n                levelWidth = 32;\n                levelHeight = 32;\n            } \n            else if(variables.size == 2)\n            {\n                levelWidth = 64;\n                levelHeight = 64;\n\n            }\n\n            else if(variables.size == 3)\n            {\n                levelWidth = 128;\n                levelHeight = 128;\n            }\n        }\n        else //handling so far only includes using the standard variables\n        {\n        }\n\n		int texWidth = levelWidth * tileResolution;\n		int texHeight = levelHeight * tileResolution;\n		levelTexture = new Texture2D(texWidth, texHeight);\n\n		// Build mesh and move to correct view point.\n		buildMesh(this.gameObject, levelWidth, levelHeight, tileSize);\n		transform.position = new Vector3(transform.position.x, transform.position.y + levelHeight, transform.position.z);\n\n		// Generate dungeon map and apply textue.\n		dungeonMap = new byte[levelWidth, levelHeight];\n		spriteSheet = ChopUpTiles(dungeonTileset, tileResolution);\n		BuildLevel(levelWidth, levelHeight, tileResolution);\n    \n		SpawnPlayer();\n		SpawnEntities();\n\n		/*ConvertToString cTS = new ConvertToString();\n		Debug.Log(cTS.Covert(NPCController.npcMap, levelWidth, levelHeight));\n		Debug.Log(cTS.Covert(ItemController.itemMap, levelWidth, levelHeight));*/\n		Debug.Log(\"Loading time: \" + (System.DateTime.Now.ToFileTime() - lastTime)/10000D + \" ms.\");\n	}\n\n	private void buildMesh(GameObject gObject, int width, int height, float tileSize) \n	{\n		\n		int numTiles = width * height;\n		int numTris = numTiles * 2;\n		\n		int vwidth = width + 1;\n		int vheight = height + 1;\n		int numVerts = vwidth * vheight;\n		\n		//generate the mesh data\n		Vector3[] vertices = new Vector3[numVerts];\n        Vector3[] normals = new Vector3[numVerts];\n		Vector2[] uv = new Vector2[numVerts];\n		\n		int[] triangles = new int[numTris * 3];\n		\n		int x, y;\n		for (y = 0; y < vheight; y++) {\n			for (x = 0; x < vwidth; x++) {\n				vertices[y * vwidth + x] = new Vector3(x*tileSize,-y*tileSize,0);	\n				normals[y * vwidth + x] = new Vector3(0,0,-1);\n				uv[y * vwidth + x] = new Vector2((float)x / width, 1f-(float)y / height);\n			}\n		}\n		\n		for (y = 0; y < height; y++) {\n			for (x = 0; x < width; x++) {\n				int squareIndex = y * width + x;\n				int triOffset = squareIndex * 6;\n				\n				triangles[triOffset + 0] = y * vwidth + x + 0;\n				triangles[triOffset + 2] = y * vwidth + x + vwidth + 0;\n				triangles[triOffset + 1] = y * vwidth + x + vwidth + 1;\n				\n				triangles[triOffset + 3] = y * vwidth + x + 0;\n				triangles[triOffset + 5] = y * vwidth + x + vwidth + 1;\n				triangles[triOffset + 4] = y * vwidth + x + 1;\n			}\n		}\n		\n		//Create a new Mesh and populate with the data\n		Mesh mesh = new Mesh ();\n		mesh.vertices = vertices;\n		mesh.triangles = triangles;\n		mesh.normals = normals;\n		mesh.uv = uv;\n		\n		//Assign our mesh to our filter/renderer/collider\n		MeshFilter mesh_filter = gObject.GetComponent<MeshFilter> ();\n		//MeshRenderer mesh_renderer = GetComponent<MeshRenderer>();\n		MeshCollider mesh_collider = gObject.GetComponent<MeshCollider>();\n		\n		mesh_filter.mesh = mesh;\n		mesh_collider.sharedMesh = mesh;\n	}\n\n	private void BuildLevel(int width, int height, float tileResolution) {\n        \n        /*TDMap map;\n        if(variables != null) map = new TDMap(width, height, rooms, variables.type);\n        else map = new TDMap(width, height, rooms);*/     	\n\n        int depth = 2;\n       	byte[][,] map = LevelGenerator.CreateAndValidateUndergroundMap(width, height, depth);\n       	dungeonMap = map[0];\n\n		\n		BuildLevelTexture();	\n	}\n\n	public Color[][] ChopUpTiles(Texture2D tileTexture, int tileResolution){\n		numTilesPerRow = tileTexture.width / tileResolution;\n		numRows = tileTexture.height / tileResolution;\n		\n		Color[][] tiles = new Color[numTilesPerRow*numRows][];\n		\n		for(int y = 0; y < numRows; y++) {\n			for(int x = 0; x < numTilesPerRow; x++) {\n				tiles[y * numTilesPerRow + x] = tileTexture.GetPixels(x * tileResolution, y * tileResolution, tileResolution, tileResolution);\n			}	\n		}\n		\n		return tiles;\n	}\n\n    public void NextCycle()\n    {\n        nextCycle = Time.time + cycleRate;\n        processTurn();\n    }\n\n    public float GetNextCycle()\n    {\n        return nextCycle;\n    }\n\n    public bool IsNextCycle(){\n    	return Time.time > nextCycle;\n    }\n\n    public Tile GetTileSprite(int id){\n    	return Tile.tiles[(byte)id];\n    }\n\n    public byte GetTile(int x, int y) {\n    	if(x < 0 || x >= levelWidth) return 255;\n    	if(y < 0 || y >= levelHeight) return 255;\n    	return dungeonMap[x,y];\n    }\n\n\n    public void ApplyTextureLayer(byte[] IDs, bool ignore) {\n    	for(int y = levelHeight-1; y >= 0; y--) {\n			 for(int x = levelWidth-1; x >= 0; x--) {\n				bool flagContinue = false;\n				for(int i = 0; i < IDs.Length; i++) {\n					if(ignore) {\n						if(IDs[i] == dungeonMap[x,y]) {\n							flagContinue = true;\n							break;\n						}\n					} else {\n						flagContinue = true;\n						if(IDs[i] == dungeonMap[x,y]) {							\n							flagContinue = false;\n							break;\n						} \n					}\n				}\n				if(flagContinue) continue;\n				Tile.tiles[dungeonMap[x,y]].RenderTile(x,y);\n			}	\n		}\n    }\n\n   	//requires the x and y position, the texture to draw on, the sprite in form of an array to draw and the\n   	//respective tile resolution. The function can be 'misused' by painting single pixels, but it's meant\n   	//to draw whole sprites.\n    public void DrawOnTexture(int x, int y, Texture2D texture, Color[] sprite, int tileResolution){\n    	for(int yy = y, _y = 0; yy < y + tileResolution; yy++, _y++) {\n    		for(int xx = x, _x = 0; xx < x + tileResolution; xx++, _x++) {\n    			Color c = sprite[_x+_y*tileResolution];\n    			if(c.a == 0) continue;	\n    			texture.SetPixel(xx, yy, c); 			\n    		}		   		\n    	}\n    }\n\n\n\n    //The zero layer just fills everything with dirt, so transparent pixels don't show the game background\n    //This is also the layer that fills up the actual dungeon map array\n    public void FillTextureWithTile(byte id){\n    	for(int y = levelHeight-1; y >= 0; y--) {\n			for(int x = levelWidth-1; x >= 0; x--) {\n				Tile.tiles[id].RenderTile(x,y);\n			}	\n		}\n    }\n\n    public void FinalizeLevelTexture(Texture2D texture) {\n    	texture.filterMode = FilterMode.Point;\n		texture.wrapMode = TextureWrapMode.Repeat;\n		texture.Apply();\n		\n		MeshRenderer mesh_renderer = GetComponent<MeshRenderer>();\n		mesh_renderer.sharedMaterials[0].mainTexture = texture;\n    }\n\n    public void BuildLevelTexture() {\n    	FillTextureWithTile(Tile.dirt.id);\n\n    	byte[] apl1 = {Tile.rock.id, Tile.dirt.id, Tile.ironOre.id, Tile.stairsDown.id};\n		ApplyTextureLayer(apl1, true);\n		byte[] apl2 = {Tile.rock.id, Tile.stairsDown.id};\n		ApplyTextureLayer(apl2, false);\n		byte[] apl3 = {Tile.ironOre.id};\n		ApplyTextureLayer(apl3, false);\n\n		FinalizeLevelTexture(levelTexture);\n\n		for(int y = 0; y < levelHeight; y++) {\n			for(int x = 0; x < levelWidth; x++) {\n				if(Tile.tiles[dungeonMap[x,y]].walkable) {\n					viableLocations.Add(new Vector2(x,y));\n				}\n			}\n		}\n    }\n\n    public void SpawnPlayer() {\n    	// Initialise the player and generate list of viable position on the map.\n		for(int y = 0; y < levelHeight; y++) {\n			for(int x = 0; x < levelWidth; x++) {\n				if(Tile.tiles[dungeonMap[x,y]].walkable){\n					player.setPositionDirectly(x, y);\n				}\n			}\n		}\n    }\n\n    public void SpawnEntities() {\n    	// Initialise Controllers\n		npcController.populateEnemies(viableLocations, currentLevel, levelWidth, levelHeight);\n		itemController.populateItems(viableLocations, levelWidth, levelHeight);\n    }\n}\n",
 			"file": "Assets/Scripts/Level/GameView.cs",
+			"file_size": 8945,
+			"file_write_time": 130546773608785567,
 			"settings":
 			{
-				"buffer_size": 7705,
+				"buffer_size": 8887,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "Assets/Scripts/Level/DungeonVariables.cs",
+			"settings":
+			{
+				"buffer_size": 209,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "Assets/Scripts/Controllers/NPCController.cs",
+			"settings":
+			{
+				"buffer_size": 1055,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "Assets/Scripts/Controllers/ItemController.cs",
+			"settings":
+			{
+				"buffer_size": 1500,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "Assets/Scripts/Level/LevelGen/LevelGenerator.cs",
+			"settings":
+			{
+				"buffer_size": 5279,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "Assets/Scripts/Entities/Actors/Player.cs",
+			"settings":
+			{
+				"buffer_size": 5922,
 				"line_ending": "Windows"
 			}
 		},
@@ -103,7 +170,7 @@
 			"file": "Assets/Scripts/Level/Tile/Tile.cs",
 			"settings":
 			{
-				"buffer_size": 973,
+				"buffer_size": 989,
 				"line_ending": "Unix"
 			}
 		},
@@ -111,23 +178,15 @@
 			"file": "Assets/Scripts/Level/Tile/Dirt.cs",
 			"settings":
 			{
-				"buffer_size": 251,
+				"buffer_size": 270,
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "Assets/Scripts/Level/Tile/IronOre.cs",
+			"file": "Assets/Scripts/Level/Tile/StairsDown.cs",
 			"settings":
 			{
-				"buffer_size": 257,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "Assets/Scripts/Level/Tile/Lava.cs",
-			"settings":
-			{
-				"buffer_size": 252,
+				"buffer_size": 282,
 				"line_ending": "Windows"
 			}
 		},
@@ -135,23 +194,7 @@
 			"file": "Assets/Scripts/Level/Tile/Water.cs",
 			"settings":
 			{
-				"buffer_size": 252,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "Assets/Scripts/Level/Tile/Rock.cs",
-			"settings":
-			{
-				"buffer_size": 2564,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "Assets/Scripts/Interface/TileMarker.cs",
-			"settings":
-			{
-				"buffer_size": 1010,
+				"buffer_size": 1516,
 				"line_ending": "Windows"
 			}
 		}
@@ -164,7 +207,7 @@
 		[
 			[
 				"Package Control: ",
-				"Package Control: Install Package"
+				"Package Control: Disable Package"
 			],
 			[
 				"paca",
@@ -175,7 +218,7 @@
 				"Package Control: Install Package"
 			]
 		],
-		"width": 910.0
+		"width": 1031.0
 	},
 	"console":
 	{
@@ -215,24 +258,25 @@
 	"file_history":
 	[
 		"/C/Users/Marc/workspace/Unity/Polandcrawl/Assets/Scripts/AI/PathFinder.cs",
-		"/C/Users/Marc/workspace/Unity/Polandcrawl/Assets/Scripts/Entities/Actors/Player.cs",
+		"/C/Users/Marc/workspace/Unity/Polandcrawl/Assets/Scripts/Level/Tile/Rock.cs",
+		"/C/Users/Marc/workspace/Unity/Polandcrawl/Assets/Scripts/Level/Tile/StairsDown.cs",
+		"/C/Users/Marc/workspace/Unity/Polandcrawl/Assets/Scripts/Level/Tile/Water.cs",
+		"/C/Users/Marc/workspace/Unity/Polandcrawl/Assets/Scripts/Interface/DamageText.cs",
+		"/C/Users/Marc/workspace/Unity/Polandcrawl/Assets/Scripts/Other/Math/Gaussian.cs",
 		"/C/Users/Marc/workspace/Unity/Polandcrawl/Assets/Scripts/Controllers/NPCController.cs",
-		"/C/Users/Marc/workspace/Unity/Polandcrawl/Assets/Scripts/Level/LevelGen/LevelGenerator.cs",
+		"/C/Users/Marc/AppData/Roaming/Sublime Text 3/Packages/GoSublime/USAGE.md",
+		"/C/Users/Marc/workspace/Unity/Polandcrawl/Assets/Scripts/Level/Tile/IronOre.cs",
+		"/C/Users/Marc/workspace/Unity/Polandcrawl/Assets/Scripts/Entities/Actors/Player.cs",
 		"/C/Users/Marc/workspace/Unity/Polandcrawl/Assets/Scripts/Interface/TileMarker.cs",
+		"/C/Users/Marc/workspace/Unity/Polandcrawl/Assets/Scripts/Level/Tile/Lava.cs",
+		"/C/Users/Marc/workspace/Unity/Polandcrawl/Assets/Scripts/Level/Tile/Dirt.cs",
+		"/C/Users/Marc/workspace/Unity/Polandcrawl/Assets/Scripts/Level/Tile/Tile.cs",
+		"/C/Users/Marc/workspace/Unity/Polandcrawl/Assets/Scripts/Level/LevelGen/LevelGenerator.cs",
 		"/C/Users/Marc/workspace/Unity/Polandcrawl/Assets/Scripts/Controllers/InputHandler.cs",
 		"/C/Users/Marc/workspace/Unity/Polandcrawl/Assets/Scripts/Entities/Actors/Actor.cs",
 		"/C/Users/Marc/workspace/Unity/Polandcrawl/Assets/Scripts/Interface/PlayerGUI.cs",
-		"/C/Users/Marc/workspace/Unity/Polandcrawl/Assets/Scripts/Other/Math/Gaussian.cs",
-		"/C/Users/Marc/workspace/Unity/Polandcrawl/Assets/Scripts/Level/Tile/Tile.cs",
-		"/C/Users/Marc/workspace/Unity/Polandcrawl/Assets/Scripts/Interface/DamageText.cs",
-		"/C/Users/Marc/workspace/Unity/Polandcrawl/Assets/Scripts/Level/Tile/Dirt.cs",
-		"/C/Users/Marc/workspace/Unity/Polandcrawl/Assets/Scripts/Level/Tile/IronOre.cs",
-		"/C/Users/Marc/workspace/Unity/Polandcrawl/Assets/Scripts/Level/Tile/Lava.cs",
-		"/C/Users/Marc/workspace/Unity/Polandcrawl/Assets/Scripts/Level/Tile/Rock.cs",
 		"/C/Users/Marc/workspace/Unity/Polandcrawl/Assets/Scripts/Entities/Actors/Enemy.cs",
 		"/C/Users/Marc/workspace/Unity/Polandcrawl/Assets/Scripts/Level/GameView.cs",
-		"/C/Users/Marc/workspace/Unity/Polandcrawl/Assets/Scripts/Level/Tile/Water.cs",
-		"/C/Users/Marc/workspace/Unity/Polandcrawl/Assets/Scripts/Level/Tile/StairsDown.cs",
 		"/C/Users/Marc/workspace/Unity/Polandcrawl/Assets/Scripts/Level/LevelGen/TDMap.cs",
 		"/C/Users/Acer Aspire 6935G/AppData/Roaming/Sublime Text 3/Packages/User/Default (Windows).sublime-keymap",
 		"/C/Users/Acer Aspire 6935G/AppData/Roaming/Sublime Text 3/Packages/Default/Default (Windows).sublime-keymap",
@@ -350,7 +394,7 @@
 	"groups":
 	[
 		{
-			"selected": 6,
+			"selected": 4,
 			"sheets":
 			[
 				{
@@ -359,15 +403,45 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 7705,
+						"buffer_size": 8887,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2523,
-								2523
+								6366,
+								6366
+							]
+						],
+						"settings":
+						{
+							"apply_syntax_touched": true,
+							"spell_check": true,
+							"syntax": "Packages/Unity3D/UnityC#.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 2551.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "Assets/Scripts/Level/DungeonVariables.cs",
+					"semi_transient": true,
+					"settings":
+					{
+						"buffer_size": 209,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
 							]
 						],
 						"settings":
@@ -376,27 +450,27 @@
 							"syntax": "Packages/Unity3D/UnityC#.tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 765.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 1,
 					"type": "text"
 				},
 				{
-					"buffer": 1,
-					"file": "Assets/Scripts/Level/Tile/Tile.cs",
+					"buffer": 2,
+					"file": "Assets/Scripts/Controllers/NPCController.cs",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 973,
+						"buffer_size": 1055,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								842,
-								842
+								385,
+								385
 							]
 						],
 						"settings":
@@ -409,30 +483,31 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
+					"stack_index": 4,
 					"type": "text"
 				},
 				{
-					"buffer": 2,
-					"file": "Assets/Scripts/Level/Tile/Dirt.cs",
+					"buffer": 3,
+					"file": "Assets/Scripts/Controllers/ItemController.cs",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 251,
+						"buffer_size": 1500,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								218,
-								229
+								332,
+								332
 							]
 						],
 						"settings":
 						{
 							"apply_syntax_touched": true,
-							"syntax": "Packages/Unity3D/UnityC#.tmLanguage"
+							"syntax": "Packages/Unity3D/UnityC#.tmLanguage",
+							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -442,26 +517,88 @@
 					"type": "text"
 				},
 				{
-					"buffer": 3,
-					"file": "Assets/Scripts/Level/Tile/IronOre.cs",
+					"buffer": 4,
+					"file": "Assets/Scripts/Level/LevelGen/LevelGenerator.cs",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 257,
+						"buffer_size": 5279,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								250,
-								250
+								2240,
+								2240
 							]
 						],
 						"settings":
 						{
 							"apply_syntax_touched": true,
-							"syntax": "Packages/Unity3D/UnityC#.tmLanguage"
+							"syntax": "Packages/Unity3D/UnityC#.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 2061.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "Assets/Scripts/Entities/Actors/Player.cs",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 5922,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								401,
+								401
+							]
+						],
+						"settings":
+						{
+							"apply_syntax_touched": true,
+							"syntax": "Packages/Unity3D/UnityC#.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 9,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "Assets/Scripts/Level/Tile/Tile.cs",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 989,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								449,
+								449
+							]
+						],
+						"settings":
+						{
+							"apply_syntax_touched": true,
+							"syntax": "Packages/Unity3D/UnityC#.tmLanguage",
+							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -471,20 +608,20 @@
 					"type": "text"
 				},
 				{
-					"buffer": 4,
-					"file": "Assets/Scripts/Level/Tile/Lava.cs",
+					"buffer": 7,
+					"file": "Assets/Scripts/Level/Tile/Dirt.cs",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 252,
+						"buffer_size": 270,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								245,
-								233
+								113,
+								113
 							]
 						],
 						"settings":
@@ -500,78 +637,20 @@
 					"type": "text"
 				},
 				{
-					"buffer": 5,
-					"file": "Assets/Scripts/Level/Tile/Water.cs",
+					"buffer": 8,
+					"file": "Assets/Scripts/Level/Tile/StairsDown.cs",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 252,
+						"buffer_size": 282,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								245,
-								245
-							]
-						],
-						"settings":
-						{
-							"apply_syntax_touched": true,
-							"syntax": "Packages/Unity3D/UnityC#.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 4,
-					"type": "text"
-				},
-				{
-					"buffer": 6,
-					"file": "Assets/Scripts/Level/Tile/Rock.cs",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 2564,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1398,
-								1398
-							]
-						],
-						"settings":
-						{
-							"apply_syntax_touched": true,
-							"syntax": "Packages/Unity3D/UnityC#.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 140.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-					"type": "text"
-				},
-				{
-					"buffer": 7,
-					"file": "Assets/Scripts/Interface/TileMarker.cs",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1010,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								385,
-								385
+								125,
+								125
 							]
 						],
 						"settings":
@@ -584,6 +663,36 @@
 						"zoom_level": 1.0
 					},
 					"stack_index": 7,
+					"type": "text"
+				},
+				{
+					"buffer": 9,
+					"file": "Assets/Scripts/Level/Tile/Water.cs",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1516,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								115,
+								115
+							]
+						],
+						"settings":
+						{
+							"apply_syntax_touched": true,
+							"syntax": "Packages/Unity3D/UnityC#.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 8,
 					"type": "text"
 				}
 			]
@@ -620,6 +729,10 @@
 		]
 	},
 	"menu_visible": true,
+	"output.MarGo-output":
+	{
+		"height": 100.0
+	},
 	"output.exec":
 	{
 		"height": 121.0
@@ -631,7 +744,7 @@
 	"project": "pcrawl_sublime.sublime-project",
 	"replace":
 	{
-		"height": 62.0
+		"height": 40.0
 	},
 	"save_all_on_build": true,
 	"select_file":

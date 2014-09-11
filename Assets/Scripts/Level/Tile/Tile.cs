@@ -12,6 +12,9 @@ public class Tile {
 	public static Tile rock = new Rock(4);
 	public static Tile ironOre = new IronOre(5);
 
+	public bool walkable = false;
+	public bool swimmable = false;
+
 	public readonly byte id;
 	public Color[][] spriteSheet;
 	public Color[][] spriteSheetFlipped;

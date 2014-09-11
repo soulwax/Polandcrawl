@@ -3,6 +3,7 @@ using System;
 
 public class Dirt : Tile {
 	public Dirt(int id) : base(id) {
+		walkable = true;
 	}
 
 	public override void RenderTile(int xp, int yp){
