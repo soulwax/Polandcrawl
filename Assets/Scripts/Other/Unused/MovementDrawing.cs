@@ -63,22 +63,22 @@ bbb#######
 	{
 		fovCalc = new FieldOfVision();
 
-		width = (int)renderer.bounds.size.x*10 / tileReso;
-		height = (int)renderer.bounds.size.y*10 / tileReso; // This is a retarded way and based on rendering size, I'm just a lazy cunt.
+		width = (int)GetComponent<Renderer>().bounds.size.x*10 / tileReso;
+		height = (int)GetComponent<Renderer>().bounds.size.y*10 / tileReso; // This is a retarded way and based on rendering size, I'm just a lazy cunt.
 
 		map = new char[width, height];
 
 		texture = new Texture2D(width, height);
-		renderer.material.mainTexture = texture;
-		renderer.material.mainTexture.filterMode = FilterMode.Point;
+		GetComponent<Renderer>().material.mainTexture = texture;
+		GetComponent<Renderer>().material.mainTexture.filterMode = FilterMode.Point;
 
 		fovTexture = new Texture2D(width, height);
-		fovObject.renderer.material.mainTexture = fovTexture;
-		fovObject.renderer.material.mainTexture.filterMode = FilterMode.Point;
+		fovObject.GetComponent<Renderer>().material.mainTexture = fovTexture;
+		fovObject.GetComponent<Renderer>().material.mainTexture.filterMode = FilterMode.Point;
 
 		playerTexture = new Texture2D(width, height);
-		playerObject.renderer.material.mainTexture = playerTexture;
-		playerObject.renderer.material.mainTexture.filterMode = FilterMode.Point;
+		playerObject.GetComponent<Renderer>().material.mainTexture = playerTexture;
+		playerObject.GetComponent<Renderer>().material.mainTexture.filterMode = FilterMode.Point;
 
 
 		/*string[] mapChars = mapString.Split(new[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries);

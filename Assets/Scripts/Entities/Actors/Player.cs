@@ -135,7 +135,7 @@ public class Player : Actor
         } else {        
             inventoryList.Add(itemTemp);
             itemTemp.gameObject.transform.parent = inventoryObject.transform;
-            itemTemp.renderer.enabled = false;
+            itemTemp.GetComponent<Renderer>().enabled = false;
         }
     }
 

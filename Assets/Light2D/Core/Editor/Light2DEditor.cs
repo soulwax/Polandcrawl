@@ -154,7 +154,7 @@ public class Light2DEditor : Editor
     {
         for (int j = 0; j < em.assignedRenderers.Count; j++)
         {
-            if (em.assignedRenderers[j].camera == cam)
+            if (em.assignedRenderers[j].GetComponent<Camera>() == cam)
                 return true;
         }
         return false;

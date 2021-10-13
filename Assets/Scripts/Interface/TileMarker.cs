@@ -20,7 +20,7 @@ public class TileMarker: MonoBehaviour {
 		Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 		RaycastHit hitInfo;
 		
-		if(collider.Raycast (ray, out hitInfo, Mathf.Infinity)) {
+		if(GetComponent<Collider>().Raycast (ray, out hitInfo, Mathf.Infinity)) {
 			Vector3 coordinates = transform.worldToLocalMatrix.MultiplyPoint3x4(hitInfo.point);
 			int x = Mathf.FloorToInt(coordinates.x / _tileMap.tileSize);
 			int y = Mathf.FloorToInt(coordinates.y / _tileMap.tileSize);		

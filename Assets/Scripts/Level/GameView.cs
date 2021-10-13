@@ -38,10 +38,11 @@ public class GameView : MonoBehaviour
     public static int numTilesPerRow;
     //private byte[,] data;
 
-	#endregion
+    #endregion
 
-	// Use this for initialization
-	void Awake () 
+
+    // Use this for initialization
+    void Awake () 
 	{
 		double lastTime = System.DateTime.Now.ToFileTime();
         GameObject dv = GameObject.Find("DungeonVariables");

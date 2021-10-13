@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour {
 
@@ -116,7 +117,8 @@ public class MainMenu : MonoBehaviour {
                 }
 
                 DontDestroyOnLoad(go);
-                Application.LoadLevel("gvTest");
+                //Application.LoadLevel("gvTest");
+                SceneManager.LoadScene("gvTest");
             }
 
             //adjust the dungeon size

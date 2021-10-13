@@ -1,0 +1,1174 @@
+Using pre-set license
+Built from '2021.2/release' branch; Version is '2021.2.0b14 (bf4dfffaa8cd) revision 12537343'; Using compiler version '192829333'; Build Type 'Release'
+OS: 'Windows 10 Pro; OS build 22471.1000; Version 2009; 64bit' Language: 'de' Physical Memory: 16260 MB
+BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1, IsPro: 0
+
+COMMAND LINE ARGUMENTS:
+C:\Program Files\Unity\Hub\Editor\2021.2.0b14\Editor\Unity.exe
+-adb2
+-batchMode
+-noUpm
+-name
+AssetImportWorker0
+-projectPath
+C:/dev/Polandcrawl
+-logFile
+Logs/AssetImportWorker0.log
+-srvPort
+50551
+Successfully changed project path to: C:/dev/Polandcrawl
+C:/dev/Polandcrawl
+[UnityMemory] Configuration Parameters - Can be set up in boot.config
+    "memorysetup-bucket-allocator-granularity=16"
+    "memorysetup-bucket-allocator-bucket-count=8"
+    "memorysetup-bucket-allocator-block-size=33554432"
+    "memorysetup-bucket-allocator-block-count=8"
+    "memorysetup-main-allocator-block-size=16777216"
+    "memorysetup-thread-allocator-block-size=16777216"
+    "memorysetup-gfx-main-allocator-block-size=16777216"
+    "memorysetup-gfx-thread-allocator-block-size=16777216"
+    "memorysetup-cache-allocator-block-size=4194304"
+    "memorysetup-typetree-allocator-block-size=2097152"
+    "memorysetup-profiler-bucket-allocator-granularity=16"
+    "memorysetup-profiler-bucket-allocator-bucket-count=8"
+    "memorysetup-profiler-bucket-allocator-block-size=33554432"
+    "memorysetup-profiler-bucket-allocator-block-count=8"
+    "memorysetup-profiler-allocator-block-size=16777216"
+    "memorysetup-profiler-editor-allocator-block-size=1048576"
+    "memorysetup-temp-allocator-size-main=16777216"
+    "memorysetup-job-temp-allocator-block-size=2097152"
+    "memorysetup-job-temp-allocator-block-size-background=1048576"
+    "memorysetup-job-temp-allocator-reduction-small-platforms=262144"
+    "memorysetup-temp-allocator-size-background-worker=32768"
+    "memorysetup-temp-allocator-size-job-worker=262144"
+    "memorysetup-temp-allocator-size-preload-manager=33554432"
+    "memorysetup-temp-allocator-size-nav-mesh-worker=65536"
+    "memorysetup-temp-allocator-size-audio-worker=65536"
+    "memorysetup-temp-allocator-size-cloud-worker=32768"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gfx=262144"
+Refreshing native plugins compatible for Editor in 112.89 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Initialize engine version: 2021.2.0b14 (bf4dfffaa8cd)
+[Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/2021.2.0b14/Editor/Data/Resources/UnitySubsystems
+[Subsystems] Discovering subsystems at path C:/dev/Polandcrawl/Assets
+GfxDevice: creating device client; threaded=0; jobified=0
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.1]
+    Renderer: NVIDIA GeForce GTX 1070 (ID=0x1be1)
+    Vendor:   NVIDIA
+    VRAM:     8082 MB
+    Driver:   30.0.14.7212
+Initialize mono
+Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/2021.2.0b14/Editor/Data/Managed'
+Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/2021.2.0b14/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'
+Mono config path = 'C:/Program Files/Unity/Hub/Editor/2021.2.0b14/Editor/Data/MonoBleedingEdge/etc'
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56556
+Begin MonoManager ReloadAssembly
+Registering precompiled unity dll's ...
+Register platform support module: C:/Program Files/Unity/Hub/Editor/2021.2.0b14/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
+Registered in 0.011121 seconds.
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 121.56 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.880 seconds
+Domain Reload Profiling:
+	ReloadAssembly (1938ms)
+		BeginReloadAssembly (195ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (0ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (0ms)
+			CreateAndSetChildDomain (1ms)
+		EndReloadAssembly (968ms)
+			LoadAssemblies (193ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (361ms)
+			ReleaseScriptCaches (0ms)
+			RebuildScriptCaches (48ms)
+			SetupLoadedEditorAssemblies (416ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (12ms)
+				SetLoadedEditorAssemblies (0ms)
+				RefreshPlugins (122ms)
+				BeforeProcessingInitializeOnLoad (2ms)
+				ProcessInitializeOnLoadAttributes (195ms)
+				ProcessInitializeOnLoadMethodAttributes (85ms)
+				AfterProcessingInitializeOnLoad (0ms)
+				EditorAssembliesLoaded (0ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (0ms)
+Platform modules already initialized, skipping
+Registering precompiled user dll's ...
+Registered in 0.005902 seconds.
+Begin MonoManager ReloadAssembly
+Symbol file LoadedFromMemory doesn't match image C:\dev\Polandcrawl\Library\PackageCache\com.unity.visualscripting@1.7.2\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll
+Symbol file LoadedFromMemory doesn't match image C:\dev\Polandcrawl\Library\PackageCache\com.unity.visualscripting@1.7.2\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 0.82 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  2.619 seconds
+Domain Reload Profiling:
+	ReloadAssembly (2744ms)
+		BeginReloadAssembly (320ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (11ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (0ms)
+			CreateAndSetChildDomain (33ms)
+		EndReloadAssembly (2199ms)
+			LoadAssemblies (137ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (870ms)
+			ReleaseScriptCaches (2ms)
+			RebuildScriptCaches (113ms)
+			SetupLoadedEditorAssemblies (731ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (29ms)
+				SetLoadedEditorAssemblies (1ms)
+				RefreshPlugins (1ms)
+				BeforeProcessingInitializeOnLoad (155ms)
+				ProcessInitializeOnLoadAttributes (493ms)
+				ProcessInitializeOnLoadMethodAttributes (39ms)
+				AfterProcessingInitializeOnLoad (12ms)
+				EditorAssembliesLoaded (0ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (15ms)
+Platform modules already initialized, skipping
+========================================================================
+Worker process is ready to serve import requests
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.13 seconds
+Refreshing native plugins compatible for Editor in 2.22 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3036 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 20 unused Assets / (55.4 KB). Loaded Objects now: 3497.
+Memory consumption went from 111.2 MB to 111.1 MB.
+Total: 10.032500 ms (FindLiveObjects: 0.676700 ms CreateObjectMapping: 0.363200 ms MarkObjects: 8.869000 ms  DeleteObjects: 0.121000 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:video-codec-MediaFoundation-h265: 746d11721c4dcdbdad8f713fa42b33f4 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Import Request.
+  Time since last request: 12607.265741 seconds.
+  path: Assets/Scripts/Level/Tile/Lava.cs
+  artifactKey: Guid(4ec08b82520807943b87a1788e49db34) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5)
+Start importing Assets/Scripts/Level/Tile/Lava.cs using Guid(4ec08b82520807943b87a1788e49db34) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: 'e0902b288426ddd85a4d1c8524c7bcb8') in 0.197163 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000023 seconds.
+  path: Assets/Scripts/Other/Unused/FieldOfVision.cs
+  artifactKey: Guid(386bb2f84840f6944a882ca961e3bfc8) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5)
+Start importing Assets/Scripts/Other/Unused/FieldOfVision.cs using Guid(386bb2f84840f6944a882ca961e3bfc8) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: 'b389d89a54edba56d0cd6e9034fe2619') in 0.009121 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000041 seconds.
+  path: Assets/Light2D/SampleScenes/Scripts/Light2D_UVRotation.cs
+  artifactKey: Guid(a01d861c25ce7b54aa8b8459960f5ab8) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5)
+Start importing Assets/Light2D/SampleScenes/Scripts/Light2D_UVRotation.cs using Guid(a01d861c25ce7b54aa8b8459960f5ab8) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '64f3b4c4ea805ee944a25b474f51820e') in 0.008145 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000029 seconds.
+  path: Assets/Scripts/Level/Tile/IronOre.cs
+  artifactKey: Guid(b228fc69db9f861498fea78c772e6cf2) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5)
+Start importing Assets/Scripts/Level/Tile/IronOre.cs using Guid(b228fc69db9f861498fea78c772e6cf2) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '6bde97b723d06e283f53519d347e0cc6') in 0.008295 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000031 seconds.
+  path: Assets/Necromancer GUI/controls/SliderThumb.tga
+  artifactKey: Guid(c69f531b19ca810488d9bb77cb23e847) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5)
+Start importing Assets/Necromancer GUI/controls/SliderThumb.tga using Guid(c69f531b19ca810488d9bb77cb23e847) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '067e2cc23e20f2894d7a4d92ee95fb77') in 0.013292 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000018 seconds.
+  path: Assets/Scripts/Level/Tile/StairsDown.cs
+  artifactKey: Guid(0aa455a8752cca9408501dcf562ec0eb) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5)
+Start importing Assets/Scripts/Level/Tile/StairsDown.cs using Guid(0aa455a8752cca9408501dcf562ec0eb) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '95a7163e8ec9c13313c0c4f91af494fb') in 0.009148 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000026 seconds.
+  path: Assets/Materials/Player.mat
+  artifactKey: Guid(42aeee5c03cdfec409f5399e852ff3eb) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5)
+Start importing Assets/Materials/Player.mat using Guid(42aeee5c03cdfec409f5399e852ff3eb) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '69130b1a62ba17fe5692de8800edfa37') in 0.009819 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000033 seconds.
+  path: Assets/Scripts/Controllers/ItemController.cs
+  artifactKey: Guid(00358503d83aa2943b64bd7b29b898c4) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5)
+Start importing Assets/Scripts/Controllers/ItemController.cs using Guid(00358503d83aa2943b64bd7b29b898c4) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: 'f1d7f6097b20518d5d23279d6a5dc96c') in 0.009894 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000034 seconds.
+  path: Assets/Textures/Tiles/Materials/PlayerSprite.mat
+  artifactKey: Guid(ea993233903e0f64aadf0b2b8de35f39) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5)
+Start importing Assets/Textures/Tiles/Materials/PlayerSprite.mat using Guid(ea993233903e0f64aadf0b2b8de35f39) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: 'ce2055856f9f6781a6d9c37217799712') in 0.007011 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000067 seconds.
+  path: Assets/Prefabs/Testing/Enemies/Germany.prefab
+  artifactKey: Guid(5a6b792d234f3e747a6662eda5305d96) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5)
+Start importing Assets/Prefabs/Testing/Enemies/Germany.prefab using Guid(5a6b792d234f3e747a6662eda5305d96) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '69fa0351ed37548ebd88e9f48537fa03') in 0.030927 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000028 seconds.
+  path: Assets/Scripts/Entities/Items/Potion.cs
+  artifactKey: Guid(c6f9a26622ca76d4f9ed02a0654aa556) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5)
+Start importing Assets/Scripts/Entities/Items/Potion.cs using Guid(c6f9a26622ca76d4f9ed02a0654aa556) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '9fc962a9f782da067b46a6fed429805e') in 0.007615 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000029 seconds.
+  path: Assets/Scripts/Entities/Actors/Enemy.cs
+  artifactKey: Guid(863046f3600d2b74899e9019e4063ada) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5)
+Start importing Assets/Scripts/Entities/Actors/Enemy.cs using Guid(863046f3600d2b74899e9019e4063ada) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '92016ff9c4647b2ee2875659e99f6520') in 0.010367 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000031 seconds.
+  path: Assets/Necromancer GUI/controls/IconFrame.tga
+  artifactKey: Guid(cc112d970b8914d43ac85d2f51abfd94) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5)
+Start importing Assets/Necromancer GUI/controls/IconFrame.tga using Guid(cc112d970b8914d43ac85d2f51abfd94) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '2cbf4b0c982f1746926206e778716650') in 0.005611 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000028 seconds.
+  path: Assets/Necromancer GUI/controls/TextBox.tga
+  artifactKey: Guid(1f4d7b55e9b91a144ac11784375d587d) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5)
+Start importing Assets/Necromancer GUI/controls/TextBox.tga using Guid(1f4d7b55e9b91a144ac11784375d587d) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '454391928c9fd4e0b45147f4173cbe21') in 0.007014 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000032 seconds.
+  path: Assets/Necromancer GUI/controls/SliderHoriz.tga
+  artifactKey: Guid(6f548b3d29e79324a8b8c89ce68eaf9c) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5)
+Start importing Assets/Necromancer GUI/controls/SliderHoriz.tga using Guid(6f548b3d29e79324a8b8c89ce68eaf9c) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '6f875dd801668f64191cdcd6edcfac13') in 0.009705 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000024 seconds.
+  path: Assets/Scripts/AI/PathFinder.cs
+  artifactKey: Guid(6d37f08c6806d134cae34a9419cdb538) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5)
+Start importing Assets/Scripts/AI/PathFinder.cs using Guid(6d37f08c6806d134cae34a9419cdb538) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '9061ed89303c683612833a1b40beaa39') in 0.007607 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000026 seconds.
+  path: Assets/Fonts/pf_ronda_seven_bold.ttf
+  artifactKey: Guid(616e908782adcba4d8a8b3f0855e7c80) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5)
+Start importing Assets/Fonts/pf_ronda_seven_bold.ttf using Guid(616e908782adcba4d8a8b3f0855e7c80) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '62adda54080f86aef247e8b28d1d443f') in 0.027889 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000027 seconds.
+  path: Assets/Scripts/Level/Tile/Dirt.cs
+  artifactKey: Guid(4c8dd5fb4889d91458504ce5c9cd5a54) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5)
+Start importing Assets/Scripts/Level/Tile/Dirt.cs using Guid(4c8dd5fb4889d91458504ce5c9cd5a54) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '9e0ebb684b3933193ca88f088baf05f9') in 0.005464 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000027 seconds.
+  path: Assets/Necromancer GUI/controls/SliderVert.tga
+  artifactKey: Guid(8804bb7f7aadd81499dc69f9c828df84) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5)
+Start importing Assets/Necromancer GUI/controls/SliderVert.tga using Guid(8804bb7f7aadd81499dc69f9c828df84) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: 'ab5d524e1e45d6e06055d8ef919c53aa') in 0.008974 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000023 seconds.
+  path: Assets/Light2D/SampleScenes/Scenes/EventTestSettings.lighting
+  artifactKey: Guid(944330f5806e7b7438d1b235081aaf58) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5)
+Start importing Assets/Light2D/SampleScenes/Scenes/EventTestSettings.lighting using Guid(944330f5806e7b7438d1b235081aaf58) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '72a1a8b437edc34ec948beed05a4f3c2') in 0.012106 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000037 seconds.
+  path: Assets/Textures/Tiles/player_tiles.png
+  artifactKey: Guid(2942b457abe19a342885395aa76ecb62) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5)
+Start importing Assets/Textures/Tiles/player_tiles.png using Guid(2942b457abe19a342885395aa76ecb62) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: 'd6a19b3ce8305796f6abafbb24edbbeb') in 0.094909 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000032 seconds.
+  path: Assets/Prefabs/DamageText.prefab
+  artifactKey: Guid(b8b6f5ff30a65a64582111ac2d0d6f8e) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5)
+Start importing Assets/Prefabs/DamageText.prefab using Guid(b8b6f5ff30a65a64582111ac2d0d6f8e) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '8f7c2da35b1f07c400c9b05e422e764e') in 0.007633 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000036 seconds.
+  path: Assets/Scripts/Interface/PlayerGUI.cs
+  artifactKey: Guid(09cd132a3ec9f9d45a8ca00d0183ea8f) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5)
+Start importing Assets/Scripts/Interface/PlayerGUI.cs using Guid(09cd132a3ec9f9d45a8ca00d0183ea8f) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: 'd92f571d48bc328f26119beadfaa4f71') in 0.007234 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000025 seconds.
+  path: Assets/Prefabs/Testing/Enemies/Russia.prefab
+  artifactKey: Guid(5cd1891d0af1bf94dae28c8362afaddc) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5)
+Start importing Assets/Prefabs/Testing/Enemies/Russia.prefab using Guid(5cd1891d0af1bf94dae28c8362afaddc) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '34cafc84415051b897bcfe39a0f3018a') in 0.010531 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000091 seconds.
+  path: Assets/Necromancer GUI/controls/Skull.tga
+  artifactKey: Guid(4ed2a6406c7b3d442991c23b5ffb601c) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5)
+Start importing Assets/Necromancer GUI/controls/Skull.tga using Guid(4ed2a6406c7b3d442991c23b5ffb601c) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '4e3e5d794a088e61b1bb70be889fce4c') in 0.009393 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000037 seconds.
+  path: Assets/Necromancer GUI/controls/spikeRight.tga
+  artifactKey: Guid(075396dc2982b1c48b25c41c17d6edcb) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5)
+Start importing Assets/Necromancer GUI/controls/spikeRight.tga using Guid(075396dc2982b1c48b25c41c17d6edcb) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: 'c456beb8558fe04690c0f1c442e045d7') in 0.005920 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000039 seconds.
+  path: Assets/Prefabs/Testing/Enemies/Israel.prefab
+  artifactKey: Guid(905791e5fcda9a34e92bfad0d92dd541) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5)
+Start importing Assets/Prefabs/Testing/Enemies/Israel.prefab using Guid(905791e5fcda9a34e92bfad0d92dd541) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '503bd1e275d10d2dbbd8821fb93e57df') in 0.009467 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000024 seconds.
+  path: Assets/Necromancer GUI/controls/Kingthings_Calligraphica_Italic.ttf
+  artifactKey: Guid(c70504cdd34de484bb5e178466197c3f) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5)
+Start importing Assets/Necromancer GUI/controls/Kingthings_Calligraphica_Italic.ttf using Guid(c70504cdd34de484bb5e178466197c3f) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: 'd938c7d3803d67775f8bb65ac2fd8592') in 0.012653 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000023 seconds.
+  path: Assets/Materials/FieldOfVision.mat
+  artifactKey: Guid(0589c4ab353725c40ab9f2b8c2f9a0eb) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5)
+Start importing Assets/Materials/FieldOfVision.mat using Guid(0589c4ab353725c40ab9f2b8c2f9a0eb) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '05e03a9139d7aa6299e4a3eb76968d67') in 0.008474 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000028 seconds.
+  path: Assets/Necromancer GUI/controls/spikeLeft.tga
+  artifactKey: Guid(9c96dbbb88d7e7e4ebb0797976fbe2a1) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5)
+Start importing Assets/Necromancer GUI/controls/spikeLeft.tga using Guid(9c96dbbb88d7e7e4ebb0797976fbe2a1) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: 'fdea4de0a33d8a4bc7c7839823bd2bfc') in 0.005981 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000038 seconds.
+  path: Assets/Prefabs/Testing/Items/Stairs.prefab
+  artifactKey: Guid(abbed2c99cd550346868db1d37693563) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5)
+Start importing Assets/Prefabs/Testing/Items/Stairs.prefab using Guid(abbed2c99cd550346868db1d37693563) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '1fa1c84b2553dff7eb05db66eab66149') in 0.021258 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000046 seconds.
+  path: Assets/Textures/Tiles/multi_enemies.png
+  artifactKey: Guid(e0107768a7a830946ae8082e5c0139a4) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5)
+Start importing Assets/Textures/Tiles/multi_enemies.png using Guid(e0107768a7a830946ae8082e5c0139a4) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: 'e2b467309fe6ec0567041e291205e415') in 0.007373 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000034 seconds.
+  path: Assets/Light2D/Resources/Noise_Grad.png
+  artifactKey: Guid(a19ea4956bfd4544ca41ac952a8edc9b) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5)
+Start importing Assets/Light2D/Resources/Noise_Grad.png using Guid(a19ea4956bfd4544ca41ac952a8edc9b) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '3ca82f01a57c2ea05c6a3d521c8730c3') in 0.008910 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000030 seconds.
+  path: Assets/Scripts/Other/Unused/TileGraphics/TGMap.cs
+  artifactKey: Guid(f56d8f14034ca3b439225524ff7cffca) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5)
+Start importing Assets/Scripts/Other/Unused/TileGraphics/TGMap.cs using Guid(f56d8f14034ca3b439225524ff7cffca) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '61b21952fbb012b7b2ba8994cc93253f') in 0.006045 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000084 seconds.
+  path: Assets/Prefabs/BoxParticle.prefab
+  artifactKey: Guid(ce73e480633d15c4294d1fba5213230c) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5)
+Start importing Assets/Prefabs/BoxParticle.prefab using Guid(ce73e480633d15c4294d1fba5213230c) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '09ec497bfabc6fa25a465d8bea92e81d') in 0.017719 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000024 seconds.
+  path: Assets/Prefabs/PathMarker.prefab
+  artifactKey: Guid(06f15a380cdd57146992bb397cf60eb0) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5)
+Start importing Assets/Prefabs/PathMarker.prefab using Guid(06f15a380cdd57146992bb397cf60eb0) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: 'b46b312a7b939121470510a23fdf0a98') in 0.016634 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000059 seconds.
+  path: Assets/Scripts/Other/Unused/MovementDrawing.cs
+  artifactKey: Guid(860f213a791ed3640b4aa16599f361fb) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5)
+Start importing Assets/Scripts/Other/Unused/MovementDrawing.cs using Guid(860f213a791ed3640b4aa16599f361fb) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '7eb46a63990cb10ca31bb40cbd12bc9b') in 0.009010 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000029 seconds.
+  path: Assets/Scripts/Other/Unused/TestGUI.cs
+  artifactKey: Guid(fce35a017b7b58c4e93886c277a9f4f9) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5)
+Start importing Assets/Scripts/Other/Unused/TestGUI.cs using Guid(fce35a017b7b58c4e93886c277a9f4f9) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: 'c3dfab5b38190fcef3dffe4749c0af08') in 0.007690 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000047 seconds.
+  path: Assets/Scripts/Other/Unused/PlayerTest.cs
+  artifactKey: Guid(886187e5a0edcf049b9e92892aaf1684) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5)
+Start importing Assets/Scripts/Other/Unused/PlayerTest.cs using Guid(886187e5a0edcf049b9e92892aaf1684) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: 'c04d0b3493a67a11329e2b3a00b04ff1') in 0.006292 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000030 seconds.
+  path: Assets/Scripts/Controllers/ConvertToString.cs
+  artifactKey: Guid(8ff8d80974679f548855cd10a5e7f7a3) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5)
+Start importing Assets/Scripts/Controllers/ConvertToString.cs using Guid(8ff8d80974679f548855cd10a5e7f7a3) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '2acf86bb0261c4292cc513b21c840275') in 0.008763 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000034 seconds.
+  path: Assets/Textures/Tiles/Materials/Manager.prefab
+  artifactKey: Guid(d20df2715d9e3b24db8115b772584cef) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5)
+Start importing Assets/Textures/Tiles/Materials/Manager.prefab using Guid(d20df2715d9e3b24db8115b772584cef) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '7db61bd522d008200800262f9a276c7d') in 0.015385 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000026 seconds.
+  path: Assets/Scripts/Controllers/InputHandler.cs
+  artifactKey: Guid(026effec6b9edc64fa7f3abbef76cb9e) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5)
+Start importing Assets/Scripts/Controllers/InputHandler.cs using Guid(026effec6b9edc64fa7f3abbef76cb9e) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '2f40f476fa55928f6c16fa87f1cfcb3e') in 0.008091 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000033 seconds.
+  path: Assets/Scripts/Controllers/GameManager.cs
+  artifactKey: Guid(39669149c3a61544797fd19fd511da88) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5)
+Start importing Assets/Scripts/Controllers/GameManager.cs using Guid(39669149c3a61544797fd19fd511da88) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '3cec04fafd5d0e8347a54e1c685d27d7') in 0.007925 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000026 seconds.
+  path: Assets/Scripts/Level/Tile/Rock.cs
+  artifactKey: Guid(dd8af7cc315ea5944a904027257f41c2) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5)
+Start importing Assets/Scripts/Level/Tile/Rock.cs using Guid(dd8af7cc315ea5944a904027257f41c2) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: 'c5aef8e54d6346d6f18eb410f9b03caa') in 0.006272 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000028 seconds.
+  path: Assets/Necromancer GUI/controls/WinScrollHoriz.tga
+  artifactKey: Guid(755e87bff6c18b64a951be313bc3516c) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5)
+Start importing Assets/Necromancer GUI/controls/WinScrollHoriz.tga using Guid(755e87bff6c18b64a951be313bc3516c) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '5f1300a12dcdcb06bc9b04422e2216e5') in 0.012902 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000032 seconds.
+  path: Assets/Editor/SetPosition.cs
+  artifactKey: Guid(e4b0994588f68874f929d3cfcc7ab6da) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5)
+Start importing Assets/Editor/SetPosition.cs using Guid(e4b0994588f68874f929d3cfcc7ab6da) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: 'edce7effb99cebdcb5a8d72d49b690ee') in 0.004969 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000030 seconds.
+  path: Assets/Scripts/Interface/TileMarker.cs
+  artifactKey: Guid(92e9b837781be5d4aa22ea88822c500a) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5)
+Start importing Assets/Scripts/Interface/TileMarker.cs using Guid(92e9b837781be5d4aa22ea88822c500a) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: 'e37a683dc8574fe7ac2a7cce14979427') in 0.010222 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000029 seconds.
+  path: Assets/Necromancer GUI/controls/RibbonYellow.tga
+  artifactKey: Guid(8a237ff2fa0ffc14882b850b56194181) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5)
+Start importing Assets/Necromancer GUI/controls/RibbonYellow.tga using Guid(8a237ff2fa0ffc14882b850b56194181) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '390af525313a8b50429e68851ededfea') in 0.006548 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000058 seconds.
+  path: Assets/Necromancer GUI/controls/button.tga
+  artifactKey: Guid(9bb8f50cfbe7d174ba9d9d25d51b4e48) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5)
+Start importing Assets/Necromancer GUI/controls/button.tga using Guid(9bb8f50cfbe7d174ba9d9d25d51b4e48) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: 'af48180dc6e24c662044e67d8041587c') in 0.008780 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000052 seconds.
+  path: Assets/Prefabs/Testing/Items/Potions/Mana Potion.prefab
+  artifactKey: Guid(920cd6b45cda1474f87980fa40efe0cc) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5)
+Start importing Assets/Prefabs/Testing/Items/Potions/Mana Potion.prefab using Guid(920cd6b45cda1474f87980fa40efe0cc) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: 'c103ebcb8e0ff5a21f2a6bb1efdb88eb') in 0.010233 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000027 seconds.
+  path: Assets/Necromancer GUI/controls/ScrollThumb.tga
+  artifactKey: Guid(d118d57c0d2c66d4987c2798b831f299) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5)
+Start importing Assets/Necromancer GUI/controls/ScrollThumb.tga using Guid(d118d57c0d2c66d4987c2798b831f299) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: 'adfdbef83d659ccca0f982bf1caaff87') in 0.012727 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000034 seconds.
+  path: Assets/Textures/Tiles/Materials/EnemySprites.mat
+  artifactKey: Guid(034a51c271eea8d4982e0a1ecae0ec0d) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5)
+Start importing Assets/Textures/Tiles/Materials/EnemySprites.mat using Guid(034a51c271eea8d4982e0a1ecae0ec0d) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '695f6a68f1ca8f6378b58f54e26a4627') in 0.006362 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000025 seconds.
+  path: Assets/Necromancer GUI/controls/Divider.tga
+  artifactKey: Guid(8555fa900c4d9eb4da3156bea08f9473) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5)
+Start importing Assets/Necromancer GUI/controls/Divider.tga using Guid(8555fa900c4d9eb4da3156bea08f9473) Importer(2089858483,934ff659095e30574adcf32a4c2f97b5) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '9f20b68221011b281dca56cf9715dac8') in 0.005552 seconds 
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.006924 seconds.
+Begin MonoManager ReloadAssembly
+Symbol file LoadedFromMemory doesn't match image C:\dev\Polandcrawl\Library\PackageCache\com.unity.visualscripting@1.7.2\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll
+Symbol file LoadedFromMemory doesn't match image C:\dev\Polandcrawl\Library\PackageCache\com.unity.visualscripting@1.7.2\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 0.89 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  2.205 seconds
+Domain Reload Profiling:
+	ReloadAssembly (2289ms)
+		BeginReloadAssembly (257ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (7ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (0ms)
+			CreateAndSetChildDomain (70ms)
+		EndReloadAssembly (1819ms)
+			LoadAssemblies (165ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (691ms)
+			ReleaseScriptCaches (2ms)
+			RebuildScriptCaches (56ms)
+			SetupLoadedEditorAssemblies (637ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (28ms)
+				SetLoadedEditorAssemblies (1ms)
+				RefreshPlugins (1ms)
+				BeforeProcessingInitializeOnLoad (111ms)
+				ProcessInitializeOnLoadAttributes (451ms)
+				ProcessInitializeOnLoadMethodAttributes (31ms)
+				AfterProcessingInitializeOnLoad (14ms)
+				EditorAssembliesLoaded (0ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (15ms)
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 0.91 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3030 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 15 unused Assets / (24.6 KB). Loaded Objects now: 3502.
+Memory consumption went from 111.4 MB to 111.4 MB.
+Total: 5.744600 ms (FindLiveObjects: 0.433800 ms CreateObjectMapping: 0.360300 ms MarkObjects: 4.923100 ms  DeleteObjects: 0.026200 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:video-codec-MediaFoundation-h265: 746d11721c4dcdbdad8f713fa42b33f4 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.008067 seconds.
+Begin MonoManager ReloadAssembly
+Symbol file LoadedFromMemory doesn't match image C:\dev\Polandcrawl\Library\PackageCache\com.unity.visualscripting@1.7.2\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll
+Symbol file LoadedFromMemory doesn't match image C:\dev\Polandcrawl\Library\PackageCache\com.unity.visualscripting@1.7.2\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 1.06 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  2.143 seconds
+Domain Reload Profiling:
+	ReloadAssembly (2243ms)
+		BeginReloadAssembly (223ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (9ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (0ms)
+			CreateAndSetChildDomain (70ms)
+		EndReloadAssembly (1837ms)
+			LoadAssemblies (124ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (714ms)
+			ReleaseScriptCaches (1ms)
+			RebuildScriptCaches (55ms)
+			SetupLoadedEditorAssemblies (589ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (24ms)
+				SetLoadedEditorAssemblies (1ms)
+				RefreshPlugins (1ms)
+				BeforeProcessingInitializeOnLoad (126ms)
+				ProcessInitializeOnLoadAttributes (393ms)
+				ProcessInitializeOnLoadMethodAttributes (30ms)
+				AfterProcessingInitializeOnLoad (14ms)
+				EditorAssembliesLoaded (0ms)
+			ExecutionOrderSort2 (1ms)
+			AwakeInstancesAfterBackupRestoration (16ms)
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 1.49 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3030 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 15 unused Assets / (24.6 KB). Loaded Objects now: 3504.
+Memory consumption went from 111.4 MB to 111.4 MB.
+Total: 5.062100 ms (FindLiveObjects: 0.330100 ms CreateObjectMapping: 0.264500 ms MarkObjects: 4.406500 ms  DeleteObjects: 0.059300 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:video-codec-MediaFoundation-h265: 746d11721c4dcdbdad8f713fa42b33f4 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.008059 seconds.
+Begin MonoManager ReloadAssembly
+Symbol file LoadedFromMemory doesn't match image C:\dev\Polandcrawl\Library\PackageCache\com.unity.visualscripting@1.7.2\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll
+Symbol file LoadedFromMemory doesn't match image C:\dev\Polandcrawl\Library\PackageCache\com.unity.visualscripting@1.7.2\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 0.77 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.978 seconds
+Domain Reload Profiling:
+	ReloadAssembly (2057ms)
+		BeginReloadAssembly (215ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (8ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (0ms)
+			CreateAndSetChildDomain (64ms)
+		EndReloadAssembly (1669ms)
+			LoadAssemblies (126ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (687ms)
+			ReleaseScriptCaches (2ms)
+			RebuildScriptCaches (60ms)
+			SetupLoadedEditorAssemblies (515ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (23ms)
+				SetLoadedEditorAssemblies (1ms)
+				RefreshPlugins (1ms)
+				BeforeProcessingInitializeOnLoad (94ms)
+				ProcessInitializeOnLoadAttributes (356ms)
+				ProcessInitializeOnLoadMethodAttributes (30ms)
+				AfterProcessingInitializeOnLoad (11ms)
+				EditorAssembliesLoaded (0ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (13ms)
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 1.07 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3030 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 15 unused Assets / (24.6 KB). Loaded Objects now: 3506.
+Memory consumption went from 111.4 MB to 111.4 MB.
+Total: 7.568000 ms (FindLiveObjects: 0.411400 ms CreateObjectMapping: 0.391300 ms MarkObjects: 6.696800 ms  DeleteObjects: 0.066700 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:video-codec-MediaFoundation-h265: 746d11721c4dcdbdad8f713fa42b33f4 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.005181 seconds.
+Begin MonoManager ReloadAssembly
+Symbol file LoadedFromMemory doesn't match image C:\dev\Polandcrawl\Library\PackageCache\com.unity.visualscripting@1.7.2\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll
+Symbol file LoadedFromMemory doesn't match image C:\dev\Polandcrawl\Library\PackageCache\com.unity.visualscripting@1.7.2\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 0.75 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  2.307 seconds
+Domain Reload Profiling:
+	ReloadAssembly (2421ms)
+		BeginReloadAssembly (229ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (11ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (0ms)
+			CreateAndSetChildDomain (69ms)
+		EndReloadAssembly (1979ms)
+			LoadAssemblies (130ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (789ms)
+			ReleaseScriptCaches (2ms)
+			RebuildScriptCaches (66ms)
+			SetupLoadedEditorAssemblies (631ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (26ms)
+				SetLoadedEditorAssemblies (1ms)
+				RefreshPlugins (1ms)
+				BeforeProcessingInitializeOnLoad (122ms)
+				ProcessInitializeOnLoadAttributes (432ms)
+				ProcessInitializeOnLoadMethodAttributes (37ms)
+				AfterProcessingInitializeOnLoad (13ms)
+				EditorAssembliesLoaded (0ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (19ms)
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 0.87 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3030 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 15 unused Assets / (24.6 KB). Loaded Objects now: 3508.
+Memory consumption went from 111.4 MB to 111.4 MB.
+Total: 4.956300 ms (FindLiveObjects: 0.365900 ms CreateObjectMapping: 0.240600 ms MarkObjects: 4.302700 ms  DeleteObjects: 0.045800 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:video-codec-MediaFoundation-h265: 746d11721c4dcdbdad8f713fa42b33f4 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.007363 seconds.
+Begin MonoManager ReloadAssembly
+Symbol file LoadedFromMemory doesn't match image C:\dev\Polandcrawl\Library\PackageCache\com.unity.visualscripting@1.7.2\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll
+Symbol file LoadedFromMemory doesn't match image C:\dev\Polandcrawl\Library\PackageCache\com.unity.visualscripting@1.7.2\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 0.74 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.941 seconds
+Domain Reload Profiling:
+	ReloadAssembly (2035ms)
+		BeginReloadAssembly (204ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (7ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (0ms)
+			CreateAndSetChildDomain (57ms)
+		EndReloadAssembly (1659ms)
+			LoadAssemblies (119ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (668ms)
+			ReleaseScriptCaches (1ms)
+			RebuildScriptCaches (52ms)
+			SetupLoadedEditorAssemblies (545ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (20ms)
+				SetLoadedEditorAssemblies (1ms)
+				RefreshPlugins (1ms)
+				BeforeProcessingInitializeOnLoad (91ms)
+				ProcessInitializeOnLoadAttributes (394ms)
+				ProcessInitializeOnLoadMethodAttributes (26ms)
+				AfterProcessingInitializeOnLoad (12ms)
+				EditorAssembliesLoaded (0ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (16ms)
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 0.95 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3030 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 15 unused Assets / (24.6 KB). Loaded Objects now: 3510.
+Memory consumption went from 111.4 MB to 111.4 MB.
+Total: 5.091700 ms (FindLiveObjects: 0.409200 ms CreateObjectMapping: 0.214500 ms MarkObjects: 4.399700 ms  DeleteObjects: 0.052100 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:video-codec-MediaFoundation-h265: 746d11721c4dcdbdad8f713fa42b33f4 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.009109 seconds.
+Begin MonoManager ReloadAssembly
+Symbol file LoadedFromMemory doesn't match image C:\dev\Polandcrawl\Library\PackageCache\com.unity.visualscripting@1.7.2\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll
+Symbol file LoadedFromMemory doesn't match image C:\dev\Polandcrawl\Library\PackageCache\com.unity.visualscripting@1.7.2\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 0.88 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  2.054 seconds
+Domain Reload Profiling:
+	ReloadAssembly (2164ms)
+		BeginReloadAssembly (207ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (14ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (0ms)
+			CreateAndSetChildDomain (58ms)
+		EndReloadAssembly (1794ms)
+			LoadAssemblies (117ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (729ms)
+			ReleaseScriptCaches (1ms)
+			RebuildScriptCaches (53ms)
+			SetupLoadedEditorAssemblies (587ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (22ms)
+				SetLoadedEditorAssemblies (1ms)
+				RefreshPlugins (1ms)
+				BeforeProcessingInitializeOnLoad (105ms)
+				ProcessInitializeOnLoadAttributes (417ms)
+				ProcessInitializeOnLoadMethodAttributes (29ms)
+				AfterProcessingInitializeOnLoad (12ms)
+				EditorAssembliesLoaded (0ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (12ms)
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 1.10 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3030 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 15 unused Assets / (24.6 KB). Loaded Objects now: 3512.
+Memory consumption went from 111.4 MB to 111.4 MB.
+Total: 5.593600 ms (FindLiveObjects: 0.277300 ms CreateObjectMapping: 0.177700 ms MarkObjects: 5.098900 ms  DeleteObjects: 0.038300 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:video-codec-MediaFoundation-h265: 746d11721c4dcdbdad8f713fa42b33f4 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.009016 seconds.
+Begin MonoManager ReloadAssembly
+Symbol file LoadedFromMemory doesn't match image C:\dev\Polandcrawl\Library\PackageCache\com.unity.visualscripting@1.7.2\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll
+Symbol file LoadedFromMemory doesn't match image C:\dev\Polandcrawl\Library\PackageCache\com.unity.visualscripting@1.7.2\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 1.19 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.963 seconds
+Domain Reload Profiling:
+	ReloadAssembly (2058ms)
+		BeginReloadAssembly (201ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (7ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (0ms)
+			CreateAndSetChildDomain (51ms)
+		EndReloadAssembly (1702ms)
+			LoadAssemblies (123ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (631ms)
+			ReleaseScriptCaches (1ms)
+			RebuildScriptCaches (58ms)
+			SetupLoadedEditorAssemblies (589ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (26ms)
+				SetLoadedEditorAssemblies (1ms)
+				RefreshPlugins (1ms)
+				BeforeProcessingInitializeOnLoad (98ms)
+				ProcessInitializeOnLoadAttributes (418ms)
+				ProcessInitializeOnLoadMethodAttributes (33ms)
+				AfterProcessingInitializeOnLoad (11ms)
+				EditorAssembliesLoaded (0ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (13ms)
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 0.83 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3030 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 15 unused Assets / (24.7 KB). Loaded Objects now: 3514.
+Memory consumption went from 111.4 MB to 111.4 MB.
+Total: 6.469400 ms (FindLiveObjects: 0.484200 ms CreateObjectMapping: 0.355300 ms MarkObjects: 5.571900 ms  DeleteObjects: 0.056200 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:video-codec-MediaFoundation-h265: 746d11721c4dcdbdad8f713fa42b33f4 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.007321 seconds.
+Begin MonoManager ReloadAssembly
+Symbol file LoadedFromMemory doesn't match image C:\dev\Polandcrawl\Library\PackageCache\com.unity.visualscripting@1.7.2\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll
+Symbol file LoadedFromMemory doesn't match image C:\dev\Polandcrawl\Library\PackageCache\com.unity.visualscripting@1.7.2\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 0.98 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  2.004 seconds
+Domain Reload Profiling:
+	ReloadAssembly (2092ms)
+		BeginReloadAssembly (187ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (7ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (0ms)
+			CreateAndSetChildDomain (51ms)
+		EndReloadAssembly (1738ms)
+			LoadAssemblies (108ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (633ms)
+			ReleaseScriptCaches (2ms)
+			RebuildScriptCaches (70ms)
+			SetupLoadedEditorAssemblies (616ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (26ms)
+				SetLoadedEditorAssemblies (1ms)
+				RefreshPlugins (1ms)
+				BeforeProcessingInitializeOnLoad (106ms)
+				ProcessInitializeOnLoadAttributes (432ms)
+				ProcessInitializeOnLoadMethodAttributes (31ms)
+				AfterProcessingInitializeOnLoad (18ms)
+				EditorAssembliesLoaded (0ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (12ms)
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 1.04 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3030 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 15 unused Assets / (24.6 KB). Loaded Objects now: 3516.
+Memory consumption went from 111.4 MB to 111.4 MB.
+Total: 6.603500 ms (FindLiveObjects: 0.438000 ms CreateObjectMapping: 0.354300 ms MarkObjects: 5.768700 ms  DeleteObjects: 0.040600 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:video-codec-MediaFoundation-h265: 746d11721c4dcdbdad8f713fa42b33f4 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Import Request.
+  Time since last request: 255.836303 seconds.
+  path: Assets/Light2D/Resources/Burst3.png
+  artifactKey: Guid(8284ab6fdc2bd864d88699b5659fb3ba) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Light2D/Resources/Burst3.png using Guid(8284ab6fdc2bd864d88699b5659fb3ba) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1008dc0a5927679de9b25ee73adbd00b') in 0.459137 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000047 seconds.
+  path: Assets/Necromancer GUI/controls/Check.tga
+  artifactKey: Guid(3da85626c7e441c4b91528bf9b4eaabd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Necromancer GUI/controls/Check.tga using Guid(3da85626c7e441c4b91528bf9b4eaabd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a89b809a2b0ee77bca12de13a6340d39') in 0.021290 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.890259 seconds.
+  path: Assets/Necromancer GUI/controls/Kingthings_Calligraphica.ttf
+  artifactKey: Guid(5c366876ae2f6574f942cd03913ff2a8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Necromancer GUI/controls/Kingthings_Calligraphica.ttf using Guid(5c366876ae2f6574f942cd03913ff2a8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '404fd211333c1ce2414e08395e8702ec') in 0.071356 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.147633 seconds.
+  path: Assets/Fonts/pf_ronda_seven_bold.ttf
+  artifactKey: Guid(616e908782adcba4d8a8b3f0855e7c80) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Fonts/pf_ronda_seven_bold.ttf using Guid(616e908782adcba4d8a8b3f0855e7c80) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6e38bd12a01045b4ec8d60cb7418f15d') in 0.063319 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.014095 seconds.
+  path: Assets/Necromancer GUI/controls/GoldLeaf.tga
+  artifactKey: Guid(81c9c3047c880fe4f8867e7f50c0df29) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Necromancer GUI/controls/GoldLeaf.tga using Guid(81c9c3047c880fe4f8867e7f50c0df29) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ab281e57a54ec6aba7da3052627c2ab1') in 0.024149 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.354164 seconds.
+  path: Assets/Necromancer GUI/controls/Label.tga
+  artifactKey: Guid(591629b0b5ae7d44884c3dd6e3cac0c2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Necromancer GUI/controls/Label.tga using Guid(591629b0b5ae7d44884c3dd6e3cac0c2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b7b69c251ce8a9f803e339b7817fbe23') in 0.064997 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.054009 seconds.
+  path: Assets/Textures/Tiles/multi_items.png
+  artifactKey: Guid(f5aa5a15bf66f4843804380511aa9d78) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Textures/Tiles/multi_items.png using Guid(f5aa5a15bf66f4843804380511aa9d78) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b44921acb122564247cdd206995b68bd') in 0.028262 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 3.224120 seconds.
+  path: Assets/Necromancer GUI/controls/SliderThumb.tga
+  artifactKey: Guid(c69f531b19ca810488d9bb77cb23e847) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Necromancer GUI/controls/SliderThumb.tga using Guid(c69f531b19ca810488d9bb77cb23e847) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ff230bc17c88b618665349afb635be3f') in 0.061165 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000022 seconds.
+  path: Assets/Necromancer GUI/controls/WinScrollHoriz.tga
+  artifactKey: Guid(755e87bff6c18b64a951be313bc3516c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Necromancer GUI/controls/WinScrollHoriz.tga using Guid(755e87bff6c18b64a951be313bc3516c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '695330fc61101bcb8eaa6a455d52e96c') in 0.018348 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000021 seconds.
+  path: Assets/Textures/Tiles/stairs.png
+  artifactKey: Guid(68e20d84009be0841a2fa34e3ef066ea) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Textures/Tiles/stairs.png using Guid(68e20d84009be0841a2fa34e3ef066ea) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '41a6f114fc4b7af3e38e0e285f1976af') in 0.016394 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000022 seconds.
+  path: Assets/Necromancer GUI/controls/TextBox.tga
+  artifactKey: Guid(1f4d7b55e9b91a144ac11784375d587d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Necromancer GUI/controls/TextBox.tga using Guid(1f4d7b55e9b91a144ac11784375d587d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5a77934a540fcc9ab7c234802fb8ea85') in 0.015190 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000021 seconds.
+  path: Assets/Necromancer GUI/controls/TextFieldSelect.tga
+  artifactKey: Guid(2aeabbc12bbcbe64b8c26b532eb0fc92) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Necromancer GUI/controls/TextFieldSelect.tga using Guid(2aeabbc12bbcbe64b8c26b532eb0fc92) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '61878abde6b3411d5231e4af56cdfc3f') in 0.018644 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000034 seconds.
+  path: Assets/Necromancer GUI/controls/TextBoxSelect.tga
+  artifactKey: Guid(fd60fa6b03e340a47ba202d11f45efba) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Necromancer GUI/controls/TextBoxSelect.tga using Guid(fd60fa6b03e340a47ba202d11f45efba) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '543d494cc2ea476997e3df9077acc172') in 0.016096 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000075 seconds.
+  path: Assets/Necromancer GUI/controls/spikeLeft.tga
+  artifactKey: Guid(9c96dbbb88d7e7e4ebb0797976fbe2a1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Necromancer GUI/controls/spikeLeft.tga using Guid(9c96dbbb88d7e7e4ebb0797976fbe2a1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4ce0a8c3093b90aac8661c322614f604') in 0.026925 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000043 seconds.
+  path: Assets/Necromancer GUI/controls/window.tga
+  artifactKey: Guid(c357b906baf44924e83e86c046ca94ff) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Necromancer GUI/controls/window.tga using Guid(c357b906baf44924e83e86c046ca94ff) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ea3735bf8dd306c0130caba8289365e7') in 0.031857 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000070 seconds.
+  path: Assets/Necromancer GUI/controls/RibbonYellow.tga
+  artifactKey: Guid(8a237ff2fa0ffc14882b850b56194181) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Necromancer GUI/controls/RibbonYellow.tga using Guid(8a237ff2fa0ffc14882b850b56194181) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '02e3a210a30e120c627b06ca2cc9c3c1') in 0.022090 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000027 seconds.
+  path: Assets/Necromancer GUI/controls/RibbonBlue.tga
+  artifactKey: Guid(4f4bfa265293341409bf0bbfe3824e9e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Necromancer GUI/controls/RibbonBlue.tga using Guid(4f4bfa265293341409bf0bbfe3824e9e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9f81ce8f551dc123cf427d59f41cfd60') in 0.019690 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000038 seconds.
+  path: Assets/Necromancer GUI/controls/RibbonRed.tga
+  artifactKey: Guid(e84bbc87f25181542bdf768a140dad9f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Necromancer GUI/controls/RibbonRed.tga using Guid(e84bbc87f25181542bdf768a140dad9f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '771edb3ac99ba07b1b78bd74ab1f50a7') in 0.020760 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000036 seconds.
+  path: Assets/Necromancer GUI/controls/ScrollThumb.tga
+  artifactKey: Guid(d118d57c0d2c66d4987c2798b831f299) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Necromancer GUI/controls/ScrollThumb.tga using Guid(d118d57c0d2c66d4987c2798b831f299) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6f325e9e0115622c883038f4187ac359') in 0.016145 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000023 seconds.
+  path: Assets/Textures/Tiles/single_player.png
+  artifactKey: Guid(29919a9c6248af048889937be627aabf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Textures/Tiles/single_player.png using Guid(29919a9c6248af048889937be627aabf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '710a1b095eb7cf14aa077d7b08b6fc2e') in 0.015903 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000033 seconds.
+  path: Assets/Light2D/Resources/Noise_Grad.png
+  artifactKey: Guid(a19ea4956bfd4544ca41ac952a8edc9b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Light2D/Resources/Noise_Grad.png using Guid(a19ea4956bfd4544ca41ac952a8edc9b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5d1c0f0e83c8a81c3bd7a27f91246af9') in 0.016330 seconds 
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.006065 seconds.
+Begin MonoManager ReloadAssembly
+Symbol file LoadedFromMemory doesn't match image C:\dev\Polandcrawl\Library\PackageCache\com.unity.visualscripting@1.7.2\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll
+Symbol file LoadedFromMemory doesn't match image C:\dev\Polandcrawl\Library\PackageCache\com.unity.visualscripting@1.7.2\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 0.71 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  2.331 seconds
+Domain Reload Profiling:
+	ReloadAssembly (2428ms)
+		BeginReloadAssembly (267ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (8ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (0ms)
+			CreateAndSetChildDomain (78ms)
+		EndReloadAssembly (1947ms)
+			LoadAssemblies (154ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (834ms)
+			ReleaseScriptCaches (2ms)
+			RebuildScriptCaches (71ms)
+			SetupLoadedEditorAssemblies (554ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (26ms)
+				SetLoadedEditorAssemblies (1ms)
+				RefreshPlugins (1ms)
+				BeforeProcessingInitializeOnLoad (89ms)
+				ProcessInitializeOnLoadAttributes (397ms)
+				ProcessInitializeOnLoadMethodAttributes (28ms)
+				AfterProcessingInitializeOnLoad (12ms)
+				EditorAssembliesLoaded (0ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (30ms)
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 1.09 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3051 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 15 unused Assets / (24.8 KB). Loaded Objects now: 3890.
+Memory consumption went from 127.2 MB to 127.2 MB.
+Total: 5.811800 ms (FindLiveObjects: 0.651500 ms CreateObjectMapping: 0.555900 ms MarkObjects: 4.556700 ms  DeleteObjects: 0.046100 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:video-codec-MediaFoundation-h265: 746d11721c4dcdbdad8f713fa42b33f4 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+Editor requested this worker to shutdown with reason: Scaling down because of idle timeout
+AssetImportWorker is now disconnected from the server
+Process exiting
+Exiting without the bug reporter. Application will terminate with return code 0

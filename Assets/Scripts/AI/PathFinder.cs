@@ -7,7 +7,7 @@ using System.Collections.Generic;
 
 public class PathFinder  {
     public static bool VERBOSE = false;
-
+    
     public class Node {
         public int x, y;
         public int xEnd, yEnd;

@@ -14,7 +14,7 @@ public class Light2D_EventTest : MonoBehaviour
     {
         if (obj.GetInstanceID() == gameObject.GetInstanceID() && emitter.eventPassedFilter == "BlockChange")
         {
-            renderer.material.color = emitter.lightColor;
+            GetComponent<Renderer>().material.color = emitter.lightColor;
             Debug.Log("Entered: " + emitter.name);
         }
     }
@@ -29,7 +29,7 @@ public class Light2D_EventTest : MonoBehaviour
     {
         if (obj.GetInstanceID() == gameObject.GetInstanceID() && emitter.eventPassedFilter == "BlockChange")
         {
-            renderer.material.color = Color.white;
+            GetComponent<Renderer>().material.color = Color.white;
             Debug.Log("Exited: " + emitter.name);
         }
     }
